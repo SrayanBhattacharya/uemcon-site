@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Newspaper, Anchor, Landmark, ShieldAlert, Users, Leaf, Globe, ArrowRight } from "lucide-react";
+import { Newspaper, Anchor, Landmark, ShieldAlert, Users, Leaf, Globe } from "lucide-react";
 import Section from "../ui/Section";
 import Container from "../layout/Container";
 import Heading from "../ui/Heading";
@@ -161,27 +161,12 @@ export default function FeaturedCommittees() {
                       </p>
                     </div>
                   </div>
-
-                  {/* Footer metadata */}
-                  <div className="mt-8 pt-4 border-t border-warm-tan/10 flex items-center justify-between text-[9px] uppercase tracking-wider text-ink/40 font-bold">
-                    <span>{committee.delegates}</span>
-                    <span className="flex items-center gap-1 text-primary-blue hover:text-warm-tan transition-colors duration-300 cursor-pointer">
-                      Study Archive
-                      <ArrowRight className="h-3 w-3" />
-                    </span>
-                  </div>
                 </Card>
               </motion.div>
             );
           })}
         </motion.div>
 
-        {/* Global CTA Banner */}
-        <div className="text-center">
-          <Button variant="secondary" href="/events">
-            View All Committees & Rules
-          </Button>
-        </div>
       </Container>
     </Section>
   );
