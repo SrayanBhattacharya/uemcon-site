@@ -18,8 +18,14 @@ export default function Hero() {
           <span className="font-sans font-bold text-xs sm:text-sm tracking-[0.35em] text-[#CBAD7F] uppercase mb-1.5 block animate-fade-in">
             11TH EDITION
           </span>
-          <h1 className="font-sans font-black text-[#F4ECD8] text-[4.5rem] sm:text-[7.5rem] md:text-[9.5rem] lg:text-[11.5rem] xl:text-[13rem] uppercase tracking-tighter leading-none">
-            UEMCON
+          <h1 className="flex items-center justify-center gap-2 sm:gap-4 md:gap-5 lg:gap-6 uppercase font-sans font-black text-[#F4ECD8] tracking-tighter">
+            <span className="text-[3.2rem] sm:text-[7.5rem] md:text-[9.5rem] lg:text-[11.5rem] xl:text-[13.5rem] leading-none">
+              UEM
+            </span>
+            <span className="flex flex-col justify-center items-center text-center leading-[0.9] text-[1.5rem] sm:text-[3.4rem] md:text-[4.4rem] lg:text-[5.3rem] xl:text-[6.2rem] whitespace-nowrap">
+              <span>CONCLAVE</span>
+              <span>OF NATIONS</span>
+            </span>
           </h1>
           <p className="font-serif italic text-xs sm:text-sm md:text-base text-[#CBAD7F]/90 max-w-[280px] sm:max-w-xl md:max-w-2xl mt-2.5 mb-1.5 leading-relaxed">
             "A symposium of strategy, a theatre of treaties, and tremendous fun"
