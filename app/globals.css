@@ -1,26 +1,92 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #FAF7EE; /* Warm paper by default */
+  --foreground: #1A202C; /* Deep Charcoal/Ink by default */
+  
+  --primary-blue: #024F86;
+  --light-beige: #F4ECD8;
+  --warm-tan: #CBAD7F;
+  --ink: #1A202C;
+  --paper: #FAF7EE;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+@theme {
+  --color-primary-blue: var(--primary-blue);
+  --color-light-beige: var(--light-beige);
+  --color-warm-tan: var(--warm-tan);
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
+  
+  --font-serif: var(--font-cormorant), Georgia, serif;
+  --font-sans: var(--font-jakarta), system-ui, -apple-system, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
+/* Custom baseline styling */
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+}
+
+/* Elegant custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #FAF7EE;
+}
+::-webkit-scrollbar-thumb {
+  background: #CBAD7F;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #024F86;
+}
+
+/* Subtle parchment texture overlay */
+.parchment-overlay {
+  position: fixed;
+  inset: 0;
+  background-image: url('/textures/parchment.png');
+  background-repeat: repeat;
+  opacity: 0.12; /* extremely subtle */
+  pointer-events: none;
+  z-index: 50;
+}
+
+/* World map subtle background */
+.world-map-bg {
+  background-image: url('/patterns/world_map.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* Custom interactive utility classes */
+.hover-underline-animation {
+  position: relative;
+}
+.hover-underline-animation::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1px;
+  bottom: -4px;
+  left: 0;
+  background-color: var(--primary-blue);
+  transform-origin: bottom right;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.hover-underline-animation:hover::after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
+
+/* Text selections matching the archival theme */
+::selection {
+  background-color: #CBAD7F;
+  color: #1A202C;
 }
