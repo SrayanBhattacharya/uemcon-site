@@ -19,21 +19,41 @@ export default function Hero() {
             11TH EDITION
           </span>
           <h1 className="flex items-center justify-center gap-1.5 sm:gap-2 md:gap-2.5 lg:gap-3 uppercase font-sans font-black text-[#F4ECD8] tracking-tighter">
-            <span className="text-[3.2rem] sm:text-[7.5rem] md:text-[9.5rem] lg:text-[11.5rem] xl:text-[13.5rem] leading-none">
+            <motion.span
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
+              className="text-[3.2rem] sm:text-[7.5rem] md:text-[9.5rem] lg:text-[11.5rem] xl:text-[13.5rem] leading-none"
+            >
               UEM
-            </span>
-            <span className="flex flex-col justify-center items-start text-left leading-[0.85] text-[1.5rem] sm:text-[3.4rem] md:text-[4.4rem] lg:text-[5.3rem] xl:text-[6.2rem] whitespace-nowrap">
+            </motion.span>
+            <motion.span
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 2.0, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+              className="flex flex-col justify-center items-start text-left leading-[0.85] text-[1.5rem] sm:text-[3.4rem] md:text-[4.4rem] lg:text-[5.3rem] xl:text-[6.2rem] whitespace-nowrap"
+            >
               <span>CONCLAVE</span>
               <span>OF NATIONS</span>
-            </span>
+            </motion.span>
           </h1>
-          <p className="font-serif italic text-xs sm:text-sm md:text-base text-[#CBAD7F]/90 max-w-[280px] sm:max-w-xl md:max-w-2xl mt-2.5 mb-1.5 leading-relaxed">
+          <motion.p
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.85 }}
+            className="font-serif italic text-xs sm:text-sm md:text-base text-[#CBAD7F]/90 max-w-[280px] sm:max-w-xl md:max-w-2xl mt-2.5 mb-1.5 leading-relaxed"
+          >
             "A symposium of strategy, a theatre of treaties, and tremendous fun"
-          </p>
+          </motion.p>
         </div>
 
         {/* Date & Venue details strip */}
-        <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-[10px] sm:text-xs tracking-[0.2em] uppercase text-[#F4ECD8]/80 font-bold mb-4.5 mt-1.5 select-none border-t border-b border-[#CBAD7F]/20 py-1.5 px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 1.05 }}
+          className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-[10px] sm:text-xs tracking-[0.2em] uppercase text-[#F4ECD8]/80 font-bold mb-4.5 mt-1.5 select-none border-t border-b border-[#CBAD7F]/20 py-1.5 px-6"
+        >
           <div className="flex items-center gap-2">
             <span className="text-[#CBAD7F]">📅</span>
             <span>22nd & 23rd August 2026</span>
@@ -43,10 +63,15 @@ export default function Hero() {
             <span className="text-[#CBAD7F]">📍</span>
             <span>UEM Newtown, Kolkata</span>
           </div>
-        </div>
+        </motion.div>
 
         {/* Stacked Offset Block-Buttons (Frans Hals style) */}
-        <div className="flex flex-col items-center justify-center space-y-4 z-20">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 1.25 }}
+          className="flex flex-col items-center justify-center space-y-4 z-20"
+        >
           {/* Button 1 (Explore Committees) - Dark box, light text */}
           <motion.a
             href="#committees-section"
@@ -66,7 +91,7 @@ export default function Hero() {
             <span>◀</span>
             <span>Register</span>
           </motion.button>
-        </div>
+        </motion.div>
       </Container>
 
       {/* Choice Modal Pop-up */}
