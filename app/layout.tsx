@@ -3,6 +3,7 @@ import { Cormorant_Garamond, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import CustomCursor from "@/components/ui/CustomCursor";
 import { Calendar, Ticket, Search, MapPin, Clock, Landmark } from "lucide-react";
 import Link from "next/link";
 
@@ -56,6 +57,9 @@ export default function RootLayout({
       className={`${cormorant.variable} ${jakarta.variable} h-full antialiasedScroll scroll-smooth`}
     >
       <body className="min-h-full flex relative bg-paper text-ink selection:bg-warm-tan/30 selection:text-ink">
+        {/* Custom Premium Eased Cursor */}
+        <CustomCursor />
+
         {/* Subtle global parchment paper texture overlay */}
         <div className="parchment-overlay" />
 

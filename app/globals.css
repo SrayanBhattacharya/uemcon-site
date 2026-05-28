@@ -97,3 +97,12 @@ body {
   color: transparent;
   font-family: var(--font-serif);
 }
+
+/* Custom Cursor styles - hide default cursor on desktop when custom cursor is active */
+@media (pointer: fine) {
+  html.has-custom-cursor,
+  html.has-custom-cursor * {
+    cursor: none !important;
+  }
+}
+

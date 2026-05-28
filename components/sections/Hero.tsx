@@ -8,7 +8,7 @@ import Container from "../layout/Container";
 export default function Hero() {
   const [isModalOpen, setIsModalOpen] = useState(false);
   return (
-    <section className="relative min-h-[calc(100vh-57px)] flex items-center justify-center overflow-hidden py-8 bg-[#011E33] border-b border-warm-tan/20">
+    <section className="hero-section relative min-h-[calc(100vh-57px)] flex items-center justify-center overflow-hidden py-8 bg-[#011E33] border-b border-warm-tan/20">
       {/* Background World Map Pattern (faded) */}
       <div className="absolute inset-0 world-map-bg bg-cover bg-center opacity-[0.03] pointer-events-none" />
 
@@ -18,11 +18,11 @@ export default function Hero() {
           <span className="font-sans font-bold text-xs sm:text-sm tracking-[0.35em] text-[#CBAD7F] uppercase mb-1.5 block animate-fade-in">
             11TH EDITION
           </span>
-          <h1 className="flex items-center justify-center gap-2 sm:gap-4 md:gap-5 lg:gap-6 uppercase font-sans font-black text-[#F4ECD8] tracking-tighter">
+          <h1 className="flex items-center justify-center gap-1.5 sm:gap-2 md:gap-2.5 lg:gap-3 uppercase font-sans font-black text-[#F4ECD8] tracking-tighter">
             <span className="text-[3.2rem] sm:text-[7.5rem] md:text-[9.5rem] lg:text-[11.5rem] xl:text-[13.5rem] leading-none">
               UEM
             </span>
-            <span className="flex flex-col justify-center items-center text-center leading-[0.9] text-[1.5rem] sm:text-[3.4rem] md:text-[4.4rem] lg:text-[5.3rem] xl:text-[6.2rem] whitespace-nowrap">
+            <span className="flex flex-col justify-center items-start text-left leading-[0.85] text-[1.5rem] sm:text-[3.4rem] md:text-[4.4rem] lg:text-[5.3rem] xl:text-[6.2rem] whitespace-nowrap">
               <span>CONCLAVE</span>
               <span>OF NATIONS</span>
             </span>

@@ -33,6 +33,7 @@ export default function Card({
         }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] as const }}
         className={cardStyles}
+        data-cursor="hover"
         {...(props as any)}
       >
         {children}
