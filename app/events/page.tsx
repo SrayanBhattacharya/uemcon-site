@@ -13,16 +13,14 @@ const scheduleData = {
   "day-1": [
     { time: "09:00 AM - 10:30 AM", title: "Registrations & Credentials", desc: "Checking in delegations, distributing placards and security briefs.", location: "Grand Assembly Foyer" },
     { time: "11:00 AM - 12:30 PM", title: "Opening Plenary Ceremony", desc: "Keynote address by chief diplomats and society advisors.", location: "Plenary Summit Hall" },
-    { time: "02:00 PM - 05:30 PM", title: "Committee Session I", desc: "Establishing agenda, opening speeches, and primary lobbying blocs.", location: "Chambers A, B & C" },
+    { time: "02:00 PM - 04:30 PM", title: "Committee Session I", desc: "Establishing agenda, opening speeches, and primary lobbying blocs.", location: "Committee Rooms" },
+    { time: "04:45 PM - 06:30 PM", title: "Committee Session II", desc: "Formal debate, initial positioning, and introduction of working papers.", location: "Committee Rooms" },
   ],
   "day-2": [
-    { time: "09:30 AM - 01:00 PM", title: "Committee Session II", desc: "Formal debate, introduction of working papers and draft proposals.", location: "Chambers A, B & C" },
-    { time: "02:00 PM - 03:30 PM", title: "Unscheduled Crisis Simulation", desc: "Special scenario response tracking strategic containment mandates.", location: "Security Council Chamber" },
-    { time: "04:00 PM - 06:00 PM", title: "Committee Session III", desc: "Consolidating amendments, bilateral discussions, and drafting sessions.", location: "Chambers A, B & C" },
-  ],
-  "day-3": [
-    { time: "09:30 AM - 12:30 PM", title: "Committee Session IV", desc: "Final reading of resolution drafts, voting, and amendment proposals.", location: "Chambers A, B & C" },
-    { time: "02:00 PM - 04:30 PM", title: "Closing Plenary & Awards", desc: "Gavel distributions, secretariat summaries, and delegate reviews.", location: "Plenary Summit Hall" },
+    { time: "09:00 AM - 12:30 PM", title: "Committee Session III", desc: "Drafting resolutions, debates on amendments, and bilateral discussions.", location: "Committee Rooms" },
+    { time: "01:30 PM - 03:00 PM", title: "Unscheduled Crisis Simulation", desc: "Special real-time scenario tracking strategic containment mandates.", location: "Committee Rooms / Security Council" },
+    { time: "03:15 PM - 04:45 PM", title: "Committee Session IV", desc: "Final reading of resolution drafts, amendment voting, and passage.", location: "Committee Rooms" },
+    { time: "05:00 PM - 06:30 PM", title: "Closing Plenary & Awards", desc: "Gavel distributions, secretariat summaries, and delegate reviews.", location: "Plenary Summit Hall" },
   ],
 };
 
@@ -30,11 +28,11 @@ const deadlines = [
   { date: "June 15, 2026", title: "Priority Registration Closes", status: "Open" },
   { date: "June 30, 2026", title: "Regular Registration Closes", status: "Upcoming" },
   { date: "July 10, 2026", title: "Country Allocations & Background Guides", status: "Upcoming" },
-  { date: "August 14, 2026", title: "Opening Summit Day", status: "Upcoming" },
+  { date: "August 22, 2026", title: "Opening Summit Day", status: "Upcoming" },
 ];
 
 export default function EventsPage() {
-  const [activeDay, setActiveDay] = useState<"day-1" | "day-2" | "day-3">("day-1");
+  const [activeDay, setActiveDay] = useState<"day-1" | "day-2">("day-1");
 
   return (
     <div className="flex flex-col w-full">
@@ -55,7 +53,7 @@ export default function EventsPage() {
       </Section>
 
       {/* Deadlines Section */}
-      <Section className="bg-[#FAF7EE]">
+      <Section className="bg-paper">
         <Container>
           <div className="text-center max-w-2xl mx-auto mb-12">
             <Heading level={6} className="mb-2">
@@ -98,13 +96,13 @@ export default function EventsPage() {
               Sovereign Summit
             </Heading>
             <Heading level={3} className="text-xl md:text-2xl text-primary-blue font-serif uppercase tracking-wider">
-              Three-Day Session Schedule
+              Two-Day Session Schedule
             </Heading>
           </div>
 
           {/* Day Toggles */}
           <div className="flex justify-center border-b border-warm-tan/30 mb-12">
-            {(["day-1", "day-2", "day-3"] as const).map((day, idx) => (
+            {(["day-1", "day-2"] as const).map((day, idx) => (
               <button
                 key={day}
                 onClick={() => setActiveDay(day)}

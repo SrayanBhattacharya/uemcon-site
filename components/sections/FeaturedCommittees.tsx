@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Shield, Scale, FileSignature, ArrowRight } from "lucide-react";
+import { Newspaper, Anchor, Landmark, ShieldAlert, Users, Leaf, Globe, ArrowRight } from "lucide-react";
 import Section from "../ui/Section";
 import Container from "../layout/Container";
 import Heading from "../ui/Heading";
@@ -12,28 +12,60 @@ import Button from "../ui/Button";
 
 const committees = [
   {
-    name: "DISEC",
-    fullName: "Disarmament & International Security",
-    agenda: "Evaluating the militarization of oceanic trade routes and sovereignty limits in the polar boundaries.",
-    focus: "Strategic containment, demilitarization, and geopolitical treaty structures.",
-    icon: Shield,
+    name: "UN CSC",
+    fullName: "UN Civil Society Conference",
+    agenda: "Amplifying grassroots and non-governmental voices to accelerate the Sustainable Development Goals (SDGs) and digital equity.",
+    focus: "Grassroots mobilization, NGO partnerships, and multi-sectoral global agendas.",
+    icon: Globe,
+    delegates: "60 Seats Available",
+  },
+  {
+    name: "IP",
+    fullName: "International Press",
+    agenda: "Providing critical investigative journalism, opinion editorials, and live photojournalism covering all active committee sessions.",
+    focus: "Editorial integrity, press freedom, investigative reporting, and diplomatic caricatures.",
+    icon: Newspaper,
+    delegates: "20 Seats Available",
+  },
+  {
+    name: "IMO",
+    fullName: "International Maritime Organization",
+    agenda: "Formulating shipping regulation revisions to mitigate maritime carbon footprint and securing sovereign territorial trade lanes.",
+    focus: "Oceanic trade routes, environmental compliance frameworks, and piracy prevention.",
+    icon: Anchor,
+    delegates: "40 Seats Available",
+  },
+  {
+    name: "JPC",
+    fullName: "Joint Parliamentary Committee",
+    agenda: "Investigating corporate regulatory oversight, public sector allocations, and economic governance reforms under the Indian Parliament.",
+    focus: "Bipartisan legislative consensus, accountability protocols, and policy intervention.",
+    icon: Landmark,
+    delegates: "35 Seats Available",
+  },
+  {
+    name: "UNCND",
+    fullName: "United Nations Commission on Narcotic Drugs",
+    agenda: "Evaluating cross-border synthetic drug cartels, regulating illicit supply chains, and constructing humanitarian rehabilitation policies.",
+    focus: "Narcotic containment treaties, global policing coordination, and public health directives.",
+    icon: ShieldAlert,
     delegates: "45 Seats Available",
   },
   {
-    name: "UNSC",
-    fullName: "United Nations Security Council",
-    agenda: "Addressing the legal mandate of unilateral interventionism and peacekeeping in disputed borders.",
-    focus: "Collective enforcement, global security architectures, and veto protocols.",
-    icon: Scale,
-    delegates: "15 Seats Available",
+    name: "UNW",
+    fullName: "UN Women",
+    agenda: "Safeguarding socio-economic equality, tackling gender-based wage disparities, and protecting women's rights in active conflict zones.",
+    focus: "Universal franchise, gender-responsive national budgeting, and legal protection charters.",
+    icon: Users,
+    delegates: "50 Seats Available",
   },
   {
-    name: "Historic Summit, 1945",
-    fullName: "Special Archival Simulation",
-    agenda: "Negotiating the reconstruction of post-war borders, war tribunals, and the foundations of global currency.",
-    focus: "Treaty revisions, historical simulation, and international boundary allocation.",
-    icon: FileSignature,
-    delegates: "30 Seats Available",
+    name: "UNFCCC",
+    fullName: "UN Framework Convention on Climate Change",
+    agenda: "Operationalizing loss and damage funding mechanisms and standardizing carbon market offset accountability.",
+    focus: "Global emission reduction mandates, green capital flow, and ecological treaties.",
+    icon: Leaf,
+    delegates: "55 Seats Available",
   },
 ];
 
@@ -54,23 +86,32 @@ const cardVariants = {
 
 export default function FeaturedCommittees() {
   return (
-    <Section className="bg-[#FAF7EE] relative">
-      <Container>
-        {/* Section Header */}
-        <div className="text-center max-w-2xl mx-auto mb-16">
-          <Heading level={6} className="mb-3">
-            Sovereign Chambers
-          </Heading>
-          <Heading level={2} className="mb-6">
-            Featured Committees
-          </Heading>
-          <Divider accent centered className="mb-6" />
-          <p className="font-sans text-xs sm:text-sm text-ink/75 leading-relaxed">
-            Represent a nation, research archival precedents, and negotiate in one of our three primary chambers. Spanning security, disarmament, and historic treaty frameworks.
-          </p>
+    <Section id="committees-section" className="py-0 relative" animate={false}>
+      {/* Full-width warm-tan Header Banner styled like the second screenshot (no picture) */}
+      <div className="w-full bg-[#CBAD7F] relative overflow-hidden flex items-center md:items-end px-6 md:px-12 lg:px-16 py-3 md:py-5 h-[90px] md:h-[155px] border-b border-warm-tan/30 select-none">
+        {/* Giant Background Text */}
+        <h2 className="font-sans font-black text-[#011E33]/12 text-[3.1rem] sm:text-[4.5rem] md:text-[5.5rem] lg:text-[7.5rem] xl:text-[9rem] 2xl:text-[10.5rem] uppercase tracking-tighter leading-none absolute top-1/2 -translate-y-1/2 md:top-auto md:translate-y-0 md:-bottom-3 left-6 md:left-12 lg:left-16 pointer-events-none whitespace-nowrap">
+          COMMITTEES
+        </h2>
+        
+        {/* Banner Front Content */}
+        <div className="relative z-10 w-full flex justify-between items-center md:items-end text-[#011E33] mb-0 md:mb-1">
+          <span className="font-sans font-bold text-[9px] sm:text-xs tracking-[0.25em] uppercase whitespace-nowrap">
+            OFFICIAL SIMULATION COMMITTEES
+          </span>
+          <span className="font-serif italic text-xs md:text-sm font-semibold max-w-[250px] sm:max-w-md text-right leading-snug hidden md:block">
+            "A symposium of strategy, a theatre of treaties, and tremendous fun"
+          </span>
         </div>
+      </div>
 
-        {/* Committees Grid */}
+      <Container className="py-16 md:py-24">
+        {/* Elegant top brief */}
+        <p className="font-sans text-xs sm:text-sm text-ink/75 max-w-2xl mb-12 leading-relaxed">
+          Represent a nation, debate global policy, and negotiate treaties within our primary assemblies and specialized bodies.
+        </p>
+
+        {/* Committees Grid (3 columns, 2 rows) */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -138,7 +179,7 @@ export default function FeaturedCommittees() {
         {/* Global CTA Banner */}
         <div className="text-center">
           <Button variant="secondary" href="/events">
-            View All Chambers & Rules
+            View All Committees & Rules
           </Button>
         </div>
       </Container>

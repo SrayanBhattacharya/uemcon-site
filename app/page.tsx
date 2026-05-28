@@ -1,7 +1,8 @@
 import React from "react";
 import Hero from "@/components/sections/Hero";
-import TimelineSection from "@/components/sections/TimelineSection";
+import WhatIsUemcon from "@/components/sections/WhatIsUemcon";
 import FeaturedCommittees from "@/components/sections/FeaturedCommittees";
+import TimelineSection from "@/components/sections/TimelineSection";
 import DiplomacyBanner from "@/components/sections/DiplomacyBanner";
 
 export default function Home() {
@@ -10,11 +11,14 @@ export default function Home() {
       {/* Cinematic Hero entry */}
       <Hero />
       
+      {/* Narrative Intro Section */}
+      <WhatIsUemcon />
+      
+      {/* Specialized diplomatic committees */}
+      <FeaturedCommittees />
+      
       {/* Historical evolution pathway */}
       <TimelineSection />
-      
-      {/* Specialized diplomatic chambers */}
-      <FeaturedCommittees />
       
       {/* Final quote banner */}
       <DiplomacyBanner />

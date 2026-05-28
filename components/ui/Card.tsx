@@ -18,7 +18,7 @@ export default function Card({
   ...props
 }: CardProps) {
   const cardStyles = cn(
-    "bg-[#FAF7EE] border border-warm-tan/30 overflow-hidden relative rounded-[2px]",
+    "bg-light-beige/45 border border-warm-tan/20 overflow-hidden relative rounded-none shadow-md",
     padded && "p-6 md:p-8 lg:p-10",
     className
   );
@@ -35,12 +35,6 @@ export default function Card({
         className={cardStyles}
         {...(props as any)}
       >
-        {/* Subtle decorative inner corner brackets */}
-        <div className="absolute top-2 left-2 w-1.5 h-1.5 border-t border-l border-warm-tan/30" />
-        <div className="absolute top-2 right-2 w-1.5 h-1.5 border-t border-r border-warm-tan/30" />
-        <div className="absolute bottom-2 left-2 w-1.5 h-1.5 border-b border-l border-warm-tan/30" />
-        <div className="absolute bottom-2 right-2 w-1.5 h-1.5 border-b border-r border-warm-tan/30" />
-        
         {children}
       </motion.div>
     );

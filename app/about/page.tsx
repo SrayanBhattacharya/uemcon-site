@@ -47,7 +47,7 @@ export default function AboutPage() {
       </Section>
 
       {/* Secretary-General's Welcome (Editorial Letter layout) */}
-      <Section className="bg-[#FAF7EE]">
+      <Section className="bg-paper">
         <Container className="max-w-3xl">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

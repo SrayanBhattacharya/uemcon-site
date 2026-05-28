@@ -53,7 +53,7 @@ export default function ContactPage() {
       </Section>
 
       {/* Main Grid */}
-      <Section className="bg-[#FAF7EE]">
+      <Section className="bg-paper">
         <Container>
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
             {/* Left: Contact Info (4 Columns) */}
@@ -143,7 +143,7 @@ export default function ContactPage() {
                         required
                         value={formState.name}
                         onChange={(e) => setFormState({ ...formState, name: e.target.value })}
-                        className="w-full bg-[#FAF7EE] border border-warm-tan/35 rounded-none px-4 py-2.5 font-sans text-xs text-ink focus:outline-none focus:border-primary-blue focus:ring-1 focus:ring-primary-blue/30"
+                        className="w-full bg-paper border border-warm-tan/35 rounded-none px-4 py-2.5 font-sans text-xs text-ink focus:outline-none focus:border-primary-blue focus:ring-1 focus:ring-primary-blue/30"
                         placeholder="John Doe"
                       />
                     </div>
@@ -159,7 +159,7 @@ export default function ContactPage() {
                         required
                         value={formState.email}
                         onChange={(e) => setFormState({ ...formState, email: e.target.value })}
-                        className="w-full bg-[#FAF7EE] border border-warm-tan/35 rounded-none px-4 py-2.5 font-sans text-xs text-ink focus:outline-none focus:border-primary-blue focus:ring-1 focus:ring-primary-blue/30"
+                        className="w-full bg-paper border border-warm-tan/35 rounded-none px-4 py-2.5 font-sans text-xs text-ink focus:outline-none focus:border-primary-blue focus:ring-1 focus:ring-primary-blue/30"
                         placeholder="delegate@domain.com"
                       />
                     </div>
@@ -177,7 +177,7 @@ export default function ContactPage() {
                         required
                         value={formState.institution}
                         onChange={(e) => setFormState({ ...formState, institution: e.target.value })}
-                        className="w-full bg-[#FAF7EE] border border-warm-tan/35 rounded-none px-4 py-2.5 font-sans text-xs text-ink focus:outline-none focus:border-primary-blue focus:ring-1 focus:ring-primary-blue/30"
+                        className="w-full bg-paper border border-warm-tan/35 rounded-none px-4 py-2.5 font-sans text-xs text-ink focus:outline-none focus:border-primary-blue focus:ring-1 focus:ring-primary-blue/30"
                         placeholder="University of Engineering & Management"
                       />
                     </div>
@@ -191,7 +191,7 @@ export default function ContactPage() {
                         id="delegationType"
                         value={formState.delegationType}
                         onChange={(e) => setFormState({ ...formState, delegationType: e.target.value })}
-                        className="w-full bg-[#FAF7EE] border border-warm-tan/35 rounded-none px-4 py-2.5 font-sans text-xs text-ink focus:outline-none focus:border-primary-blue focus:ring-1 focus:ring-primary-blue/30"
+                        className="w-full bg-paper border border-warm-tan/35 rounded-none px-4 py-2.5 font-sans text-xs text-ink focus:outline-none focus:border-primary-blue focus:ring-1 focus:ring-primary-blue/30"
                       >
                         <option value="Single Delegate">Single Delegate</option>
                         <option value="Double Delegation">Double Delegation</option>
@@ -210,7 +210,7 @@ export default function ContactPage() {
                       rows={4}
                       value={formState.intent}
                       onChange={(e) => setFormState({ ...formState, intent: e.target.value })}
-                      className="w-full bg-[#FAF7EE] border border-warm-tan/35 rounded-none px-4 py-2.5 font-sans text-xs text-ink focus:outline-none focus:border-primary-blue focus:ring-1 focus:ring-primary-blue/30 resize-none"
+                      className="w-full bg-paper border border-warm-tan/35 rounded-none px-4 py-2.5 font-sans text-xs text-ink focus:outline-none focus:border-primary-blue focus:ring-1 focus:ring-primary-blue/30 resize-none"
                       placeholder="Briefly state your preferred allocation or inquiries regarding research portfolios..."
                     />
                   </div>

@@ -71,7 +71,7 @@ export default function TimelineSection() {
                   className="relative flex flex-col md:flex-row items-stretch md:justify-between w-full"
                 >
                   {/* Timeline Dot with icon */}
-                  <div className="absolute top-2 left-[-20px] md:left-1/2 md:-translate-x-1/2 flex items-center justify-center w-7 h-7 rounded-full border border-warm-tan bg-paper text-primary-blue z-10 shadow-sm">
+                  <div className="absolute top-2 left-[-20px] md:left-1/2 md:-translate-x-1/2 flex items-center justify-center w-7 h-7 rounded-none border border-warm-tan bg-[#022B4B] text-[#F4ECD8] z-10 shadow-md">
                     <Icon className="h-3 w-3" />
                   </div>
 

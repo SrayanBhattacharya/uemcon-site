@@ -3,6 +3,8 @@ import { Cormorant_Garamond, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { Calendar, Ticket, Search, MapPin, Clock, Landmark } from "lucide-react";
+import Link from "next/link";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -18,6 +20,11 @@ const jakarta = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(
+    process.env.VERCEL_URL
+      ? `https://${process.env.VERCEL_URL}`
+      : "https://uemcon.org"
+  ),
   title: {
     template: "%s | UEMCON — Premium Model United Nations",
     default: "UEMCON — Premium Model United Nations Experience",
@@ -48,20 +55,23 @@ export default function RootLayout({
       lang="en"
       className={`${cormorant.variable} ${jakarta.variable} h-full antialiasedScroll scroll-smooth`}
     >
-      <body className="min-h-full flex flex-col relative bg-paper text-ink selection:bg-warm-tan/30 selection:text-ink">
+      <body className="min-h-full flex relative bg-paper text-ink selection:bg-warm-tan/30 selection:text-ink">
         {/* Subtle global parchment paper texture overlay */}
         <div className="parchment-overlay" />
-        
-        {/* Navigation header */}
-        <Header />
-        
-        {/* Main page content area */}
-        <main className="flex-grow flex flex-col pt-[71px] md:pt-[81px]">
-          {children}
-        </main>
-        
-        {/* General footer */}
-        <Footer />
+
+        {/* Main Content Area */}
+        <div className="flex-grow flex flex-col min-h-screen w-full">
+          {/* Navigation header */}
+          <Header />
+          
+          {/* Main page content area */}
+          <main className="flex-grow flex flex-col pt-[71px] md:pt-[81px]">
+            {children}
+          </main>
+          
+          {/* General footer */}
+          <Footer />
+        </div>
       </body>
     </html>
   );

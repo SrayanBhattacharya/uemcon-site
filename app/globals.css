@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #FAF7EE; /* Warm paper by default */
-  --foreground: #1A202C; /* Deep Charcoal/Ink by default */
+  --background: #011E33; /* Deep navy blue page background */
+  --foreground: #F4ECD8; /* Light beige text */
   
-  --primary-blue: #024F86;
-  --light-beige: #F4ECD8;
-  --warm-tan: #CBAD7F;
-  --ink: #1A202C;
-  --paper: #FAF7EE;
+  --primary-blue: #F4ECD8; /* Primary text / headings map to light beige #F4ECD8 */
+  --light-beige: #022B4B;  /* Mid-tone navy blue card/section backgrounds */
+  --warm-tan: #CBAD7F;     /* Borders & gold details */
+  --ink: #FAF7EE;          /* Main readable body text */
+  --paper: #011E33;        /* Base background container */
 }
 
 @theme {
@@ -35,14 +35,14 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #FAF7EE;
+  background: var(--paper);
 }
 ::-webkit-scrollbar-thumb {
   background: #CBAD7F;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #024F86;
+  background: var(--primary-blue);
 }
 
 /* Subtle parchment texture overlay */
@@ -51,7 +51,7 @@ body {
   inset: 0;
   background-image: url('/textures/parchment.png');
   background-repeat: repeat;
-  opacity: 0.12; /* extremely subtle */
+  opacity: 0.05; /* extremely subtle on dark bg */
   pointer-events: none;
   z-index: 50;
 }
@@ -89,4 +89,11 @@ body {
 ::selection {
   background-color: #CBAD7F;
   color: #1A202C;
+}
+
+/* Giant background outline text utility */
+.text-outline-beige {
+  -webkit-text-stroke: 1px rgba(244, 236, 216, 0.08);
+  color: transparent;
+  font-family: var(--font-serif);
 }
