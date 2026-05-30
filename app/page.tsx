@@ -2,6 +2,7 @@ import React from "react";
 import Hero from "@/components/sections/Hero";
 import WhatIsUemcon from "@/components/sections/WhatIsUemcon";
 import FeaturedCommittees from "@/components/sections/FeaturedCommittees";
+import MunnerPerks from "@/components/sections/MunnerPerks";
 
 export default function Home() {
   return (
@@ -14,6 +15,9 @@ export default function Home() {
       
       {/* Specialized diplomatic committees */}
       <FeaturedCommittees />
+
+      {/* Perks of being a MUNer Section */}
+      <MunnerPerks />
     </div>
   );
 }

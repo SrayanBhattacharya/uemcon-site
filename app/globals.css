@@ -26,7 +26,7 @@
 body {
   background-color: var(--paper);
   color: var(--ink);
-  font-family: var(--font-sans);
+  font-family: var(--font-jakarta), system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
 }
 
@@ -95,7 +95,7 @@ body {
 .text-outline-beige {
   -webkit-text-stroke: 1px rgba(244, 236, 216, 0.08);
   color: transparent;
-  font-family: var(--font-serif);
+  font-family: var(--font-cormorant), Georgia, serif;
 }
 
 /* Custom Cursor styles - hide default cursor on desktop when custom cursor is active */

@@ -2,26 +2,22 @@ import React from "react";
 
 export default function TeamHero() {
   return (
-    <section className="relative overflow-hidden py-32 bg-paper">
-      {/* Background patterns */}
-      <div 
-        className="absolute inset-0 opacity-20 pointer-events-none"
-        style={{
-          backgroundImage: `
-            repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(203, 173, 127, 0.05) 40px, rgba(203, 173, 127, 0.05) 41px),
-            repeating-linear-gradient(90deg, transparent, transparent 40px, rgba(203, 173, 127, 0.05) 40px, rgba(203, 173, 127, 0.05) 41px)
-          `
-        }}
-      />
-      <div className="absolute inset-0 bg-[url('/patterns/world_map.png')] bg-cover bg-center opacity-10 mix-blend-overlay pointer-events-none" />
-      
-      <div className="max-w-[1440px] mx-auto px-4 md:px-16 relative z-10 text-center flex flex-col items-center animate-in fade-in slide-in-from-bottom-8 duration-1000">
-        <h1 className="font-serif text-5xl md:text-[56px] leading-tight font-semibold text-warm-tan mb-6 tracking-tight">
-          OUR TEAM
-        </h1>
-        <p className="font-sans text-lg md:text-xl text-ink/80 max-w-2xl mx-auto">
-          The minds, leaders and visionaries driving UEMCON forward.
-        </p>
+    <section className="py-0 relative">
+      <div className="w-full bg-[#CBAD7F] relative overflow-hidden flex items-center md:items-end px-6 md:px-12 lg:px-16 py-3 md:py-5 h-[90px] md:h-[155px] border-b border-warm-tan/30 select-none">
+        {/* Giant Background Text */}
+        <h2 className="font-sans font-black text-[#011E33]/12 text-[3.1rem] sm:text-[4.5rem] md:text-[5.5rem] lg:text-[7.5rem] xl:text-[9rem] 2xl:text-[10.5rem] uppercase tracking-tighter leading-none absolute top-1/2 -translate-y-1/2 md:top-auto md:translate-y-0 md:-bottom-3 left-6 md:left-12 lg:left-16 pointer-events-none whitespace-nowrap">
+          TEAM
+        </h2>
+        
+        {/* Banner Front Content */}
+        <div className="relative z-10 w-full flex justify-between items-center md:items-end text-[#011E33] mb-0 md:mb-1">
+          <span className="font-sans font-bold text-[9px] sm:text-xs tracking-[0.25em] uppercase whitespace-nowrap">
+            OUR TEAM
+          </span>
+          <span className="font-serif italic text-xs md:text-sm font-semibold max-w-[250px] sm:max-w-md text-right leading-snug hidden md:block">
+            "The minds, leaders and visionaries driving UEMCON forward"
+          </span>
+        </div>
       </div>
     </section>
   );
