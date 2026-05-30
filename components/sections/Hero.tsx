@@ -10,7 +10,7 @@ export default function Hero() {
   return (
     <section className="hero-section relative min-h-[calc(100vh-57px)] flex items-center justify-center overflow-hidden py-8 bg-[#011E33] border-b border-warm-tan/20">
       {/* Background World Map Pattern (faded) */}
-      <div className="absolute inset-0 world-map-bg bg-cover bg-center opacity-[0.03] pointer-events-none" />
+      <div className="absolute inset-0 world-map-bg bg-cover bg-center opacity-[0.05] pointer-events-none" />
 
       <Container className="relative z-10 flex flex-col items-center justify-center text-center max-w-6xl px-4 -mt-8 sm:-mt-14">
         {/* Massive Geometric Title (Frans Hals style) */}
