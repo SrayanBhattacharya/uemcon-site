@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #011E33; /* Deep navy blue page background */
-  --foreground: #F4ECD8; /* Light beige text */
-  
-  --primary-blue: #F4ECD8; /* Primary text / headings map to light beige #F4ECD8 */
-  --light-beige: #022B4B;  /* Mid-tone navy blue card/section backgrounds */
-  --warm-tan: #CBAD7F;     /* Borders & gold details */
-  --ink: #FAF7EE;          /* Main readable body text */
-  --paper: #011E33;        /* Base background container */
+  --background: #011e33; /* Deep navy blue page background */
+  --foreground: #f4ecd8; /* Light beige text */
+
+  --primary-blue: #f4ecd8; /* Primary text / headings map to light beige #F4ECD8 */
+  --light-beige: #022b4b; /* Mid-tone navy blue card/section backgrounds */
+  --warm-tan: #cbad7f; /* Borders & gold details */
+  --ink: #faf7ee; /* Main readable body text */
+  --paper: #011e33; /* Base background container */
 }
 
 @theme {
@@ -17,7 +17,7 @@
   --color-warm-tan: var(--warm-tan);
   --color-ink: var(--ink);
   --color-paper: var(--paper);
-  
+
   --font-serif: var(--font-cormorant), Georgia, serif;
   --font-sans: var(--font-jakarta), system-ui, -apple-system, sans-serif;
 }
@@ -26,7 +26,11 @@
 body {
   background-color: var(--paper);
   color: var(--ink);
-  font-family: var(--font-jakarta), system-ui, -apple-system, sans-serif;
+  font-family:
+    var(--font-jakarta),
+    system-ui,
+    -apple-system,
+    sans-serif;
   overflow-x: hidden;
 }
 
@@ -38,30 +42,26 @@ body {
   background: var(--paper);
 }
 ::-webkit-scrollbar-thumb {
-  background: #CBAD7F;
+  background: #cbad7f;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: var(--primary-blue);
 }
 
-/* Subtle parchment texture overlay */
-.parchment-overlay {
-  position: fixed;
-  inset: 0;
-  background-image: url('/textures/parchment.png');
-  background-repeat: repeat;
-  opacity: 0.05; /* extremely subtle on dark bg */
-  pointer-events: none;
-  z-index: 50;
-}
-
 /* World map subtle background */
 .world-map-bg {
-  background-image: url('/patterns/world_map.png');
+  background-image: url("/patterns/world_map.webp");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+}
+
+@media (max-width: 768px) {
+  .world-map-bg {
+    background-size: 300% auto;
+    background-position: center bottom;
+  }
 }
 
 /* Custom interactive utility classes */
@@ -69,7 +69,7 @@ body {
   position: relative;
 }
 .hover-underline-animation::after {
-  content: '';
+  content: "";
   position: absolute;
   width: 100%;
   transform: scaleX(0);
@@ -87,8 +87,8 @@ body {
 
 /* Text selections matching the archival theme */
 ::selection {
-  background-color: #CBAD7F;
-  color: #1A202C;
+  background-color: #cbad7f;
+  color: #1a202c;
 }
 
 /* Giant background outline text utility */
@@ -105,4 +105,3 @@ body {
     cursor: none !important;
   }
 }
-

@@ -15,7 +15,7 @@ const committees = [
       "Formulating shipping regulation revisions to mitigate maritime carbon footprint and securing sovereign territorial trade lanes.",
     focus:
       "Oceanic trade routes, environmental compliance frameworks, and piracy prevention.",
-    icon: "/icons/imo.png",
+    icon: "/icons/imo.webp",
     logoSize: 64,
     delegates: "40 Seats Available",
     color: "#4CA3A5", // Deep sea teal
@@ -27,7 +27,7 @@ const committees = [
       "Safeguarding socio-economic equality, tackling gender-based wage disparities, and protecting women's rights in active conflict zones.",
     focus:
       "Universal franchise, gender-responsive national budgeting, and legal protection charters.",
-    icon: "/icons/unwomen.png",
+    icon: "/icons/unwomen.webp",
     logoSize: 64,
     delegates: "50 Seats Available",
     color: "#B37D7D", // Elegant dusty rose
@@ -39,7 +39,7 @@ const committees = [
       "Investigating corporate regulatory oversight, public sector allocations, and economic governance reforms under the Indian Parliament.",
     focus:
       "Bipartisan legislative consensus, accountability protocols, and policy intervention.",
-    icon: "/icons/jpc.png",
+    icon: "/icons/jpc.webp",
     logoSize: 64, // JPC logo made larger in the box (58px)
     delegates: "35 Seats Available",
     color: "#5F8575", // Heritage sage green
@@ -51,7 +51,7 @@ const committees = [
       "Evaluating cross-border synthetic drug cartels, regulating illicit supply chains, and constructing humanitarian rehabilitation policies.",
     focus:
       "Narcotic containment treaties, global policing coordination, and public health directives.",
-    icon: "/icons/uncnd.png",
+    icon: "/icons/uncnd.webp",
     logoSize: 64,
     delegates: "45 Seats Available",
     color: "#C87A53", // Muted rust/copper
@@ -63,7 +63,7 @@ const committees = [
       "Providing critical investigative journalism, opinion editorials, and live photojournalism covering all active committee sessions.",
     focus:
       "Editorial integrity, press freedom, investigative reporting, and diplomatic caricatures.",
-    icon: "/icons/ip.png",
+    icon: "/icons/ip.webp",
     logoSize: 64,
     delegates: "20 Seats Available",
     color: "#8AA2B0", // Steel blue
@@ -75,7 +75,7 @@ const committees = [
       "Amplifying grassroots and non-governmental voices to accelerate the Sustainable Development Goals (SDGs) and digital equity.",
     focus:
       "Grassroots mobilization, NGO partnerships, and multi-sectoral global agendas.",
-    icon: "/icons/uncsc.png",
+    icon: "/icons/uncsc.webp",
     logoSize: 64,
     delegates: "60 Seats Available",
     color: "#CBAD7F", // Signature warm tan

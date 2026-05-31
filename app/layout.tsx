@@ -1,11 +1,9 @@
+import Footer from "@/components/layout/Footer";
+import Header from "@/components/layout/Header";
+import CustomCursor from "@/components/ui/CustomCursor";
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
-import Header from "@/components/layout/Header";
-import Footer from "@/components/layout/Footer";
-import CustomCursor from "@/components/ui/CustomCursor";
-import { Calendar, Ticket, Search, MapPin, Clock, Landmark } from "lucide-react";
-import Link from "next/link";
 
 const cormorant = Cormorant_Garamond({
   subsets: ["latin"],
@@ -24,16 +22,18 @@ export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.VERCEL_URL
       ? `https://${process.env.VERCEL_URL}`
-      : "https://uemcon.org"
+      : "https://uemcon.org",
   ),
   title: {
     template: "%s | UEMCON — Premium Model United Nations",
     default: "UEMCON — Premium Model United Nations Experience",
   },
-  description: "Experience global governance history and modern diplomacy. Join the official MUN conference of the University of Engineering & Management.",
+  description:
+    "Experience global governance history and modern diplomacy. Join the official MUN conference of the University of Engineering & Management.",
   openGraph: {
     title: "UEMCON — Model United Nations Conference",
-    description: "International diplomacy meets timeless history at the UEM Model United Nations conference.",
+    description:
+      "International diplomacy meets timeless history at the UEM Model United Nations conference.",
     url: "https://uemcon.org",
     siteName: "UEMCON",
     locale: "en_US",
@@ -67,12 +67,12 @@ export default function RootLayout({
         <div className="flex-grow flex flex-col min-h-screen w-full">
           {/* Navigation header */}
           <Header />
-          
+
           {/* Main page content area */}
           <main className="flex-grow flex flex-col pt-[71px] md:pt-[81px]">
             {children}
           </main>
-          
+
           {/* General footer */}
           <Footer />
         </div>
