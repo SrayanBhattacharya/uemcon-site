@@ -33,14 +33,15 @@ export default function Header() {
   }, []);
 
   return (
-    <header
-      className={cn(
-        "fixed top-0 left-0 right-0 z-40 transition-all duration-300",
-        isScrolled
-          ? "bg-[#011E33]/95 border-b border-warm-tan/20 py-2.5 shadow-sm backdrop-blur-md"
-          : "bg-transparent py-4",
-      )}
-    >
+    <>
+      <header
+        className={cn(
+          "fixed top-0 left-0 right-0 z-40 transition-all duration-300",
+          isScrolled
+            ? "bg-[#011E33]/95 border-b border-warm-tan/20 py-2.5 shadow-sm backdrop-blur-md"
+            : "bg-transparent py-4",
+        )}
+      >
       <Container className="flex items-center justify-between relative">
         {/* Mobile Menu Icon (aligned left on mobile) */}
         <button
@@ -245,6 +246,7 @@ export default function Header() {
         )}
       </AnimatePresence>
 
+    </header>
       {/* Choice Modal Pop-up */}
       <AnimatePresence>
         {isModalOpen && (
@@ -324,6 +326,6 @@ export default function Header() {
           </div>
         )}
       </AnimatePresence>
-    </header>
+    </>
   );
 }

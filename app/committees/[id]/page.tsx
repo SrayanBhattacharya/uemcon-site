@@ -40,7 +40,7 @@ export default async function CommitteePage(props: { params: Promise<{ id: strin
   }
 
   return (
-    <div className="py-12 md:py-20 px-6 md:px-12 lg:px-16 space-y-12 relative min-h-screen">
+    <div className="pt-6 pb-12 md:py-20 px-6 md:px-12 lg:px-16 space-y-8 md:space-y-12 relative min-h-screen">
       <AmbientBackground color={committee.color} />
       
       {/* Header Info */}
