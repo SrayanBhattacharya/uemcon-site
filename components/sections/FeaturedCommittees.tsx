@@ -45,6 +45,18 @@ const committees = [
     color: "#5F8575", // Heritage sage green
   },
   {
+    name: "UNFCCC",
+    fullName: "United Nations Framework Convention on Climate Change",
+    agenda:
+      "Addressing global climate change, mitigating greenhouse gas emissions, and coordinating international environmental policies.",
+    focus:
+      "Climate action, adaptation strategies, sustainable development, and climate finance.",
+    icon: "/icons/unfccc.webp",
+    logoSize: 64,
+    delegates: "40 Seats Available",
+    color: "#4A7C59", // Leafy green
+  },
+  {
     name: "UNCND",
     fullName: "United Nations Commission on Narcotic Drugs",
     agenda:
