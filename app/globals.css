@@ -57,13 +57,6 @@ body {
   background-repeat: no-repeat;
 }
 
-@media (max-width: 768px) {
-  .world-map-bg {
-    background-size: 300% auto;
-    background-position: center bottom;
-  }
-}
-
 /* Custom interactive utility classes */
 .hover-underline-animation {
   position: relative;
