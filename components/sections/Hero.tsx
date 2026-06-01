@@ -40,7 +40,7 @@ export default function Hero() {
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 0.85 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.75 }}
             className="font-serif italic text-xs sm:text-sm md:text-base text-[#CBAD7F]/90 max-w-[280px] sm:max-w-xl md:max-w-2xl mt-2.5 mb-1.5 leading-relaxed"
           >
             "A symposium of strategy, a theatre of treaties, and tremendous fun"
@@ -51,7 +51,7 @@ export default function Hero() {
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 1.05 }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1], delay: 0.85 }}
           className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 text-[10px] sm:text-xs tracking-[0.2em] uppercase text-[#F4ECD8]/80 font-bold mb-4.5 mt-1.5 select-none border-t border-b border-[#CBAD7F]/20 py-1.5 px-6"
         >
           <div className="flex items-center gap-2">
@@ -66,32 +66,45 @@ export default function Hero() {
         </motion.div>
 
         {/* Stacked Offset Block-Buttons (Frans Hals style) */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 1.25 }}
-          className="flex flex-col items-center justify-center space-y-4 z-20"
-        >
-          {/* Button 1 (Register) - Light box, dark text */}
-          <motion.button
-            onClick={() => setIsModalOpen(true)}
-            whileHover={{ x: 6 }}
-            className="w-[260px] sm:w-[320px] min-h-[56px] bg-[#F4ECD8] text-[#011E33] border-none px-6 py-4 font-sans font-bold text-xs uppercase tracking-widest flex items-center justify-between cursor-pointer shadow-lg focus:outline-none"
+        <div className="flex flex-col items-center justify-center space-y-4 z-20 overflow-hidden w-full max-w-lg py-4 -my-4">
+          {/* Button 1 Wrapper */}
+          <motion.div
+            initial={{ opacity: 0, x: -80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+            className="w-full flex justify-center"
           >
-            <span>Register</span>
-            <span>➤</span>
-          </motion.button>
+            {/* Button 1 (Register) - Light box, dark text */}
+            <motion.button
+              onClick={() => setIsModalOpen(true)}
+              whileHover={{ x: 6 }}
+              className="w-[260px] sm:w-[320px] min-h-[56px] bg-[#F4ECD8] text-[#011E33] border-none px-6 py-4 font-sans font-bold text-xs uppercase tracking-widest flex items-center justify-between cursor-pointer shadow-lg focus:outline-none"
+            >
+              <span>Register</span>
+              <span>➤</span>
+            </motion.button>
+          </motion.div>
 
-          {/* Button 2 (Explore Committees) - Dark box, light text (Offset left) */}
-          <motion.a
-            href="#committees-section"
-            whileHover={{ x: -6 }}
-            className="w-[260px] sm:w-[320px] min-h-[56px] bg-[#022B4B] text-[#F4ECD8] border border-warm-tan/40 px-6 py-4 font-sans font-bold text-xs uppercase tracking-widest flex items-center justify-between cursor-pointer shadow-md transform -translate-x-3 sm:-translate-x-6"
+          {/* Button 2 Wrapper */}
+          <motion.div
+            initial={{ opacity: 0, x: 80 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: false, amount: 0.2 }}
+            transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1], delay: 0.1 }}
+            className="w-full flex justify-center"
           >
-            <span>◀</span>
-            <span>Explore Committees</span>
-          </motion.a>
-        </motion.div>
+            {/* Button 2 (Explore Committees) - Dark box, light text (Offset left) */}
+            <motion.a
+              href="#committees-section"
+              whileHover={{ x: -6 }}
+              className="w-[260px] sm:w-[320px] min-h-[56px] bg-[#022B4B] text-[#F4ECD8] border border-warm-tan/40 px-6 py-4 font-sans font-bold text-xs uppercase tracking-widest flex items-center justify-between cursor-pointer shadow-md transform -translate-x-3 sm:-translate-x-6"
+            >
+              <span>◀</span>
+              <span>Explore Committees</span>
+            </motion.a>
+          </motion.div>
+        </div>
       </Container>
 
       {/* Choice Modal Pop-up */}

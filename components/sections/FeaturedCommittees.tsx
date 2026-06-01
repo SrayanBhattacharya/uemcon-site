@@ -50,22 +50,47 @@ export default function FeaturedCommittees() {
   return (
     <Section id="committees-section" className="py-0 relative" animate={false}>
       {/* Full-width warm-tan Header Banner styled like the second screenshot (no picture) */}
-      <div className="w-full bg-[#CBAD7F] relative overflow-hidden flex items-center md:items-end px-6 md:px-12 lg:px-16 py-3 md:py-5 h-[90px] md:h-[155px] border-b border-warm-tan/30 select-none">
+      <motion.div 
+        className="w-full bg-[#CBAD7F] relative overflow-hidden flex items-center md:items-end px-6 md:px-12 lg:px-16 py-3 md:py-5 h-[90px] md:h-[155px] border-b border-warm-tan/30 select-none"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: false, margin: "-50px" }}
+      >
         {/* Giant Background Text */}
-        <h2 className="font-sans font-black text-[#011E33]/12 text-[3.1rem] sm:text-[4.5rem] md:text-[5.5rem] lg:text-[7.5rem] xl:text-[9rem] 2xl:text-[10.5rem] uppercase tracking-tighter leading-none absolute top-1/2 -translate-y-1/2 md:top-auto md:translate-y-0 md:-bottom-3 left-6 md:left-12 lg:left-16 pointer-events-none whitespace-nowrap">
-          COMMITTEES
-        </h2>
+        <motion.div 
+          className="absolute inset-0 pointer-events-none"
+          variants={{
+            hidden: { opacity: 0, y: -40 },
+            visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
+          }}
+        >
+          <h2 className="font-sans font-black text-[#011E33]/12 text-[3.1rem] sm:text-[4.5rem] md:text-[5.5rem] lg:text-[7.5rem] xl:text-[9rem] 2xl:text-[10.5rem] uppercase tracking-tighter leading-none absolute top-1/2 -translate-y-1/2 md:top-auto md:translate-y-0 md:-bottom-3 left-6 md:left-12 lg:left-16 whitespace-nowrap">
+            COMMITTEES
+          </h2>
+        </motion.div>
 
         {/* Banner Front Content */}
-        <div className="relative z-10 w-full flex justify-between items-center md:items-end text-[#011E33] mb-0 md:mb-1">
-          <span className="font-sans font-bold text-[9px] sm:text-xs tracking-[0.25em] uppercase whitespace-nowrap">
+        <div className="relative z-10 w-full flex justify-between items-center md:items-end text-[#011E33] mb-0 md:mb-1 overflow-hidden">
+          <motion.span 
+            className="font-sans font-bold text-[9px] sm:text-xs tracking-[0.25em] uppercase whitespace-nowrap"
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut", delay: 0.1 } }
+            }}
+          >
             OFFICIAL SIMULATION COMMITTEES
-          </span>
-          <span className="font-serif italic text-xs md:text-sm font-semibold max-w-[250px] sm:max-w-md text-right leading-snug hidden md:block">
+          </motion.span>
+          <motion.span 
+            className="font-serif italic text-xs md:text-sm font-semibold max-w-[250px] sm:max-w-md text-right leading-snug hidden md:block"
+            variants={{
+              hidden: { opacity: 0, x: 40 },
+              visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: "easeOut", delay: 0.2 } }
+            }}
+          >
             "A symposium of strategy, a theatre of treaties, and tremendous fun"
-          </span>
+          </motion.span>
         </div>
-      </div>
+      </motion.div>
 
       <Container className="py-16 md:py-24">
         {/* Elegant top brief */}

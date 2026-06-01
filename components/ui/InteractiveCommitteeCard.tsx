@@ -105,8 +105,25 @@ export default function InteractiveCommitteeCard({
         rotateY: prefersReducedMotion ? 0 : xSpring,
         transformPerspective: 1000,
       }}
-      className={`group relative overflow-hidden rounded-none border border-warm-tan/20 bg-light-beige/45 shadow-md transition-shadow duration-700 ${className}`}
+      className={`group relative overflow-hidden rounded-none border border-transparent bg-light-beige/45 shadow-md transition-shadow duration-700 ${className}`}
     >
+      {/* Loading Border Animation */}
+      <svg className="absolute inset-0 w-full h-full pointer-events-none z-10" xmlns="http://www.w3.org/2000/svg">
+        <motion.rect
+          x="0"
+          y="0"
+          width="100%"
+          height="100%"
+          fill="none"
+          stroke="rgba(203, 173, 127, 0.4)"
+          strokeWidth="2"
+          initial={{ pathLength: 0, opacity: 0 }}
+          whileInView={{ pathLength: 1, opacity: 1 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7, ease: "easeInOut" }}
+        />
+      </svg>
+
       {/* Dynamic Hover Shadow Layer */}
       <div 
         className="absolute inset-0 z-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
@@ -144,9 +161,15 @@ export default function InteractiveCommitteeCard({
       )}
 
       {/* Content wrapper with isolation for z-indexing over the effects */}
-      <div className="relative z-20 h-full w-full flex flex-col p-6 md:p-8 lg:p-10">
+      <motion.div 
+        className="relative z-20 h-full w-full flex flex-col p-6 md:p-8 lg:p-10"
+        initial={{ opacity: 0, y: 15 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
+      >
         {children}
-      </div>
+      </motion.div>
     </motion.div>
   );
 }
