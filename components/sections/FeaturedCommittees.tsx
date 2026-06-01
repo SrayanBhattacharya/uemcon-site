@@ -20,6 +20,8 @@ interface Committee {
   color: string;
   type: string;
   content: string[];
+  quote: string;
+  author: string;
 }
 
 const containerVariants = {
@@ -169,25 +171,13 @@ export default function FeaturedCommittees() {
 
                       <div className="h-[1px] bg-warm-tan/20 w-full" />
 
-                      {/* Content: Agenda Brief */}
-                      <div className="space-y-3">
-                        <h5
-                          className="font-serif text-xs font-semibold uppercase tracking-widest"
-                          style={{ color: committee.color }}
-                        >
-                          Primary Agenda:
-                        </h5>
-                        <p className="font-sans text-xs text-ink/80 leading-relaxed italic">
-                          "{committee.agenda}"
+                      {/* Content: Famous Quote and Author */}
+                      <div className="space-y-4 font-sans text-xs">
+                        <p className="text-ink/80 leading-relaxed italic text-justify font-light">
+                          "{committee.quote}"
                         </p>
-                      </div>
-
-                      <div className="space-y-2">
-                        <h5 className="font-serif text-[10px] font-semibold text-warm-tan uppercase tracking-widest transition-colors duration-300 group-hover:text-[var(--accent-color)]">
-                          Key Directives:
-                        </h5>
-                        <p className="font-sans text-[11px] text-ink/60 leading-relaxed">
-                          {committee.focus}
+                        <p className="text-warm-tan font-bold text-[10px] tracking-wider uppercase transition-colors duration-300 group-hover:text-[var(--accent-color)]">
+                          — {committee.author}
                         </p>
                       </div>
                     </div>

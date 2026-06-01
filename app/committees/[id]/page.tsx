@@ -128,10 +128,9 @@ export default async function CommitteePage(props: { params: Promise<{ id: strin
         </div>
       </ClientScrollReveal>
 
-      {/* Main Grid Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 pt-4 relative z-10">
-        {/* Left 2 Columns: Long Description */}
-        <div className="lg:col-span-2 space-y-6 font-sans text-sm sm:text-base text-ink/80 leading-relaxed">
+      {/* Main Content */}
+      <div className="max-w-4xl mx-auto pt-4 relative z-10">
+        <div className="space-y-6 font-sans text-sm sm:text-base text-ink/80 leading-relaxed">
           {committee.content.map((paragraph, index) => (
             <ClientScrollReveal key={index} delay={0.2 + (index * 0.1)}>
               <p className="text-justify font-sans font-light">
@@ -139,48 +138,6 @@ export default async function CommitteePage(props: { params: Promise<{ id: strin
               </p>
             </ClientScrollReveal>
           ))}
-        </div>
-
-        {/* Right 1 Column: Agenda details and key focus */}
-        <div className="space-y-6">
-          {/* Card detailing Agenda & Key Directives */}
-          <ClientScrollReveal delay={0.4} direction="left">
-            <div
-              className="p-6 bg-[#022B4B]/80 backdrop-blur-md border border-warm-tan/10 rounded-none relative overflow-hidden space-y-6 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-shadow duration-500 group"
-              style={{ borderLeft: `4px solid ${committee.color}` }}
-            >
-              {/* Subtle decorative color dot */}
-              <div
-                className="absolute top-4 right-4 w-2 h-2 rounded-full transition-transform duration-500 group-hover:scale-150"
-                style={{ backgroundColor: committee.color }}
-              />
-
-              <div className="space-y-3">
-                <AnimatedText 
-                  text="Primary Agenda" 
-                  el="h6"
-                  className="font-sans font-black tracking-widest uppercase text-xs sm:text-sm text-warm-tan"
-                />
-                <p className="font-sans text-xs text-ink/90 italic leading-relaxed">
-                  "{committee.agenda}"
-                </p>
-              </div>
-
-              <div className="h-[1px] bg-warm-tan/10 w-full" />
-
-              <div className="space-y-3">
-                <AnimatedText 
-                  text="Key Directives" 
-                  el="h6"
-                  className="font-sans font-black tracking-widest uppercase text-xs sm:text-sm text-warm-tan"
-                  delay={0.2}
-                />
-                <p className="font-sans text-xs text-[#F4ECD8]/70 leading-relaxed">
-                  {committee.focus}
-                </p>
-              </div>
-            </div>
-          </ClientScrollReveal>
         </div>
       </div>
     </div>

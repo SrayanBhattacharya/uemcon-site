@@ -9,13 +9,13 @@ import { useEffect, useState } from "react";
 import Container from "./Container";
 
 const navLinksLeft = [
-  { name: "About", href: "/about" },
-  { name: "Events", href: "/events" },
+  { name: "Home", href: "/" },
+  { name: "Committees", href: "/committees" },
 ];
 
 const navLinksRight = [
-  { name: "Contact", href: "/contact" },
-  { name: "Register", href: "/contact" },
+  { name: "Register", href: "#" },
+  { name: "Our Team", href: "/team" },
 ];
 
 export default function Header() {
@@ -162,19 +162,17 @@ export default function Header() {
           </Link>
         </div>
 
-        {/* Desktop Right Nav Links */}
         <nav className="hidden md:flex items-center justify-end gap-12 w-1/3">
-          {navLinksRight.map((link, idx) => {
+          {navLinksRight.map((link) => {
             const isActive = pathname === link.href;
-            const isLast = idx === navLinksRight.length - 1;
             if (link.name === "Register") {
               return (
                 <button
                   key={link.name}
                   onClick={() => setIsModalOpen(true)}
-                  className="font-sans font-black text-xs tracking-widest uppercase transition-colors duration-300 relative py-1 focus-visible:outline focus-visible:outline-warm-tan cursor-pointer bg-transparent border-none text-[#CBAD7F] hover:text-[#F4ECD8] focus:outline-none"
+                  className="font-sans font-black text-xs tracking-widest uppercase transition-colors duration-300 relative py-1 focus-visible:outline focus-visible:outline-warm-tan cursor-pointer bg-transparent border-none text-[#F4ECD8]/70 hover:text-[#F4ECD8] focus:outline-none"
                 >
-                  {link.name} {"➤"}
+                  {link.name}
                 </button>
               );
             }
