@@ -7,99 +7,27 @@ import Card from "../ui/Card";
 import Heading from "../ui/Heading";
 import Section from "../ui/Section";
 
-const committees = [
-  {
-    name: "IMO",
-    fullName: "International Maritime Organization",
-    agenda:
-      "Formulating shipping regulation revisions to mitigate maritime carbon footprint and securing sovereign territorial trade lanes.",
-    focus:
-      "Oceanic trade routes, environmental compliance frameworks, and piracy prevention.",
-    icon: "/icons/imo.webp",
-    logoSize: 64,
-    delegates: "40 Seats Available",
-    color: "#4CA3A5", // Deep sea teal
-  },
-  {
-    name: "UNW",
-    fullName: "UN Women",
-    agenda:
-      "Safeguarding socio-economic equality, tackling gender-based wage disparities, and protecting women's rights in active conflict zones.",
-    focus:
-      "Universal franchise, gender-responsive national budgeting, and legal protection charters.",
-    icon: "/icons/unwomen.webp",
-    logoSize: 64,
-    delegates: "50 Seats Available",
-    color: "#B37D7D", // Elegant dusty rose
-  },
-  {
-    name: "JPC",
-    fullName: "Joint Parliamentary Committee",
-    agenda:
-      "Investigating corporate regulatory oversight, public sector allocations, and economic governance reforms under the Indian Parliament.",
-    focus:
-      "Bipartisan legislative consensus, accountability protocols, and policy intervention.",
-    icon: "/icons/jpc.webp",
-    logoSize: 64, // JPC logo made larger in the box (58px)
-    delegates: "35 Seats Available",
-    color: "#5F8575", // Heritage sage green
-  },
-  {
-    name: "UNFCCC",
-    fullName: "United Nations Framework Convention on Climate Change",
-    agenda:
-      "Addressing global climate change, mitigating greenhouse gas emissions, and coordinating international environmental policies.",
-    focus:
-      "Climate action, adaptation strategies, sustainable development, and climate finance.",
-    icon: "/icons/unfccc.webp",
-    logoSize: 64,
-    delegates: "40 Seats Available",
-    color: "#4A7C59", // Leafy green
-  },
-  {
-    name: "UNCND",
-    fullName: "United Nations Commission on Narcotic Drugs",
-    agenda:
-      "Evaluating cross-border synthetic drug cartels, regulating illicit supply chains, and constructing humanitarian rehabilitation policies.",
-    focus:
-      "Narcotic containment treaties, global policing coordination, and public health directives.",
-    icon: "/icons/uncnd.webp",
-    logoSize: 64,
-    delegates: "45 Seats Available",
-    color: "#C87A53", // Muted rust/copper
-  },
-  {
-    name: "IP",
-    fullName: "International Press",
-    agenda:
-      "Providing critical investigative journalism, opinion editorials, and live photojournalism covering all active committee sessions.",
-    focus:
-      "Editorial integrity, press freedom, investigative reporting, and diplomatic caricatures.",
-    icon: "/icons/ip.webp",
-    logoSize: 64,
-    delegates: "20 Seats Available",
-    color: "#8AA2B0", // Steel blue
-  },
-  {
-    name: "UN CSC",
-    fullName: "UN Civil Society Conference",
-    agenda:
-      "Amplifying grassroots and non-governmental voices to accelerate the Sustainable Development Goals (SDGs) and digital equity.",
-    focus:
-      "Grassroots mobilization, NGO partnerships, and multi-sectoral global agendas.",
-    icon: "/icons/uncsc.webp",
-    logoSize: 64,
-    delegates: "60 Seats Available",
-    color: "#CBAD7F", // Signature warm tan
-  },
-];
+import committeesData from "@/lib/committees.json";
+import Link from "next/link";
+
+interface Committee {
+  id: string;
+  name: string;
+  fullName: string;
+  agenda: string;
+  focus: string;
+  icon: string | null;
+  color: string;
+  type: string;
+  content: string[];
+}
 
 const containerVariants = {
   hidden: { opacity: 0 },
   show: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.25,
+      staggerChildren: 0.15,
     },
   },
 };
@@ -114,6 +42,8 @@ const cardVariants = {
 };
 
 export default function FeaturedCommittees() {
+  const committees = committeesData as Committee[];
+
   return (
     <Section id="committees-section" className="py-0 relative" animate={false}>
       {/* Full-width warm-tan Header Banner styled like the second screenshot (no picture) */}
@@ -141,18 +71,18 @@ export default function FeaturedCommittees() {
           within our primary assemblies and specialized bodies.
         </p>
 
-        {/* Committees Grid (3 columns, 2 rows) */}
+        {/* Committees Grid (3 columns) */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="show"
           viewport={{ once: true, margin: "-100px" }}
-          className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
         >
           {committees.map((committee) => {
             return (
               <motion.div
-                key={committee.name}
+                key={committee.id}
                 variants={cardVariants}
                 className="flex h-full"
               >
@@ -163,62 +93,104 @@ export default function FeaturedCommittees() {
                     { "--accent-color": committee.color } as React.CSSProperties
                   }
                 >
-                  <div className="space-y-6">
-                    {/* Header: Name and Emblem */}
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <span
-                          className="font-sans text-3xl font-black transition-all duration-300 opacity-30 group-hover:opacity-85"
+                  <div className="flex flex-col justify-between h-full space-y-6">
+                    <div className="space-y-6">
+                      {/* Header: Name and Emblem */}
+                      <div className="flex justify-between items-start">
+                        <div>
+                          <span
+                            className="font-sans text-3xl font-black transition-all duration-300 opacity-30 group-hover:opacity-85"
+                            style={{ color: committee.color }}
+                          >
+                            {committee.name}
+                          </span>
+                          <Heading
+                            level={5}
+                            serif={false}
+                            className="text-xs md:text-sm font-semibold tracking-wider text-ink mt-1"
+                          >
+                            {committee.fullName}
+                          </Heading>
+                        </div>
+                        <div
+                          className="p-0 rounded-none border bg-light-beige/20 transition-all duration-300 group-hover:border-[var(--accent-color)] group-hover:bg-light-beige/30 flex items-center justify-center w-16 h-16 overflow-hidden shrink-0"
+                          style={{ borderColor: committee.color + "30" }}
+                        >
+                          {committee.icon ? (
+                            <img
+                              src={committee.icon}
+                              alt={`${committee.name} emblem`}
+                              className="object-contain transition-transform duration-500 group-hover:scale-110 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.1)]"
+                              style={{
+                                height: `48px`,
+                                width: `48px`,
+                              }}
+                            />
+                          ) : (
+                            <svg
+                              className="w-10 h-10 transition-transform duration-500 group-hover:scale-110"
+                              viewBox="0 0 100 100"
+                              fill="none"
+                              xmlns="http://www.w3.org/2000/svg"
+                              style={{ color: committee.color }}
+                            >
+                              <circle
+                                cx="50"
+                                cy="50"
+                                r="44"
+                                stroke="currentColor"
+                                strokeWidth="2.5"
+                                strokeDasharray="3 3"
+                              />
+                              <path
+                                d="M50 15 A35 35 0 0 0 50 85"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                              />
+                              <path
+                                d="M15 50 Q50 65 85 50"
+                                stroke="currentColor"
+                                strokeWidth="2"
+                              />
+                            </svg>
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="h-[1px] bg-warm-tan/20 w-full" />
+
+                      {/* Content: Agenda Brief */}
+                      <div className="space-y-3">
+                        <h5
+                          className="font-serif text-xs font-semibold uppercase tracking-widest"
                           style={{ color: committee.color }}
                         >
-                          {committee.name}
-                        </span>
-                        <Heading
-                          level={5}
-                          serif={false}
-                          className="text-xs md:text-sm font-semibold tracking-wider text-ink mt-1"
-                        >
-                          {committee.fullName}
-                        </Heading>
+                          Primary Agenda:
+                        </h5>
+                        <p className="font-sans text-xs text-ink/80 leading-relaxed italic">
+                          "{committee.agenda}"
+                        </p>
                       </div>
-                      <div
-                        className="p-0 rounded-none border bg-light-beige/20 transition-all duration-300 group-hover:border-[var(--accent-color)] group-hover:bg-light-beige/30 flex items-center justify-center w-16 h-16 overflow-hidden shrink-0"
-                        style={{ borderColor: committee.color + "30" }}
-                      >
-                        <img
-                          src={committee.icon}
-                          alt={`${committee.name} emblem`}
-                          className="object-contain transition-transform duration-500 group-hover:scale-110 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.1)]"
-                          style={{
-                            height: `${committee.logoSize || 48}px`,
-                            width: `${committee.logoSize || 48}px`,
-                          }}
-                        />
+
+                      <div className="space-y-2">
+                        <h5 className="font-serif text-[10px] font-semibold text-warm-tan uppercase tracking-widest">
+                          Key Directives:
+                        </h5>
+                        <p className="font-sans text-[11px] text-ink/60 leading-relaxed">
+                          {committee.focus}
+                        </p>
                       </div>
                     </div>
 
-                    <div className="h-[1px] bg-warm-tan/20 w-full" />
-
-                    {/* Content: Agenda Brief */}
-                    <div className="space-y-3">
-                      <h5
-                        className="font-serif text-xs font-semibold uppercase tracking-widest"
-                        style={{ color: committee.color }}
+                    {/* Details Button */}
+                    <div className="pt-2">
+                      <Link
+                        href={`/committees/${committee.id}`}
+                        className="inline-flex items-center gap-2 font-sans font-bold text-[10px] tracking-widest uppercase transition-all duration-300 py-3 px-4 w-full justify-between text-center select-none border border-warm-tan/20 hover:border-[var(--accent-color)] text-[#F4ECD8] hover:bg-[var(--accent-color)] hover:text-[#011E33] cursor-pointer"
                       >
-                        Primary Agenda:
-                      </h5>
-                      <p className="font-sans text-xs text-ink/80 leading-relaxed italic">
-                        "{committee.agenda}"
-                      </p>
-                    </div>
-
-                    <div className="space-y-2">
-                      <h5 className="font-serif text-[10px] font-semibold text-warm-tan uppercase tracking-widest">
-                        Key Directives:
-                      </h5>
-                      <p className="font-sans text-[11px] text-ink/60 leading-relaxed">
-                        {committee.focus}
-                      </p>
+                        <span>View Details</span>
+                        <span>➤</span>
+                      </Link>
                     </div>
                   </div>
                 </Card>

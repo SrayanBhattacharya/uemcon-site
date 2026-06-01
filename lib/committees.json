@@ -1,0 +1,105 @@
+[
+  {
+    "id": "imo",
+    "name": "IMO",
+    "fullName": "International Maritime Organization",
+    "agenda": "Formulating shipping regulation revisions to mitigate maritime carbon footprint and securing sovereign territorial trade lanes.",
+    "focus": "Oceanic trade routes, environmental compliance frameworks, and piracy prevention.",
+    "icon": "/icons/imo.webp",
+    "color": "#4CA3A5",
+    "type": "offline",
+    "content": [
+      "The International Maritime Organization is a specialized agency of the United Nations responsible for regulating international shipping and ensuring the safety, security, and environmental sustainability of maritime activities worldwide. Established by a convention adopted at the UN Maritime Conference in 1948, came into force on March 17, 1958, the IMO has grown to encompass more than 170 member states and operates with a mandate deeply aligned with the UN Sustainable Development Goals.",
+      "IMO’s primary role is to create a regulatory framework for the shipping industry that is fair, effective, universally adopted and implemented. IMO measures cover all frameworks such as : ship design, construction, equipment, manning, operation and disposal, all over ensuring this vital sector remains environmentally sound, technically safe and secure, and energy efficient. These frameworks are further reinforced through landmark conventions such as SOLAS, MARPOL, and STCW, which collectively shape how nations govern their fleets in the face of rising maritime threats, ecological crises, and rapid technological transformation at sea.",
+      "At UEM Conclave of Nations ‘26, the IMO shall provide a platform for individuals who are interested in delving deep into the intersection of international law, environmental responsibility, and global trade, engaging in rigorous diplomatic dialogue and collaborating to build sustainable frameworks for the high seas. This further exhibits a testament to the power of multilateral governance in securing marine activities worldwide."
+    ]
+  },
+  {
+    "id": "unwomen",
+    "name": "UNW",
+    "fullName": "UN Women",
+    "agenda": "Safeguarding socio-economic equality, tackling gender-based wage disparities, and protecting women's rights in active conflict zones.",
+    "focus": "Universal franchise, gender-responsive national budgeting, and legal protection charters.",
+    "icon": "/icons/unwomen.webp",
+    "color": "#B37D7D",
+    "type": "offline",
+    "content": [
+      "Details for the UN Women committee (UNW) simulation at UEMCON '26 will be announced soon.",
+      "Please check back for updates regarding agenda revisions, study guides, and registrations."
+    ]
+  },
+  {
+    "id": "jpc",
+    "name": "JPC",
+    "fullName": "Joint Parliamentary Committee",
+    "agenda": "Investigating corporate regulatory oversight, public sector allocations, and economic governance reforms under the Indian Parliament.",
+    "focus": "Bipartisan legislative consensus, accountability protocols, and policy intervention.",
+    "icon": "/icons/jpc.webp",
+    "color": "#5F8575",
+    "type": "offline",
+    "content": [
+      "The Joint Parliamentary Committee is an ad-hoc legislative body of the Parliament of India. The JPC draws its members from both the Houses of Parliament. Traditionally, members of the JPC are nominated both by the Lok Sabha and the Rajya Sabha speakers, with the number of Lok Sabha speakers being greater than the number of Rajya Sabha speakers.",
+      "The JPC is tasked with conducting thorough impartial scrutiny of matters related to significant public and legislative concern. It examines bills, policies, or specific issues referred to it. It consults stakeholders, experts and officials for comprehensive analysis and can summon documents and witnesses for deliberations. Its findings, analysis and formulated recommendations are compiled into a detailed report submitted to the Parliament, which may incorporate majority views alongside dissenting opinions from members, ensuring representations of diverse parliamentary perspectives. Although these recommendations are advisory in nature, they carry considerable weight in shaping the policies in India’s landscape.",
+      "At UEMCON ‘26, the JPC simulation offers delegates a rare window into the inner workings of India’s parliamentary accountability mechanisms."
+    ]
+  },
+  {
+    "id": "uncnd",
+    "name": "UNCND",
+    "fullName": "United Nations Commission on Narcotic Drugs",
+    "agenda": "Evaluating cross-border synthetic drug cartels, regulating illicit supply chains, and constructing humanitarian rehabilitation policies.",
+    "focus": "Narcotic containment treaties, global policing coordination, and public health directives.",
+    "icon": "/icons/uncnd.webp",
+    "color": "#C87A53",
+    "type": "offline",
+    "content": [
+      "The Commission on Narcotic Drugs is a functional commission of the United Nations Economic and Social Council (ECOSOC), which was established in 1946 through ECOSOC Resolution 9(I). With 53 member states elected by ECOSOC, it serves as the central drug policy-making body within the United Nations system, with its mandate further expanded by the General Assembly in 1991, also functioning as the governing body of the United Nations Office on Drugs and Crime (UNODC).",
+      "The UNCND is assigned with reviewing and analyzing the entire global drug situation, encompassing both supply and demand reduction, and supervising the application of the three landmark international drug conventions of 1961, 1971, 1988. The Commission executes treaty based functions while simultaneously guiding UNODC’s operational work, adopting resolutions and decisions that shape coordinated international responses to the ever changing challenges of drug trafficking, substance abuse and illicit trade.",
+      "UEMCON'26 presents the UNCND committee to exhibit a testament to the power of multilateral cooperation and evidence-based policymaking in confronting one of the world's most persistent transnational threats."
+    ]
+  },
+  {
+    "id": "ip",
+    "name": "IP",
+    "fullName": "International Press",
+    "agenda": "Providing critical investigative journalism, opinion editorials, and live photojournalism covering all active committee sessions.",
+    "focus": "Editorial integrity, press freedom, investigative reporting, and diplomatic caricatures.",
+    "icon": "/icons/ip.webp",
+    "color": "#8AA2B0",
+    "type": "offline",
+    "content": [
+      "The International Press (IP) is the powerhouse that observes every nuance of the United Nations. As an independent journalistic body, it documents discussions, analyses proceedings, and presents narratives that shape the conference.",
+      "Through press conferences, interviews and live reportage, the IP questions, interprets and amplifies the essence of deliberation. By engaging with delegates and scrutinising positions of influence, it upholds the values of accountability, transparency, and responsible journalism within the simulated symposium.",
+      "The International Press at UEM Conclave of Nations 2026 shall stand at the intersection of journalism and diplomacy. With inquiry at its core and objectivity as its guiding principle, the IP shall preserve the legacy of the conference beyond committee walls."
+    ]
+  },
+  {
+    "id": "unfccc",
+    "name": "UNFCCC",
+    "fullName": "United Nations Framework Convention of Climate Change",
+    "agenda": "Stabilizing atmospheric greenhouse gas concentrations and coordinating nationally determined contributions to prevent climate system interference.",
+    "focus": "Climate diplomacy, Kyoto Protocol & Paris Agreement compliance, global emission tracking.",
+    "icon": null,
+    "color": "#3D8B7A",
+    "type": "offline",
+    "content": [
+      "The United Nations Framework Convention of Climate Change, one of the three landmark Rio Conventions adopted at the Earth Summit in 1992, entered into force on 21 March 1994. With 198 parties, comprising 197 states, and the European Union, it stands as one of the most widely ratified international environmental treaties in history, and serves as the principal global treaty for coordinating the world’s collective response to climate change.",
+      "The founding objective of UNFCCC has been to stabilize atmospheric concentrations of greenhouse gases so as to prevent dangerous interference with the climate system. To advance this mandate, the Convention has laid the groundwork for successive binding instruments, such as the Kyoto Protocol of 1977, and the Paris Agreement of 2015. Through nationally determined contributions, transparent reporting frameworks, and the scientific guidance of IPCC, the UNFCCC continues to anchor global climate ambition and accountability.",
+      "UEMCON’26 provides a simulation of UNFCCC, offering a platform for delegates passionate about climate diplomacy, to bring forward substantive research, engage in multilateral negotiations, and address the deepening climate crisis through forming frameworks."
+    ]
+  },
+  {
+    "id": "uncsc",
+    "name": "UN CSC",
+    "fullName": "UN Civil Society Conference",
+    "agenda": "Amplifying grassroots and non-governmental voices to accelerate the Sustainable Development Goals (SDGs) and digital equity.",
+    "focus": "Grassroots mobilization, NGO partnerships, and multi-sectoral global agendas.",
+    "icon": "/icons/uncsc.webp",
+    "color": "#CBAD7F",
+    "type": "online",
+    "content": [
+      "Details for the United Nations Civil Society Conference (UN CSC) simulation at UEMCON '26 will be announced soon.",
+      "Please check back for updates regarding agenda revisions, study guides, and registrations."
+    ]
+  }
+]
