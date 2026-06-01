@@ -132,7 +132,7 @@ export default function CommitteesLayout({
         </div>
 
         {/* Committee Items List */}
-        <nav className="flex flex-col gap-3.5">
+        <nav className="flex flex-col gap-3.5 relative">
           {committees.map((committee) => {
             const isActive = currentId === committee.id;
             return (
@@ -141,38 +141,58 @@ export default function CommitteesLayout({
                 href={`/committees/${committee.id}`}
                 className={`flex items-start gap-4 p-4 transition-all duration-300 text-left border relative group select-none ${
                   isActive
-                    ? "bg-[#BDEBFF] border-[#BDEBFF] text-[#011E33]"
-                    : "bg-[#022B4B]/10 hover:bg-[#022B4B]/30 border-warm-tan/10 text-[#F4ECD8]"
+                    ? "border-[#BDEBFF] text-[#011E33]"
+                    : "border-warm-tan/10 text-[#F4ECD8] hover:border-warm-tan/30"
                 }`}
               >
-                <Star
-                  className={`h-4.5 w-4.5 shrink-0 mt-0.5 transition-colors duration-300 ${
-                    isActive
-                      ? "text-[#011E33] fill-current"
-                      : "text-warm-tan/60 group-hover:text-warm-tan"
-                  }`}
-                />
-                <div className="flex-grow">
-                  <div className="font-sans font-black text-xs tracking-wider uppercase">
-                    {committee.name}
-                  </div>
-                  <div
-                    className={`font-serif text-[10px] leading-tight mt-1 line-clamp-1 ${
-                      isActive ? "text-[#011E33]/70" : "text-[#F4ECD8]/50"
-                    }`}
-                  >
-                    {committee.fullName}
-                  </div>
-                </div>
                 {isActive && (
                   <motion.div
-                    layoutId="activeIndicator"
-                    className="absolute right-3 top-1/2 -translate-y-1/2"
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                  >
-                    <ChevronRight className="h-4 w-4 text-[#011E33]" />
-                  </motion.div>
+                    layoutId="activeCommitteeBg"
+                    className="absolute inset-0 bg-[#BDEBFF] -z-10"
+                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
+                  />
                 )}
+                
+                {/* Inactive Hover Background */}
+                {!isActive && (
+                  <div className="absolute inset-0 bg-[#022B4B]/30 opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10" />
+                )}
+
+                <motion.div 
+                  className="flex items-start gap-4 w-full"
+                  animate={{ x: isActive ? 0 : 0 }}
+                  whileHover={{ x: isActive ? 0 : 4 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <Star
+                    className={`h-4.5 w-4.5 shrink-0 mt-0.5 transition-colors duration-300 ${
+                      isActive
+                        ? "text-[#011E33] fill-current"
+                        : "text-warm-tan/60 group-hover:text-warm-tan"
+                    }`}
+                  />
+                  <div className="flex-grow">
+                    <div className="font-sans font-black text-xs tracking-wider uppercase">
+                      {committee.name}
+                    </div>
+                    <div
+                      className={`font-serif text-[10px] leading-tight mt-1 line-clamp-1 ${
+                        isActive ? "text-[#011E33]/70" : "text-[#F4ECD8]/50"
+                      }`}
+                    >
+                      {committee.fullName}
+                    </div>
+                  </div>
+                  {isActive && (
+                    <motion.div
+                      layoutId="activeIndicator"
+                      className="absolute right-3 top-1/2 -translate-y-1/2"
+                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                    >
+                      <ChevronRight className="h-4 w-4 text-[#011E33]" />
+                    </motion.div>
+                  )}
+                </motion.div>
               </Link>
             );
           })}

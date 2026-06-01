@@ -1,9 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import React from "react";
+import React, { useState } from "react";
 import Container from "../layout/Container";
-import Card from "../ui/Card";
+import InteractiveCommitteeCard from "../ui/InteractiveCommitteeCard";
 import Heading from "../ui/Heading";
 import Section from "../ui/Section";
 
@@ -43,6 +43,7 @@ const cardVariants = {
 
 export default function FeaturedCommittees() {
   const committees = committeesData as Committee[];
+  const [hoveredCommitteeId, setHoveredCommitteeId] = useState<string | null>(null);
 
   return (
     <Section id="committees-section" className="py-0 relative" animate={false}>
@@ -80,20 +81,26 @@ export default function FeaturedCommittees() {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16"
         >
           {committees.map((committee) => {
+            const isHoveredByOther = hoveredCommitteeId !== null && hoveredCommitteeId !== committee.id;
+            
             return (
               <motion.div
                 key={committee.id}
                 variants={cardVariants}
                 className="flex h-full"
               >
-                <Card
-                  interactive={false}
-                  className="flex flex-col justify-between w-full h-full group border border-warm-tan/20 hover:border-[var(--accent-color)] transition-all duration-500 hover:-translate-y-1 hover:shadow-lg"
-                  style={
-                    { "--accent-color": committee.color } as React.CSSProperties
-                  }
+                <InteractiveCommitteeCard
+                  id={committee.id}
+                  color={committee.color}
+                  isHoveredByOther={isHoveredByOther}
+                  onHoverStart={() => setHoveredCommitteeId(committee.id)}
+                  onHoverEnd={() => setHoveredCommitteeId(null)}
+                  className="w-full"
                 >
-                  <div className="flex flex-col justify-between h-full space-y-6">
+                  <div 
+                    className="flex flex-col justify-between h-full space-y-6"
+                    style={{ "--accent-color": committee.color } as React.CSSProperties}
+                  >
                     <div className="space-y-6">
                       {/* Header: Name and Emblem */}
                       <div className="flex justify-between items-start">
@@ -107,20 +114,23 @@ export default function FeaturedCommittees() {
                           <Heading
                             level={5}
                             serif={false}
-                            className="text-xs md:text-sm font-semibold tracking-wider text-ink mt-1"
+                            className="text-xs md:text-sm font-semibold tracking-wider text-ink mt-1 transition-colors duration-300 group-hover:text-[var(--accent-color)]"
                           >
                             {committee.fullName}
                           </Heading>
                         </div>
                         <div
-                          className="p-0 rounded-none border bg-light-beige/20 transition-all duration-300 group-hover:border-[var(--accent-color)] group-hover:bg-light-beige/30 flex items-center justify-center w-16 h-16 overflow-hidden shrink-0"
+                          className="p-0 rounded-none border bg-light-beige/20 transition-all duration-300 group-hover:border-[var(--accent-color)] group-hover:bg-light-beige/30 flex items-center justify-center w-16 h-16 overflow-hidden shrink-0 relative"
                           style={{ borderColor: committee.color + "30" }}
                         >
+                          {/* Image Glass Sweep Effect */}
+                          <div className="absolute inset-0 z-20 pointer-events-none -translate-x-[150%] skew-x-[-20deg] bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover:animate-[glass-sweep_1.5s_ease-out]" />
+
                           {committee.icon ? (
                             <img
                               src={committee.icon}
                               alt={`${committee.name} emblem`}
-                              className="object-contain transition-transform duration-500 group-hover:scale-110 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.1)]"
+                              className="object-contain transition-transform duration-700 ease-out group-hover:scale-105 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.1)] relative z-10"
                               style={{
                                 height: `48px`,
                                 width: `48px`,
@@ -128,7 +138,7 @@ export default function FeaturedCommittees() {
                             />
                           ) : (
                             <svg
-                              className="w-10 h-10 transition-transform duration-500 group-hover:scale-110"
+                              className="w-10 h-10 transition-transform duration-700 ease-out group-hover:scale-105 relative z-10"
                               viewBox="0 0 100 100"
                               fill="none"
                               xmlns="http://www.w3.org/2000/svg"
@@ -173,7 +183,7 @@ export default function FeaturedCommittees() {
                       </div>
 
                       <div className="space-y-2">
-                        <h5 className="font-serif text-[10px] font-semibold text-warm-tan uppercase tracking-widest">
+                        <h5 className="font-serif text-[10px] font-semibold text-warm-tan uppercase tracking-widest transition-colors duration-300 group-hover:text-[var(--accent-color)]">
                           Key Directives:
                         </h5>
                         <p className="font-sans text-[11px] text-ink/60 leading-relaxed">
@@ -186,14 +196,20 @@ export default function FeaturedCommittees() {
                     <div className="pt-2">
                       <Link
                         href={`/committees/${committee.id}`}
-                        className="inline-flex items-center gap-2 font-sans font-bold text-[10px] tracking-widest uppercase transition-all duration-300 py-3 px-4 w-full justify-between text-center select-none border border-warm-tan/20 hover:border-[var(--accent-color)] text-[#F4ECD8] hover:bg-[var(--accent-color)] hover:text-[#011E33] cursor-pointer"
+                        className="inline-flex items-center gap-2 font-sans font-bold text-[10px] tracking-widest uppercase transition-all duration-300 py-3 px-4 w-full justify-between text-center select-none border border-warm-tan/20 group-hover:border-[var(--accent-color)] text-[#F4ECD8] group-hover:bg-[var(--accent-color)] group-hover:text-[#011E33] cursor-pointer"
                       >
                         <span>View Details</span>
-                        <span>➤</span>
+                        <motion.span 
+                          initial={{ x: 0 }}
+                          whileHover={{ x: 4 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          ➤
+                        </motion.span>
                       </Link>
                     </div>
                   </div>
-                </Card>
+                </InteractiveCommitteeCard>
               </motion.div>
             );
           })}

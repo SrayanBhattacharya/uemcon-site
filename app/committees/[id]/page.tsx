@@ -5,6 +5,11 @@ import Heading from "@/components/ui/Heading";
 import Button from "@/components/ui/Button";
 import Container from "@/components/layout/Container";
 
+import AmbientBackground from "@/components/ui/AmbientBackground";
+import AnimatedText from "@/components/ui/AnimatedText";
+import ClientScrollReveal from "@/components/ui/ClientScrollReveal";
+import ImageInteractionWrapper from "@/components/ui/ImageInteractionWrapper"; // Let's create this next for the emblem
+
 interface Committee {
   id: string;
   name: string;
@@ -35,119 +40,147 @@ export default async function CommitteePage(props: { params: Promise<{ id: strin
   }
 
   return (
-    <div className="py-12 md:py-20 px-6 md:px-12 lg:px-16 space-y-12">
+    <div className="py-12 md:py-20 px-6 md:px-12 lg:px-16 space-y-12 relative min-h-screen">
+      <AmbientBackground color={committee.color} />
+      
       {/* Header Info */}
-      <div className="space-y-6">
+      <div className="space-y-6 relative z-10">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
           <div className="space-y-2">
-            <span
-              className="font-sans text-[10px] tracking-[0.3em] font-black uppercase"
-              style={{ color: committee.color }}
-            >
-              Simulation Session
-            </span>
-            <h1 className="font-sans font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#F4ECD8] uppercase tracking-tight leading-none">
-              {committee.name}
-            </h1>
-            <p className="font-serif italic text-lg sm:text-xl text-[#F4ECD8]/75 font-medium">
-              {committee.fullName}
-            </p>
+            <ClientScrollReveal delay={0.1} direction="down">
+              <span
+                className="font-sans text-[10px] tracking-[0.3em] font-black uppercase"
+                style={{ color: committee.color }}
+              >
+                Simulation Session
+              </span>
+            </ClientScrollReveal>
+            <AnimatedText 
+              text={committee.name} 
+              el="h1" 
+              className="font-sans font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-[#F4ECD8] uppercase tracking-tight leading-none"
+              delay={0.2}
+            />
+            <ClientScrollReveal delay={0.4}>
+              <p className="font-serif italic text-lg sm:text-xl text-[#F4ECD8]/75 font-medium mt-2">
+                {committee.fullName}
+              </p>
+            </ClientScrollReveal>
           </div>
 
           {/* Emblem Wrapper */}
-          {committee.icon ? (
-            <div
-              className="p-3 bg-[#022B4B] border flex items-center justify-center w-24 h-24 sm:w-28 sm:h-28 overflow-hidden shrink-0 select-none"
-              style={{ borderColor: committee.color + "30" }}
-            >
-              <img
-                src={committee.icon}
-                alt={`${committee.name} Emblem`}
-                className="object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.15)]"
-                style={{ height: "100%", width: "100%" }}
-              />
-            </div>
-          ) : (
-            <div
-              className="p-3 bg-[#022B4B] border flex flex-col items-center justify-center w-24 h-24 sm:w-28 sm:h-28 shrink-0 text-center select-none"
-              style={{ borderColor: committee.color + "40" }}
-            >
-              <svg
-                className="w-12 h-12 mb-1"
-                viewBox="0 0 100 100"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                style={{ color: committee.color }}
-              >
-                <circle cx="50" cy="50" r="44" stroke="currentColor" strokeWidth="2" strokeDasharray="3 3" />
-                <path d="M50 15 A35 35 0 0 0 50 85" stroke="currentColor" strokeWidth="1.5" />
-                <path d="M15 50 Q50 65 85 50" stroke="currentColor" strokeWidth="1.5" />
-                <circle cx="50" cy="50" r="10" fill="currentColor" opacity="0.2" />
-              </svg>
-              <span className="font-sans text-[8px] font-black text-warm-tan tracking-widest uppercase">
-                TBD LOGO
-              </span>
-            </div>
-          )}
+          <ClientScrollReveal delay={0.3} direction="left">
+            <ImageInteractionWrapper color={committee.color}>
+              {committee.icon ? (
+                <div
+                  className="p-3 bg-[#022B4B]/80 backdrop-blur-sm border flex items-center justify-center w-24 h-24 sm:w-28 sm:h-28 overflow-hidden shrink-0 select-none relative group"
+                  style={{ borderColor: committee.color + "30" }}
+                >
+                  <img
+                    src={committee.icon}
+                    alt={`${committee.name} Emblem`}
+                    className="object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-transform duration-700 ease-out group-hover:scale-110 relative z-10"
+                    style={{ height: "100%", width: "100%" }}
+                  />
+                  {/* Subtle lighting response on hover */}
+                  <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                </div>
+              ) : (
+                <div
+                  className="p-3 bg-[#022B4B]/80 backdrop-blur-sm border flex flex-col items-center justify-center w-24 h-24 sm:w-28 sm:h-28 shrink-0 text-center select-none group"
+                  style={{ borderColor: committee.color + "40" }}
+                >
+                  <svg
+                    className="w-12 h-12 mb-1 transition-transform duration-700 ease-out group-hover:scale-110"
+                    viewBox="0 0 100 100"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style={{ color: committee.color }}
+                  >
+                    <circle cx="50" cy="50" r="44" stroke="currentColor" strokeWidth="2" strokeDasharray="3 3" />
+                    <path d="M50 15 A35 35 0 0 0 50 85" stroke="currentColor" strokeWidth="1.5" />
+                    <path d="M15 50 Q50 65 85 50" stroke="currentColor" strokeWidth="1.5" />
+                    <circle cx="50" cy="50" r="10" fill="currentColor" opacity="0.2" />
+                  </svg>
+                  <span className="font-sans text-[8px] font-black text-warm-tan tracking-widest uppercase">
+                    TBD LOGO
+                  </span>
+                </div>
+              )}
+            </ImageInteractionWrapper>
+          </ClientScrollReveal>
         </div>
 
-        <div className="h-[1px] bg-warm-tan/20 w-full" />
+        <ClientScrollReveal delay={0.5} direction="none">
+          <div className="h-[1px] bg-warm-tan/20 w-full" />
+        </ClientScrollReveal>
       </div>
 
       {/* Quick Action Button */}
-      <div className="flex flex-wrap gap-4">
-        <Button disabled variant="outline" className="px-8">
-          Registrations Opening Soon
-        </Button>
-        <Button disabled variant="outline" className="px-8">
-          Study Guide Coming Soon
-        </Button>
-      </div>
+      <ClientScrollReveal delay={0.6} direction="up" className="relative z-10">
+        <div className="flex flex-wrap gap-4">
+          <Button disabled variant="outline" className="px-8 transition-transform hover:-translate-y-0.5">
+            Registrations Opening Soon
+          </Button>
+          <Button disabled variant="outline" className="px-8 transition-transform hover:-translate-y-0.5">
+            Study Guide Coming Soon
+          </Button>
+        </div>
+      </ClientScrollReveal>
 
       {/* Main Grid Content */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 pt-4">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 pt-4 relative z-10">
         {/* Left 2 Columns: Long Description */}
         <div className="lg:col-span-2 space-y-6 font-sans text-sm sm:text-base text-ink/80 leading-relaxed">
           {committee.content.map((paragraph, index) => (
-            <p key={index} className="text-justify font-sans font-light">
-              {paragraph}
-            </p>
+            <ClientScrollReveal key={index} delay={0.2 + (index * 0.1)}>
+              <p className="text-justify font-sans font-light">
+                {paragraph}
+              </p>
+            </ClientScrollReveal>
           ))}
         </div>
 
         {/* Right 1 Column: Agenda details and key focus */}
         <div className="space-y-6">
           {/* Card detailing Agenda & Key Directives */}
-          <div
-            className="p-6 bg-[#022B4B] border border-warm-tan/10 rounded-none relative overflow-hidden space-y-6"
-            style={{ borderLeft: `4px solid ${committee.color}` }}
-          >
-            {/* Subtle decorative color dot */}
+          <ClientScrollReveal delay={0.4} direction="left">
             <div
-              className="absolute top-4 right-4 w-2 h-2 rounded-full"
-              style={{ backgroundColor: committee.color }}
-            />
+              className="p-6 bg-[#022B4B]/80 backdrop-blur-md border border-warm-tan/10 rounded-none relative overflow-hidden space-y-6 hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-shadow duration-500 group"
+              style={{ borderLeft: `4px solid ${committee.color}` }}
+            >
+              {/* Subtle decorative color dot */}
+              <div
+                className="absolute top-4 right-4 w-2 h-2 rounded-full transition-transform duration-500 group-hover:scale-150"
+                style={{ backgroundColor: committee.color }}
+              />
 
-            <div className="space-y-3">
-              <Heading level={6} className="font-sans font-black tracking-widest uppercase">
-                Primary Agenda
-              </Heading>
-              <p className="font-sans text-xs text-ink/90 italic leading-relaxed">
-                "{committee.agenda}"
-              </p>
+              <div className="space-y-3">
+                <AnimatedText 
+                  text="Primary Agenda" 
+                  el="h6"
+                  className="font-sans font-black tracking-widest uppercase text-xs sm:text-sm text-warm-tan"
+                />
+                <p className="font-sans text-xs text-ink/90 italic leading-relaxed">
+                  "{committee.agenda}"
+                </p>
+              </div>
+
+              <div className="h-[1px] bg-warm-tan/10 w-full" />
+
+              <div className="space-y-3">
+                <AnimatedText 
+                  text="Key Directives" 
+                  el="h6"
+                  className="font-sans font-black tracking-widest uppercase text-xs sm:text-sm text-warm-tan"
+                  delay={0.2}
+                />
+                <p className="font-sans text-xs text-[#F4ECD8]/70 leading-relaxed">
+                  {committee.focus}
+                </p>
+              </div>
             </div>
-
-            <div className="h-[1px] bg-warm-tan/10 w-full" />
-
-            <div className="space-y-3">
-              <Heading level={6} className="font-sans font-black tracking-widest uppercase">
-                Key Directives
-              </Heading>
-              <p className="font-sans text-xs text-[#F4ECD8]/70 leading-relaxed">
-                {committee.focus}
-              </p>
-            </div>
-          </div>
+          </ClientScrollReveal>
         </div>
       </div>
     </div>
