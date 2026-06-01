@@ -15,7 +15,7 @@ interface AnimatedTextProps {
 export default function AnimatedText({
   text,
   className = "",
-  el: Wrapper = "span",
+  el = "span",
   once = true,
   underlineColor,
   delay = 0,
@@ -23,11 +23,12 @@ export default function AnimatedText({
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { amount: 0.5, once });
   const prefersReducedMotion = useReducedMotion();
+  const Wrapper = el as React.ElementType;
 
   // Split text into words
   const words = text.split(" ");
 
-  const container = {
+  const container: any = {
     hidden: { opacity: 0 },
     visible: (i: number = 1) => ({
       opacity: 1,
@@ -38,7 +39,7 @@ export default function AnimatedText({
     }),
   };
 
-  const child = {
+  const child: any = {
     visible: {
       opacity: 1,
       y: 0,

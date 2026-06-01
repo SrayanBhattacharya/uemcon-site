@@ -8,6 +8,11 @@ import Section from "@/components/ui/Section";
 import Heading from "@/components/ui/Heading";
 import Divider from "@/components/ui/Divider";
 import Card from "@/components/ui/Card";
+import DynamicScrollBackground from "@/components/ui/DynamicScrollBackground";
+import ParallaxBanner from "@/components/ui/ParallaxBanner";
+import ScrollRevealSection from "@/components/ui/ScrollRevealSection";
+import ScrollLinkedCard from "@/components/ui/ScrollLinkedCard";
+import EventTimelineScroll from "@/components/ui/EventTimelineScroll";
 
 const scheduleData = {
   "day-1": [
@@ -36,30 +41,25 @@ export default function EventsPage() {
 
   return (
     <div className="flex flex-col w-full">
+      <DynamicScrollBackground />
+      
       {/* Intro Banner */}
-      {/* Full-width warm-tan Header Banner styled like the Committees banner */}
-      <Section className="py-0 relative" animate={false}>
-        <div className="w-full bg-[#CBAD7F] relative overflow-hidden flex items-center md:items-end px-6 md:px-12 lg:px-16 py-3 md:py-5 h-[90px] md:h-[155px] border-b border-warm-tan/30 select-none">
-          {/* Giant Background Text */}
-          <h2 className="font-sans font-black text-[#011E33]/12 text-[3.1rem] sm:text-[4.5rem] md:text-[5.5rem] lg:text-[7.5rem] xl:text-[9rem] 2xl:text-[10.5rem] uppercase tracking-tighter leading-none absolute top-1/2 -translate-y-1/2 md:top-auto md:translate-y-0 md:-bottom-3 left-6 md:left-12 lg:left-16 pointer-events-none whitespace-nowrap">
-            AGENDA
-          </h2>
-          
-          {/* Banner Front Content */}
-          <div className="relative z-10 w-full flex justify-between items-center md:items-end text-[#011E33] mb-0 md:mb-1">
-            <span className="font-sans font-bold text-[9px] sm:text-xs tracking-[0.25em] uppercase whitespace-nowrap">
-              SCHEDULE & MILESTONES
-            </span>
-            <span className="font-serif italic text-xs md:text-sm font-semibold max-w-[280px] sm:max-w-md text-right leading-snug hidden md:block">
-              "Plan your lobbying, prepare your positions, and follow key milestones"
-            </span>
-          </div>
+      <ParallaxBanner text="AGENDA">
+        {/* Banner Front Content */}
+        <div className="relative z-10 w-full flex justify-between items-center md:items-end text-[#011E33] mb-0 md:mb-1">
+          <span className="font-sans font-bold text-[9px] sm:text-xs tracking-[0.25em] uppercase whitespace-nowrap">
+            SCHEDULE & MILESTONES
+          </span>
+          <span className="font-serif italic text-xs md:text-sm font-semibold max-w-[280px] sm:max-w-md text-right leading-snug hidden md:block">
+            "Plan your lobbying, prepare your positions, and follow key milestones"
+          </span>
         </div>
-      </Section>
+      </ParallaxBanner>
 
       {/* Deadlines Section */}
-      <Section className="bg-paper">
-        <Container>
+      <Section className="bg-paper/80 relative z-10">
+        <ScrollRevealSection>
+          <Container>
           <div className="text-center max-w-2xl mx-auto mb-12">
             <Heading level={6} className="mb-2">
               Timeline
@@ -69,33 +69,42 @@ export default function EventsPage() {
             </Heading>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {deadlines.map((dl) => (
-              <Card key={dl.title} interactive={false} className="border border-warm-tan/30 relative">
-                <div className="flex justify-between items-start mb-4">
-                  <span className="font-serif text-lg font-bold text-primary-blue">{dl.date}</span>
-                  <span className={`font-sans text-[8px] font-bold tracking-widest uppercase px-2 py-0.5 border ${
-                    dl.status === "Open" ? "border-primary-blue text-primary-blue bg-primary-blue/5" : "border-warm-tan/50 text-warm-tan bg-warm-tan/5"
-                  }`}>
-                    {dl.status}
-                  </span>
-                </div>
-                <Heading level={5} className="text-xs md:text-sm font-semibold text-ink mb-2">
-                  {dl.title}
-                </Heading>
-                <div className="flex items-center gap-1.5 text-[9px] text-ink/50 uppercase tracking-widest font-bold">
-                  <CheckCircle className="h-3 w-3 text-warm-tan/60" />
-                  <span>Mandatory Deadline</span>
-                </div>
-              </Card>
-            ))}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-4">
+            {deadlines.map((dl, idx) => {
+              const directions = ["up", "down", "up", "down"] as const;
+              const dir = directions[idx % 4];
+              
+              return (
+                <ScrollLinkedCard key={dl.title} direction={dir}>
+                  <Card interactive={false} className="border border-warm-tan/30 relative h-full">
+                    <div className="flex justify-between items-start mb-4">
+                      <span className="font-serif text-lg font-bold text-primary-blue">{dl.date}</span>
+                      <span className={`font-sans text-[8px] font-bold tracking-widest uppercase px-2 py-0.5 border ${
+                        dl.status === "Open" ? "border-primary-blue text-primary-blue bg-primary-blue/5" : "border-warm-tan/50 text-warm-tan bg-warm-tan/5"
+                      }`}>
+                        {dl.status}
+                      </span>
+                    </div>
+                    <Heading level={5} className="text-xs md:text-sm font-semibold text-ink mb-2">
+                      {dl.title}
+                    </Heading>
+                    <div className="flex items-center gap-1.5 text-[9px] text-ink/50 uppercase tracking-widest font-bold mt-auto pt-4">
+                      <CheckCircle className="h-3 w-3 text-warm-tan/60" />
+                      <span>Mandatory Deadline</span>
+                    </div>
+                  </Card>
+                </ScrollLinkedCard>
+              );
+            })}
           </div>
-        </Container>
+          </Container>
+        </ScrollRevealSection>
       </Section>
 
       {/* Interactive Schedule */}
-      <Section className="bg-light-beige/10 border-t border-warm-tan/20">
-        <Container className="max-w-4xl">
+      <Section className="bg-light-beige/10 border-t border-warm-tan/20 relative z-10">
+        <ScrollRevealSection delay={0.2}>
+          <Container className="max-w-4xl">
           <div className="text-center max-w-2xl mx-auto mb-12">
             <Heading level={6} className="mb-2">
               Sovereign Summit
@@ -123,53 +132,57 @@ export default function EventsPage() {
           </div>
 
           {/* Schedule List */}
-          <motion.div
-            key={activeDay}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.4 }}
-            className="space-y-6"
-          >
-            {scheduleData[activeDay].map((event, idx) => (
-              <div
-                key={event.title}
-                className="flex flex-col md:flex-row items-stretch border border-warm-tan/20 bg-paper hover:border-primary-blue/30 transition-all duration-300 rounded-[2px]"
-              >
-                {/* Time frame panel */}
-                <div className="md:w-1/4 bg-light-beige/20 border-b md:border-b-0 md:border-r border-warm-tan/20 p-6 flex flex-col justify-center items-start md:items-center">
-                  <div className="flex items-center gap-2 text-primary-blue">
-                    <Clock className="h-4 w-4 text-warm-tan" />
-                    <span className="font-serif text-sm font-semibold tracking-wide">
-                      {event.time.split(" - ")[0]}
-                    </span>
-                  </div>
-                  <span className="font-sans text-[9px] uppercase tracking-widest text-ink/40 font-bold mt-1">
-                    {event.time.split(" - ")[1]}
-                  </span>
-                </div>
+          <EventTimelineScroll>
+            <motion.div
+              key={activeDay}
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.4 }}
+              className="space-y-6"
+            >
+              {scheduleData[activeDay].map((event, idx) => (
+                <ScrollRevealSection key={event.title} delay={idx * 0.1} className="relative z-20">
+                  <div
+                    className="flex flex-col md:flex-row items-stretch border border-warm-tan/20 bg-paper hover:border-primary-blue/30 transition-all duration-300 rounded-[2px]"
+                  >
+                    {/* Time frame panel */}
+                    <div className="md:w-1/4 bg-light-beige/20 border-b md:border-b-0 md:border-r border-warm-tan/20 p-6 flex flex-col justify-center items-start md:items-center relative">
+                      <div className="flex items-center gap-2 text-primary-blue">
+                        <Clock className="h-4 w-4 text-warm-tan" />
+                        <span className="font-serif text-sm font-semibold tracking-wide">
+                          {event.time.split(" - ")[0]}
+                        </span>
+                      </div>
+                      <span className="font-sans text-[9px] uppercase tracking-widest text-ink/40 font-bold mt-1">
+                        {event.time.split(" - ")[1]}
+                      </span>
+                    </div>
 
-                {/* Details panel */}
-                <div className="md:w-3/4 p-6 flex flex-col justify-between gap-4">
-                  <div>
-                    <span className="font-serif text-[10px] tracking-widest uppercase text-warm-tan font-bold">
-                      Session Milestone 0{idx + 1}
-                    </span>
-                    <Heading level={4} className="text-lg text-primary-blue mt-1 mb-2">
-                      {event.title}
-                    </Heading>
-                    <p className="font-sans text-xs text-ink/75 leading-relaxed">
-                      {event.desc}
-                    </p>
+                    {/* Details panel */}
+                    <div className="md:w-3/4 p-6 flex flex-col justify-between gap-4">
+                      <div>
+                        <span className="font-serif text-[10px] tracking-widest uppercase text-warm-tan font-bold">
+                          Session Milestone 0{idx + 1}
+                        </span>
+                        <Heading level={4} className="text-lg text-primary-blue mt-1 mb-2">
+                          {event.title}
+                        </Heading>
+                        <p className="font-sans text-xs text-ink/75 leading-relaxed">
+                          {event.desc}
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-1.5 text-[9px] uppercase tracking-widest font-bold text-ink/50 pt-2 border-t border-warm-tan/10">
+                        <MapPin className="h-3 w-3 text-warm-tan/70" />
+                        <span>Location: {event.location}</span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex items-center gap-1.5 text-[9px] uppercase tracking-widest font-bold text-ink/50 pt-2 border-t border-warm-tan/10">
-                    <MapPin className="h-3 w-3 text-warm-tan/70" />
-                    <span>Location: {event.location}</span>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </motion.div>
+                </ScrollRevealSection>
+              ))}
+            </motion.div>
+          </EventTimelineScroll>
         </Container>
+        </ScrollRevealSection>
       </Section>
     </div>
   );
