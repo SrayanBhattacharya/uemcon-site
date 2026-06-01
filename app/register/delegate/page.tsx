@@ -1,0 +1,811 @@
+"use client";
+
+import Container from "@/components/layout/Container";
+import Button from "@/components/ui/Button";
+import Card from "@/components/ui/Card";
+import Heading from "@/components/ui/Heading";
+import Section from "@/components/ui/Section";
+import committeesData from "@/lib/committees.json";
+import { AlertCircle, CheckCircle2, Info, Send } from "lucide-react";
+import React, { useState } from "react";
+
+interface Committee {
+  id: string;
+  name: string;
+  fullName: string;
+  color: string;
+}
+
+export default function DelegateRegisterPage() {
+  const committees = committeesData as Committee[];
+
+  const [formState, setFormState] = useState({
+    name: "",
+    institution: "",
+    email: "",
+    gender: "",
+    phone: "",
+    whatsapp: "",
+    previousMUNs: "",
+    experience: "",
+    committee1: "",
+    committee1Portfolio1: "",
+    committee1Portfolio2: "",
+    committee1Portfolio3: "",
+    committee2: "",
+    committee2Portfolio1: "",
+    committee2Portfolio2: "",
+    committee2Portfolio3: "",
+    foodPreference: "Veg",
+    accommodation: "No",
+    queries: "",
+  });
+
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [status, setStatus] = useState<{
+    type: "idle" | "submitting" | "success" | "error";
+    message?: string;
+  }>({ type: "idle" });
+
+  const validate = () => {
+    const newErrors: Record<string, string> = {};
+    if (!formState.name.trim()) newErrors.name = "Full name is required";
+    if (!formState.institution.trim())
+      newErrors.institution = "Institution is required";
+
+    if (!formState.email.trim()) {
+      newErrors.email = "Email address is required";
+    } else if (!/\S+@\S+\.\S+/.test(formState.email)) {
+      newErrors.email = "Please enter a valid email address";
+    }
+
+    if (!formState.gender) newErrors.gender = "Gender selection is required";
+
+    if (!formState.phone.trim()) {
+      newErrors.phone = "Phone number is required";
+    } else if (formState.phone.length < 10) {
+      newErrors.phone = "Phone number must be at least 10 digits";
+    }
+
+    if (!formState.whatsapp.trim()) {
+      newErrors.whatsapp = "WhatsApp number is required";
+    } else if (formState.whatsapp.length < 10) {
+      newErrors.whatsapp = "WhatsApp number must be at least 10 digits";
+    }
+
+    if (!formState.committee1)
+      newErrors.committee1 = "First preference committee is required";
+    if (!formState.committee1Portfolio1.trim())
+      newErrors.committee1Portfolio1 = "Portfolio Priority 1 is required";
+    if (!formState.committee1Portfolio2.trim())
+      newErrors.committee1Portfolio2 = "Portfolio Priority 2 is required";
+    if (!formState.committee1Portfolio3.trim())
+      newErrors.committee1Portfolio3 = "Portfolio Priority 3 is required";
+
+    if (!formState.committee2)
+      newErrors.committee2 = "Second preference committee is required";
+    if (!formState.committee2Portfolio1.trim())
+      newErrors.committee2Portfolio1 = "Portfolio Priority 1 is required";
+    if (!formState.committee2Portfolio2.trim())
+      newErrors.committee2Portfolio2 = "Portfolio Priority 2 is required";
+    if (!formState.committee2Portfolio3.trim())
+      newErrors.committee2Portfolio3 = "Portfolio Priority 3 is required";
+
+    if (!formState.previousMUNs.trim())
+      newErrors.previousMUNs = "Number of previous Model UNs is required";
+    if (!formState.foodPreference)
+      newErrors.foodPreference = "Food preference is required";
+    if (!formState.accommodation)
+      newErrors.accommodation = "Accommodation requirement is required";
+    if (!formState.experience.trim())
+      newErrors.experience = "Brief experience summary is required";
+    if (!formState.queries.trim())
+      newErrors.queries = "Queries are required (enter 'None' if none)";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!validate()) {
+      setStatus({
+        type: "error",
+        message: "Please correct the highlighted errors in the fields below.",
+      });
+      return;
+    }
+
+    setStatus({ type: "submitting" });
+
+    try {
+      const response = await fetch("/api/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formState),
+      });
+
+      const data = await response.json();
+
+      if (response.ok && data.success) {
+        setStatus({
+          type: "success",
+          message:
+            "Registration dispatch successfully logged. The delegate relations desk will review your credentials shortly.",
+        });
+        setErrors({});
+        // Reset form
+        setFormState({
+          name: "",
+          institution: "",
+          email: "",
+          gender: "",
+          phone: "",
+          whatsapp: "",
+          previousMUNs: "",
+          experience: "",
+          committee1: "",
+          committee1Portfolio1: "",
+          committee1Portfolio2: "",
+          committee1Portfolio3: "",
+          committee2: "",
+          committee2Portfolio1: "",
+          committee2Portfolio2: "",
+          committee2Portfolio3: "",
+          foodPreference: "Veg",
+          accommodation: "No",
+          queries: "",
+        });
+      } else {
+        setStatus({
+          type: "error",
+          message:
+            "Failed to transmit credentials. Please verify your connection and try again.",
+        });
+      }
+    } catch (err) {
+      console.error(err);
+      setStatus({
+        type: "error",
+        message:
+          "An unexpected registry error occurred. Please contact delegate relations.",
+      });
+    }
+  };
+
+  const handleInputChange = (
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >,
+  ) => {
+    const { id, value } = e.target;
+    setFormState((prev) => ({ ...prev, [id]: value }));
+
+    // Clear field error on change
+    if (errors[id]) {
+      setErrors((prev) => {
+        const next = { ...prev };
+        delete next[id];
+        return next;
+      });
+    }
+  };
+
+  const getInputStyle = (fieldId: string) => {
+    const hasError = !!errors[fieldId];
+    return `w-full bg-paper border rounded-none px-4 py-2.5 font-sans text-xs text-ink focus:outline-none focus:ring-1 ${
+      hasError
+        ? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
+        : "border-warm-tan/35 focus:border-primary-blue focus:ring-primary-blue/30"
+    }`;
+  };
+
+  return (
+    <div className="flex flex-col w-full">
+      {/* Full-width warm-tan Header Banner */}
+      <Section className="py-0 relative" animate={false}>
+        <div className="w-full bg-[#CBAD7F] relative overflow-hidden flex items-center md:items-end px-6 md:px-12 lg:px-16 py-3 md:py-5 h-[90px] md:h-[155px] border-b border-warm-tan/30 select-none">
+          {/* Giant Background Text */}
+          <h2 className="font-sans font-black text-[#011E33]/12 text-[3.1rem] sm:text-[4.5rem] md:text-[5.5rem] lg:text-[7.5rem] xl:text-[9rem] 2xl:text-[10.5rem] uppercase tracking-tighter leading-none absolute top-1/2 -translate-y-1/2 md:top-auto md:translate-y-0 md:-bottom-3 left-6 md:left-12 lg:left-16 pointer-events-none whitespace-nowrap">
+            REGISTER
+          </h2>
+
+          {/* Banner Front Content */}
+          <div className="relative z-10 w-full flex justify-between items-center md:items-end text-[#011E33] mb-0 md:mb-1">
+            <span className="font-sans font-bold text-[9px] sm:text-xs tracking-[0.25em] uppercase whitespace-nowrap">
+              DELEGATE ENTRY CREDENTIALS
+            </span>
+            <span className="font-serif italic text-xs md:text-sm font-semibold max-w-[280px] sm:max-w-md text-right leading-snug hidden md:block">
+              "Request credentials for the official simulations of UEMCON 2026"
+            </span>
+          </div>
+        </div>
+      </Section>
+
+      <Section className="bg-paper py-12 md:py-20">
+        <Container>
+          <div className="max-w-4xl mx-auto">
+            <Card
+              interactive={false}
+              className="border border-warm-tan/30 relative p-6 sm:p-10"
+            >
+              {/* Corner decor */}
+              <div className="absolute top-3 left-3 w-2.5 h-2.5 border-t border-l border-warm-tan/40" />
+              <div className="absolute top-3 right-3 w-2.5 h-2.5 border-t border-r border-warm-tan/40" />
+              <div className="absolute bottom-3 left-3 w-2.5 h-2.5 border-b border-l border-warm-tan/40" />
+              <div className="absolute bottom-3 right-3 w-2.5 h-2.5 border-b border-r border-warm-tan/40" />
+
+              <div className="mb-10 text-center md:text-left">
+                <Heading
+                  level={3}
+                  className="text-xl md:text-2xl text-primary-blue font-serif uppercase tracking-wider mb-2"
+                >
+                  DELEGATE PORTAL
+                </Heading>
+                <p className="font-sans text-xs text-ink/60">
+                  Please provide valid academic credentials and preferences for
+                  dynamic committee placements.
+                </p>
+                <div className="h-[1px] bg-warm-tan/20 w-full mt-4" />
+              </div>
+
+              <form onSubmit={handleSubmit} noValidate className="space-y-8">
+                {/* Part 1: Personal Details */}
+                <div className="space-y-6">
+                  <h4 className="font-serif text-sm tracking-widest uppercase text-warm-tan font-bold pb-2 border-b border-warm-tan/10">
+                    I. Personal & Academic Credentials
+                  </h4>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Full Name */}
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="name"
+                        className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/85 font-bold"
+                      >
+                        Full Name
+                      </label>
+                      <input
+                        type="text"
+                        id="name"
+                        value={formState.name}
+                        onChange={handleInputChange}
+                        className={getInputStyle("name")}
+                        placeholder="John Doe"
+                      />
+                      {errors.name && (
+                        <p className="text-[10px] text-red-400 mt-1 font-sans font-medium">
+                          {errors.name}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Institution */}
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="institution"
+                        className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/85 font-bold"
+                      >
+                        Institution Name
+                      </label>
+                      <input
+                        type="text"
+                        id="institution"
+                        value={formState.institution}
+                        onChange={handleInputChange}
+                        className={getInputStyle("institution")}
+                        placeholder="e.g. Institute of Engineering and Management"
+                      />
+                      {errors.institution && (
+                        <p className="text-[10px] text-red-400 mt-1 font-sans font-medium">
+                          {errors.institution}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Email */}
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="email"
+                        className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/85 font-bold"
+                      >
+                        Email Address
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        value={formState.email}
+                        onChange={handleInputChange}
+                        className={getInputStyle("email")}
+                        placeholder="john.doe@email.com"
+                      />
+                      {errors.email && (
+                        <p className="text-[10px] text-red-400 mt-1 font-sans font-medium">
+                          {errors.email}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Gender */}
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="gender"
+                        className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/85 font-bold"
+                      >
+                        Gender
+                      </label>
+                      <select
+                        id="gender"
+                        value={formState.gender}
+                        onChange={handleInputChange}
+                        className={getInputStyle("gender")}
+                      >
+                        <option value="">Select Gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                      </select>
+                      {errors.gender && (
+                        <p className="text-[10px] text-red-400 mt-1 font-sans font-medium">
+                          {errors.gender}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Phone */}
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="phone"
+                        className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/85 font-bold"
+                      >
+                        Contact Phone Number
+                      </label>
+                      <input
+                        type="tel"
+                        pattern="[0-9]*"
+                        inputMode="numeric"
+                        id="phone"
+                        value={formState.phone}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          if (val === "" || /^[0-9]+$/.test(val)) {
+                            handleInputChange(e);
+                          }
+                        }}
+                        className={getInputStyle("phone")}
+                        placeholder="e.g. 9876543210"
+                      />
+                      {errors.phone && (
+                        <p className="text-[10px] text-red-400 mt-1 font-sans font-medium">
+                          {errors.phone}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* WhatsApp */}
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="whatsapp"
+                        className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/85 font-bold"
+                      >
+                        WhatsApp Number
+                      </label>
+                      <input
+                        type="tel"
+                        pattern="[0-9]*"
+                        inputMode="numeric"
+                        id="whatsapp"
+                        value={formState.whatsapp}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          if (val === "" || /^[0-9]+$/.test(val)) {
+                            handleInputChange(e);
+                          }
+                        }}
+                        className={getInputStyle("whatsapp")}
+                        placeholder="e.g. 9876543210"
+                      />
+                      {errors.whatsapp && (
+                        <p className="text-[10px] text-red-400 mt-1 font-sans font-medium">
+                          {errors.whatsapp}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Part 2: Preferences */}
+                <div className="space-y-6">
+                  <h4 className="font-serif text-sm tracking-widest uppercase text-warm-tan font-bold pb-2 border-b border-warm-tan/10">
+                    II. Committee & Portfolio Preferences
+                  </h4>
+
+                  {/* Preference 1 */}
+                  <div className="p-4 bg-[#022B4B]/30 border border-warm-tan/10 space-y-4">
+                    <h5 className="font-sans font-bold text-[10px] uppercase text-primary-blue tracking-widest">
+                      Preference 1 Choice
+                    </h5>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <label
+                          htmlFor="committee1"
+                          className="block font-sans text-[10px] tracking-wider uppercase text-ink/75 font-bold"
+                        >
+                          Committee
+                        </label>
+                        <select
+                          id="committee1"
+                          value={formState.committee1}
+                          onChange={handleInputChange}
+                          className={getInputStyle("committee1")}
+                        >
+                          <option value="">
+                            Select First Choice Committee
+                          </option>
+                          {committees.map((c) => (
+                            <option key={c.id} value={c.name}>
+                              {c.fullName} ({c.name})
+                            </option>
+                          ))}
+                        </select>
+                        {errors.committee1 && (
+                          <p className="text-[10px] text-red-400 mt-1 font-sans font-medium">
+                            {errors.committee1}
+                          </p>
+                        )}
+                      </div>
+
+                      <div className="space-y-2">
+                        <label
+                          htmlFor="committee1Portfolio1"
+                          className="block font-sans text-[10px] tracking-wider uppercase text-ink/75 font-bold"
+                        >
+                          Portfolio Priority 1
+                        </label>
+                        <input
+                          type="text"
+                          id="committee1Portfolio1"
+                          value={formState.committee1Portfolio1}
+                          onChange={handleInputChange}
+                          className={getInputStyle("committee1Portfolio1")}
+                          placeholder="e.g. USA"
+                        />
+                        {errors.committee1Portfolio1 && (
+                          <p className="text-[10px] text-red-400 mt-1 font-sans font-medium">
+                            {errors.committee1Portfolio1}
+                          </p>
+                        )}
+                      </div>
+
+                      <div className="space-y-2">
+                        <label
+                          htmlFor="committee1Portfolio2"
+                          className="block font-sans text-[10px] tracking-wider uppercase text-ink/75 font-bold"
+                        >
+                          Portfolio Priority 2
+                        </label>
+                        <input
+                          type="text"
+                          id="committee1Portfolio2"
+                          value={formState.committee1Portfolio2}
+                          onChange={handleInputChange}
+                          className={getInputStyle("committee1Portfolio2")}
+                          placeholder="e.g. UK"
+                        />
+                        {errors.committee1Portfolio2 && (
+                          <p className="text-[10px] text-red-400 mt-1 font-sans font-medium">
+                            {errors.committee1Portfolio2}
+                          </p>
+                        )}
+                      </div>
+
+                      <div className="space-y-2">
+                        <label
+                          htmlFor="committee1Portfolio3"
+                          className="block font-sans text-[10px] tracking-wider uppercase text-ink/75 font-bold"
+                        >
+                          Portfolio Priority 3
+                        </label>
+                        <input
+                          type="text"
+                          id="committee1Portfolio3"
+                          value={formState.committee1Portfolio3}
+                          onChange={handleInputChange}
+                          className={getInputStyle("committee1Portfolio3")}
+                          placeholder="e.g. France"
+                        />
+                        {errors.committee1Portfolio3 && (
+                          <p className="text-[10px] text-red-400 mt-1 font-sans font-medium">
+                            {errors.committee1Portfolio3}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Preference 2 */}
+                  <div className="p-4 bg-[#022B4B]/30 border border-warm-tan/10 space-y-4">
+                    <h5 className="font-sans font-bold text-[10px] uppercase text-primary-blue tracking-widest">
+                      Preference 2 Choice
+                    </h5>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div className="space-y-2">
+                        <label
+                          htmlFor="committee2"
+                          className="block font-sans text-[10px] tracking-wider uppercase text-ink/75 font-bold"
+                        >
+                          Committee
+                        </label>
+                        <select
+                          id="committee2"
+                          value={formState.committee2}
+                          onChange={handleInputChange}
+                          className={getInputStyle("committee2")}
+                        >
+                          <option value="">
+                            Select Second Choice Committee
+                          </option>
+                          {committees.map((c) => (
+                            <option key={c.id} value={c.name}>
+                              {c.fullName} ({c.name})
+                            </option>
+                          ))}
+                        </select>
+                        {errors.committee2 && (
+                          <p className="text-[10px] text-red-400 mt-1 font-sans font-medium">
+                            {errors.committee2}
+                          </p>
+                        )}
+                      </div>
+
+                      <div className="space-y-2">
+                        <label
+                          htmlFor="committee2Portfolio1"
+                          className="block font-sans text-[10px] tracking-wider uppercase text-ink/75 font-bold"
+                        >
+                          Portfolio Priority 1
+                        </label>
+                        <input
+                          type="text"
+                          id="committee2Portfolio1"
+                          value={formState.committee2Portfolio1}
+                          onChange={handleInputChange}
+                          className={getInputStyle("committee2Portfolio1")}
+                          placeholder="e.g. Russia"
+                        />
+                        {errors.committee2Portfolio1 && (
+                          <p className="text-[10px] text-red-400 mt-1 font-sans font-medium">
+                            {errors.committee2Portfolio1}
+                          </p>
+                        )}
+                      </div>
+
+                      <div className="space-y-2">
+                        <label
+                          htmlFor="committee2Portfolio2"
+                          className="block font-sans text-[10px] tracking-wider uppercase text-ink/75 font-bold"
+                        >
+                          Portfolio Priority 2
+                        </label>
+                        <input
+                          type="text"
+                          id="committee2Portfolio2"
+                          value={formState.committee2Portfolio2}
+                          onChange={handleInputChange}
+                          className={getInputStyle("committee2Portfolio2")}
+                          placeholder="e.g. China"
+                        />
+                        {errors.committee2Portfolio2 && (
+                          <p className="text-[10px] text-red-400 mt-1 font-sans font-medium">
+                            {errors.committee2Portfolio2}
+                          </p>
+                        )}
+                      </div>
+
+                      <div className="space-y-2">
+                        <label
+                          htmlFor="committee2Portfolio3"
+                          className="block font-sans text-[10px] tracking-wider uppercase text-ink/75 font-bold"
+                        >
+                          Portfolio Priority 3
+                        </label>
+                        <input
+                          type="text"
+                          id="committee2Portfolio3"
+                          value={formState.committee2Portfolio3}
+                          onChange={handleInputChange}
+                          className={getInputStyle("committee2Portfolio3")}
+                          placeholder="e.g. India"
+                        />
+                        {errors.committee2Portfolio3 && (
+                          <p className="text-[10px] text-red-400 mt-1 font-sans font-medium">
+                            {errors.committee2Portfolio3}
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Part 3: Credentials / Accommodations */}
+                <div className="space-y-6">
+                  <h4 className="font-serif text-sm tracking-widest uppercase text-warm-tan font-bold pb-2 border-b border-warm-tan/10">
+                    III. Experience & Accommodations
+                  </h4>
+
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {/* Previous MUNs count */}
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="previousMUNs"
+                        className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/85 font-bold"
+                      >
+                        Number of Previous Model UNs
+                      </label>
+                      <input
+                        type="number"
+                        min="0"
+                        id="previousMUNs"
+                        value={formState.previousMUNs}
+                        onChange={(e) => {
+                          const val = e.target.value;
+                          if (val === "" || /^[0-9]+$/.test(val)) {
+                            handleInputChange(e);
+                          }
+                        }}
+                        className={getInputStyle("previousMUNs")}
+                        placeholder="e.g. 5"
+                      />
+                      {errors.previousMUNs && (
+                        <p className="text-[10px] text-red-400 mt-1 font-sans font-medium">
+                          {errors.previousMUNs}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Food Preference */}
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="foodPreference"
+                        className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/85 font-bold"
+                      >
+                        Food Preference
+                      </label>
+                      <select
+                        id="foodPreference"
+                        value={formState.foodPreference}
+                        onChange={handleInputChange}
+                        className={getInputStyle("foodPreference")}
+                      >
+                        <option value="Veg">Vegetarian</option>
+                        <option value="Non-Veg">Non-Vegetarian</option>
+                      </select>
+                      {errors.foodPreference && (
+                        <p className="text-[10px] text-red-400 mt-1 font-sans font-medium">
+                          {errors.foodPreference}
+                        </p>
+                      )}
+                    </div>
+
+                    {/* Accommodation */}
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="accommodation"
+                        className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/85 font-bold"
+                      >
+                        Accommodation Required
+                      </label>
+                      <select
+                        id="accommodation"
+                        value={formState.accommodation}
+                        onChange={handleInputChange}
+                        className={getInputStyle("accommodation")}
+                      >
+                        <option value="No">No, I will manage on my own</option>
+                        <option value="Yes">
+                          Yes, lodge me in the UEM Hostels
+                        </option>
+                      </select>
+                      {errors.accommodation && (
+                        <p className="text-[10px] text-red-400 mt-1 font-sans font-medium">
+                          {errors.accommodation}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Experience description */}
+                  <div className="space-y-2">
+                    <label
+                      htmlFor="experience"
+                      className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/85 font-bold"
+                    >
+                      Brief Experience Summary / MUN Details (Awards,
+                      Committees)
+                    </label>
+                    <textarea
+                      id="experience"
+                      rows={3}
+                      value={formState.experience}
+                      onChange={handleInputChange}
+                      className={getInputStyle("experience")}
+                      placeholder="List your previous committees, designations, or awards received (e.g. Best Delegate in UNEP, UEMCON 2025)..."
+                    />
+                    {errors.experience && (
+                      <p className="text-[10px] text-red-400 mt-1 font-sans font-medium">
+                        {errors.experience}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Queries */}
+                  <div className="space-y-2">
+                    <label
+                      htmlFor="queries"
+                      className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/85 font-bold"
+                    >
+                      Any Queries or Remarks for the Secretariat
+                    </label>
+                    <textarea
+                      id="queries"
+                      rows={2}
+                      value={formState.queries}
+                      onChange={handleInputChange}
+                      className={getInputStyle("queries")}
+                      placeholder="Let us know if you have specific registration queries or enter 'None'..."
+                    />
+                    {errors.queries && (
+                      <p className="text-[10px] text-red-400 mt-1 font-sans font-medium">
+                        {errors.queries}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
+                {/* Submissions & Messages */}
+                <div className="space-y-4 pt-4 border-t border-warm-tan/10">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                    <div className="flex items-center gap-1.5 text-[10px] text-ink/50 uppercase tracking-widest font-semibold">
+                      <Info className="h-3.5 w-3.5 text-warm-tan/60" />
+                      <span>Transmitted securely to the UEMCON registry</span>
+                    </div>
+
+                    <Button
+                      variant="primary"
+                      type="submit"
+                      disabled={status.type === "submitting"}
+                      className="flex items-center gap-2 px-8"
+                    >
+                      {status.type === "submitting"
+                        ? "Transmitting..."
+                        : "Submit Registry Details"}
+                      <Send className="h-3 w-3" />
+                    </Button>
+                  </div>
+                </div>
+              </form>
+            </Card>
+
+            {/* Status Banner outside/below the card */}
+            {status.type === "success" && (
+              <div className="mt-6 border border-green-500/30 bg-green-500/5 p-4 flex items-start gap-3 text-xs text-green-400">
+                <CheckCircle2 className="h-4 w-4 shrink-0 mt-0.5" />
+                <span>{status.message}</span>
+              </div>
+            )}
+
+            {status.type === "error" && (
+              <div className="mt-6 border border-red-500/30 bg-red-500/5 p-4 flex items-start gap-3 text-xs text-red-400">
+                <AlertCircle className="h-4 w-4 shrink-0 mt-0.5" />
+                <span>{status.message}</span>
+              </div>
+            )}
+          </div>
+        </Container>
+      </Section>
+    </div>
+  );
+}

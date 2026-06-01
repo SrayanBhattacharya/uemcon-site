@@ -72,25 +72,25 @@ export default function Hero() {
           transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1], delay: 1.25 }}
           className="flex flex-col items-center justify-center space-y-4 z-20"
         >
-          {/* Button 1 (Explore Committees) - Dark box, light text */}
-          <motion.a
-            href="#committees-section"
-            whileHover={{ x: 6 }}
-            className="w-[260px] sm:w-[320px] min-h-[56px] bg-[#022B4B] text-[#F4ECD8] border border-warm-tan/40 px-6 py-4 font-sans font-bold text-xs uppercase tracking-widest flex items-center justify-between cursor-pointer shadow-md"
-          >
-            <span>Explore Committees</span>
-            <span>➤</span>
-          </motion.a>
-
-          {/* Button 2 (Register) - Light box, dark text (Offset left) */}
+          {/* Button 1 (Register) - Light box, dark text */}
           <motion.button
             onClick={() => setIsModalOpen(true)}
+            whileHover={{ x: 6 }}
+            className="w-[260px] sm:w-[320px] min-h-[56px] bg-[#F4ECD8] text-[#011E33] border-none px-6 py-4 font-sans font-bold text-xs uppercase tracking-widest flex items-center justify-between cursor-pointer shadow-lg focus:outline-none"
+          >
+            <span>Register</span>
+            <span>➤</span>
+          </motion.button>
+
+          {/* Button 2 (Explore Committees) - Dark box, light text (Offset left) */}
+          <motion.a
+            href="#committees-section"
             whileHover={{ x: -6 }}
-            className="w-[260px] sm:w-[320px] min-h-[56px] bg-[#F4ECD8] text-[#011E33] border-none px-6 py-4 font-sans font-bold text-xs uppercase tracking-widest flex items-center justify-between cursor-pointer shadow-lg transform -translate-x-3 sm:-translate-x-6 focus:outline-none"
+            className="w-[260px] sm:w-[320px] min-h-[56px] bg-[#022B4B] text-[#F4ECD8] border border-warm-tan/40 px-6 py-4 font-sans font-bold text-xs uppercase tracking-widest flex items-center justify-between cursor-pointer shadow-md transform -translate-x-3 sm:-translate-x-6"
           >
             <span>◀</span>
-            <span>Register</span>
-          </motion.button>
+            <span>Explore Committees</span>
+          </motion.a>
         </motion.div>
       </Container>
 
@@ -113,7 +113,7 @@ export default function Hero() {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 15 }}
               transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-              className="relative bg-[#011E33] border-2 border-warm-tan/40 p-6 sm:p-8 max-w-md w-full shadow-2xl z-10 select-none"
+              className="relative bg-[#011E33] border-2 border-warm-tan/40 p-6 sm:p-8 max-w-md w-full shadow-2xl z-10 select-none text-left"
             >
               {/* Fine decorative inner border */}
               <div className="absolute top-2 left-2 right-2 bottom-2 border border-warm-tan/10 pointer-events-none" />
@@ -148,21 +148,19 @@ export default function Hero() {
               {/* Portals */}
               <div className="space-y-4">
                 {/* Delegate Option */}
-                <div className="space-y-1.5">
-                  <motion.a
-                    href="/contact?type=delegate"
-                    whileHover={{ x: 4 }}
-                    className="w-full bg-[#F4ECD8] text-[#011E33] px-5 py-3.5 font-sans font-bold text-[10px] sm:text-xs uppercase tracking-widest flex items-center justify-between cursor-pointer shadow-md"
+                <div className="space-y-1.5 opacity-50 cursor-not-allowed">
+                  <div
+                    className="w-full bg-[#F4ECD8] text-[#011E33] px-5 py-3.5 font-sans font-bold text-[10px] sm:text-xs uppercase tracking-widest flex items-center justify-between shadow-md"
                   >
                     <span>Delegate Registration</span>
-                    <span>➤</span>
-                  </motion.a>
+                    <span className="text-[9px] font-sans tracking-normal opacity-80">(Coming Soon)</span>
+                  </div>
                 </div>
 
                 {/* EB Option */}
                 <div className="space-y-1.5">
                   <motion.a
-                    href="/contact?type=eb"
+                    href="/register/eb"
                     whileHover={{ x: 4 }}
                     className="w-full bg-[#022B4B] text-[#F4ECD8] border border-warm-tan/30 px-5 py-3.5 font-sans font-bold text-[10px] sm:text-xs uppercase tracking-widest flex items-center justify-between cursor-pointer shadow-md"
                   >

@@ -301,21 +301,19 @@ export default function Header() {
               {/* Portals */}
               <div className="space-y-4">
                 {/* Delegate Option */}
-                <div className="space-y-1.5">
-                  <motion.a
-                    href="/contact?type=delegate"
-                    whileHover={{ x: 4 }}
-                    className="w-full bg-[#F4ECD8] text-[#011E33] px-5 py-3.5 font-sans font-bold text-[10px] sm:text-xs uppercase tracking-widest flex items-center justify-between cursor-pointer shadow-md"
+                <div className="space-y-1.5 opacity-50 cursor-not-allowed">
+                  <div
+                    className="w-full bg-[#F4ECD8] text-[#011E33] px-5 py-3.5 font-sans font-bold text-[10px] sm:text-xs uppercase tracking-widest flex items-center justify-between shadow-md"
                   >
                     <span>Delegate Registration</span>
-                    <span>➤</span>
-                  </motion.a>
+                    <span className="text-[9px] font-sans tracking-normal opacity-80">(Coming Soon)</span>
+                  </div>
                 </div>
 
                 {/* EB Option */}
                 <div className="space-y-1.5">
                   <motion.a
-                    href="/contact?type=eb"
+                    href="/register/eb"
                     whileHover={{ x: 4 }}
                     className="w-full bg-[#022B4B] text-[#F4ECD8] border border-warm-tan/30 px-5 py-3.5 font-sans font-bold text-[10px] sm:text-xs uppercase tracking-widest flex items-center justify-between cursor-pointer shadow-md"
                   >
