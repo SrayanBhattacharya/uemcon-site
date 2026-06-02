@@ -1,6 +1,12 @@
-import React from "react";
+import {
+  Camera,
+  Globe,
+  Landmark,
+  Mail,
+  MessageSquare,
+  ShieldAlert,
+} from "lucide-react";
 import Link from "next/link";
-import { Landmark, Globe, MessageSquare, Camera, Mail, ShieldAlert } from "lucide-react";
 import Container from "./Container";
 
 export default function Footer() {
@@ -14,25 +20,43 @@ export default function Footer() {
           <div className="md:col-span-2 space-y-6">
             <Link
               href="/"
-              className="flex items-center gap-2.5 font-serif text-base tracking-widest text-primary-blue uppercase font-medium"
+              className="flex items-center gap-3 font-serif text-lg tracking-widest text-primary-blue uppercase font-medium"
             >
-              <Landmark className="h-5 w-5 text-warm-tan" />
+              <img src="/logo.svg" alt="UEMCON Logo" className="h-12 w-auto" />
               <span>UEMCON</span>
             </Link>
             <p className="font-sans text-xs text-ink/70 leading-relaxed max-w-sm">
-              The official Model United Nations conference of the University of Engineering & Management. Blending modern diplomatic problem-solving with timeless global governance storytelling.
+              The official Model United Nations conference of the University of
+              Engineering & Management. Blending modern diplomatic
+              problem-solving with timeless global governance storytelling.
             </p>
             <div className="flex items-center gap-4 text-ink/60">
-              <a href="#" className="hover:text-primary-blue transition-colors" aria-label="Website">
+              <a
+                href="#"
+                className="hover:text-primary-blue transition-colors"
+                aria-label="Website"
+              >
                 <Globe className="h-4 w-4" />
               </a>
-              <a href="#" className="hover:text-primary-blue transition-colors" aria-label="Twitter">
+              <a
+                href="#"
+                className="hover:text-primary-blue transition-colors"
+                aria-label="Twitter"
+              >
                 <MessageSquare className="h-4 w-4" />
               </a>
-              <a href="#" className="hover:text-primary-blue transition-colors" aria-label="Instagram">
+              <a
+                href="#"
+                className="hover:text-primary-blue transition-colors"
+                aria-label="Instagram"
+              >
                 <Camera className="h-4 w-4" />
               </a>
-              <a href="#" className="hover:text-primary-blue transition-colors" aria-label="Email">
+              <a
+                href="#"
+                className="hover:text-primary-blue transition-colors"
+                aria-label="Email"
+              >
                 <Mail className="h-4 w-4" />
               </a>
             </div>
@@ -40,20 +64,31 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h4 className="font-serif text-xs tracking-wider uppercase text-primary-blue font-semibold">Conference</h4>
+            <h4 className="font-serif text-xs tracking-wider uppercase text-primary-blue font-semibold">
+              Conference
+            </h4>
             <ul className="space-y-2.5 text-xs text-ink/75">
               <li>
-                <Link href="/about" className="hover:text-primary-blue transition-colors">
+                <Link
+                  href="/about"
+                  className="hover:text-primary-blue transition-colors"
+                >
                   Society & History
                 </Link>
               </li>
               <li>
-                <Link href="/events" className="hover:text-primary-blue transition-colors">
+                <Link
+                  href="/events"
+                  className="hover:text-primary-blue transition-colors"
+                >
                   Committees & Agendas
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-primary-blue transition-colors">
+                <Link
+                  href="/contact"
+                  className="hover:text-primary-blue transition-colors"
+                >
                   Delegate Portal
                 </Link>
               </li>
@@ -62,9 +97,12 @@ export default function Footer() {
 
           {/* Diplomatic Statement */}
           <div className="space-y-4">
-            <h4 className="font-serif text-xs tracking-wider uppercase text-primary-blue font-semibold">Diplomacy</h4>
+            <h4 className="font-serif text-xs tracking-wider uppercase text-primary-blue font-semibold">
+              Diplomacy
+            </h4>
             <p className="font-sans text-[11px] leading-relaxed text-ink/60">
-              "To coordinate cooperation, debate with intelligence, and craft treaties that stand the test of time."
+              "To coordinate cooperation, debate with intelligence, and craft
+              treaties that stand the test of time."
             </p>
             <div className="flex items-center gap-1.5 text-[10px] text-warm-tan uppercase tracking-widest font-bold">
               <ShieldAlert className="h-3.5 w-3.5" />
@@ -79,8 +117,12 @@ export default function Footer() {
             © {currentYear} UEM Model United Nations. All rights reserved.
           </div>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-primary-blue transition-colors">Code of Conduct</a>
-            <a href="#" className="hover:text-primary-blue transition-colors">Rules of Procedure</a>
+            <a href="#" className="hover:text-primary-blue transition-colors">
+              Code of Conduct
+            </a>
+            <a href="#" className="hover:text-primary-blue transition-colors">
+              Rules of Procedure
+            </a>
           </div>
         </div>
       </Container>

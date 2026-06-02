@@ -30,7 +30,11 @@ export default function Hero() {
             <motion.span
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 2.0, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
+              transition={{
+                duration: 2.0,
+                ease: [0.16, 1, 0.3, 1],
+                delay: 0.2,
+              }}
               className="flex flex-col justify-center items-start text-left leading-[0.85] text-[1.5rem] sm:text-[3.4rem] md:text-[4.4rem] lg:text-[5.3rem] xl:text-[6.2rem] whitespace-nowrap"
             >
               <span>CONCLAVE</span>
@@ -162,11 +166,11 @@ export default function Hero() {
               <div className="space-y-4">
                 {/* Delegate Option */}
                 <div className="space-y-1.5 opacity-50 cursor-not-allowed">
-                  <div
-                    className="w-full bg-[#F4ECD8] text-[#011E33] px-5 py-3.5 font-sans font-bold text-[10px] sm:text-xs uppercase tracking-widest flex items-center justify-between shadow-md"
-                  >
+                  <div className="w-full bg-[#F4ECD8] text-[#011E33] px-5 py-3.5 font-sans font-bold text-[10px] sm:text-xs uppercase tracking-widest flex items-center justify-between shadow-md">
                     <span>Delegate Registration</span>
-                    <span className="text-[9px] font-sans tracking-normal opacity-80">(Coming Soon)</span>
+                    <span className="text-[9px] font-sans tracking-normal opacity-80">
+                      (Coming Soon)
+                    </span>
                   </div>
                 </div>
 

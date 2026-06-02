@@ -18,7 +18,7 @@
   },
   {
     "id": "unwomen",
-    "name": "UNW",
+    "name": "UN Women",
     "fullName": "UN Women",
     "agenda": "Safeguarding socio-economic equality, tackling gender-based wage disparities, and protecting women's rights in active conflict zones.",
     "focus": "Universal franchise, gender-responsive national budgeting, and legal protection charters.",
@@ -28,8 +28,11 @@
     "quote": "There is no limit to what we, as women, can accomplish.",
     "author": "Michelle Obama",
     "content": [
-      "Details for the UN Women committee (UNW) simulation at UEMCON '26 will be announced soon.",
-      "Please check back for updates regarding agenda revisions, study guides, and registrations."
+      "The United Nations Entity for Gender Equality and the Empowerment of Women(UN Women) is the UN agency dedicated to advancing gender equality and the rights of women and girls globally. As the lead United Nations entity on gender equality and secretariat to the UN Commission on the Status of Women(UNCSW), they transforms laws, institutions, social norms, and services to close the gender gap and build an equal world for all women and girls.",
+
+      "Gender equality is not only a basic human right, but its achievement has enormous socio-economic ramifications. Empowering women fuels thriving economies, spurring productivity and growth. Yet gender inequalities remain deeply entrenched in every society. During crises, UN Women's role becomes both fundamental and urgent because it makes stride in four areas: leadership, economic empowerment, freedom from violence, and peace, security and humanitarian action.",
+
+      "UEM Conclave of Nations 2026 proudly presents the UN Women. Rooted in the belief that the empowerment of women is essential to both social progress and global development, the committee seeks to foster inclusive discussions and explore pathways towards a more equitable world."
     ]
   },
   {
@@ -51,7 +54,7 @@
   },
   {
     "id": "uncnd",
-    "name": "UNCND",
+    "name": "CND",
     "fullName": "United Nations Commission on Narcotic Drugs",
     "agenda": "Evaluating cross-border synthetic drug cartels, regulating illicit supply chains, and constructing humanitarian rehabilitation policies.",
     "focus": "Narcotic containment treaties, global policing coordination, and public health directives.",
@@ -62,8 +65,8 @@
     "author": "Ban Ki-moon",
     "content": [
       "The Commission on Narcotic Drugs is a functional commission of the United Nations Economic and Social Council (ECOSOC), which was established in 1946 through ECOSOC Resolution 9(I). With 53 member states elected by ECOSOC, it serves as the central drug policy-making body within the United Nations system, with its mandate further expanded by the General Assembly in 1991, also functioning as the governing body of the United Nations Office on Drugs and Crime (UNODC).",
-      "The UNCND is assigned with reviewing and analyzing the entire global drug situation, encompassing both supply and demand reduction, and supervising the application of the three landmark international drug conventions of 1961, 1971, 1988. The Commission executes treaty based functions while simultaneously guiding UNODC’s operational work, adopting resolutions and decisions that shape coordinated international responses to the ever changing challenges of drug trafficking, substance abuse and illicit trade.",
-      "UEMCON'26 presents the UNCND committee to exhibit a testament to the power of multilateral cooperation and evidence-based policymaking in confronting one of the world's most persistent transnational threats."
+      "The CND is assigned with reviewing and analyzing the entire global drug situation, encompassing both supply and demand reduction, and supervising the application of the three landmark international drug conventions of 1961, 1971, 1988. The Commission executes treaty based functions while simultaneously guiding UNODC’s operational work, adopting resolutions and decisions that shape coordinated international responses to the ever changing challenges of drug trafficking, substance abuse and illicit trade.",
+      "UEMCON'26 presents the CND committee to exhibit a testament to the power of multilateral cooperation and evidence-based policymaking in confronting one of the world's most persistent transnational threats."
     ]
   },
   {
@@ -112,8 +115,9 @@
     "quote": "Civil society is the oxygen of democracy.",
     "author": "Kofi Annan",
     "content": [
-      "Details for the United Nations Civil Society Conference (UN CSC) simulation at UEMCON '26 will be announced soon.",
-      "Please check back for updates regarding agenda revisions, study guides, and registrations."
+      "The United Nations Civil Society Conference, formerly known as the UN DPI/NGO Conference, is the premier civil society event on the United Nations calendar. It is organized by the Department of Global Communications (DGC) in cooperation with the Global NGO Executive Committee (GNEC). Together, they bring together representatives from civil society organizations (CSOs) associated with DGC as well as those holding consultative status with ECOSOC. The Conference serves as a global forum where non-profit, voluntary citizens’ groups — active at local, national, and international levels can engage directly with the United Nations system.",
+      "It gives civil society organizations a valuable platform to bring a global perspective to some of the most pressing issues of our time, from climate change and human rights to disarmament, global health, and sustainable development. Through plenary sessions, thematic roundtables, CSO-led partnership workshops, and youth-led initiatives, it provides a platform for policy dialogue that strengthens collaboration between local communities and global institutions. It also creates opportunities to share best practices, build strategic partnerships with Member States, and amplify the voice of civil society within the broader UN agenda.",
+      "At UEMCON'26, the UN Civil Society Conference simulation will provide a platform for individuals passionate about grassroots advocacy, policy dialogue, and multilateralism. It offers delegates a chance to experience diplomacy that drives real change, well beyond the walls of formal intergovernmental bodies."
     ]
   }
 ]

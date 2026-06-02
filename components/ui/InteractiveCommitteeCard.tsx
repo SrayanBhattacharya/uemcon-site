@@ -161,15 +161,11 @@ export default function InteractiveCommitteeCard({
       )}
 
       {/* Content wrapper with isolation for z-indexing over the effects */}
-      <motion.div 
+      <div 
         className="relative z-20 h-full w-full flex flex-col p-6 md:p-8 lg:p-10"
-        initial={{ opacity: 0, y: 15 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.3 }}
-        transition={{ duration: 0.6, delay: 0.8, ease: "easeOut" }}
       >
         {children}
-      </motion.div>
+      </div>
     </motion.div>
   );
 }
