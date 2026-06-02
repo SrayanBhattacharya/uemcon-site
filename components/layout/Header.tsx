@@ -65,7 +65,7 @@ export default function Header() {
           </nav>
 
           {/* Logo (Left-aligned on mobile, centered on desktop) */}
-          <div className="flex justify-start md:justify-center w-auto md:w-1/3 text-center relative h-10 items-center">
+          <div className="flex justify-start md:justify-center w-auto md:w-1/3 text-center relative h-12 items-center">
             <Link
               href="/"
               onClick={() => setIsMobileMenuOpen(false)}
@@ -75,7 +75,7 @@ export default function Header() {
               <img
                 src="/logo.svg"
                 alt="UEMCON Logo"
-                className="h-10 md:h-12 w-auto opacity-90 group-hover:opacity-100 transition-opacity duration-300"
+                className="h-12 md:h-14 w-auto opacity-90 group-hover:opacity-100 transition-opacity duration-300"
               />
             </Link>
           </div>
@@ -114,7 +114,7 @@ export default function Header() {
 
           {/* Mobile Menu Icon (aligned right on mobile) */}
           <button
-            className="md:hidden text-[#F4ECD8] p-1.5 focus:outline-none border border-warm-tan/20 bg-[#022B4B]"
+            className="md:hidden text-[#F4ECD8] p-1.5 focus:outline-none border border-warm-tan/20 bg-[#022B4B] mr-8"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
             aria-expanded={isMobileMenuOpen}
