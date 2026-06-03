@@ -35,6 +35,9 @@ export default function EBRegisterPage() {
     position2: "",
   });
 
+  const [resumeFile, setResumeFile] = useState<File | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [status, setStatus] = useState<{
     type: "idle" | "submitting" | "success" | "error";
@@ -163,6 +166,12 @@ export default function EBRegisterPage() {
     if (!formState.committeePref2) newErrors.committeePref2 = "Second preference committee is required";
     if (!formState.position2) newErrors.position2 = "Preferred position for committee 2 is required";
 
+    if (!resumeFile) {
+      newErrors.resume = "Resume is required";
+    } else if (resumeFile.size > 2 * 1024 * 1024) {
+      newErrors.resume = "Resume file size must be under 2MB";
+    }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -180,13 +189,37 @@ export default function EBRegisterPage() {
 
     setStatus({ type: "submitting" });
 
+    let resumeBase64 = "";
+    if (resumeFile) {
+      try {
+        resumeBase64 = await new Promise<string>((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => resolve(reader.result as string);
+          reader.onerror = (err) => reject(err);
+          reader.readAsDataURL(resumeFile);
+        });
+      } catch (err) {
+        console.error(err);
+        setStatus({
+          type: "error",
+          message: "Failed to process the uploaded resume file.",
+        });
+        return;
+      }
+    }
+
     try {
       const response = await fetch("/api/register-eb", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(formState),
+        body: JSON.stringify({
+          ...formState,
+          resume: resumeBase64,
+          resumeFilename: resumeFile?.name,
+          resumeMimetype: resumeFile?.type,
+        }),
       });
 
       const data = await response.json();
@@ -211,6 +244,10 @@ export default function EBRegisterPage() {
           committeePref2: "",
           position2: "",
         });
+        setResumeFile(null);
+        if (fileInputRef.current) {
+          fileInputRef.current.value = "";
+        }
       } else {
         setStatus({
           type: "error",
@@ -226,11 +263,45 @@ export default function EBRegisterPage() {
     }
   };
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0] || null;
+    if (file) {
+      if (file.size > 2 * 1024 * 1024) {
+        setErrors((prev) => ({ ...prev, resume: "Resume file size must be under 2MB" }));
+        setResumeFile(null);
+      } else {
+        setResumeFile(file);
+        setErrors((prev) => {
+          const next = { ...prev };
+          delete next.resume;
+          return next;
+        });
+      }
+    } else {
+      setResumeFile(null);
+    }
+  };
+
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
     const { id, value } = e.target;
-    setFormState((prev) => ({ ...prev, [id]: value }));
+    setFormState((prev) => {
+      const updated = { ...prev, [id]: value };
+      if (id === "committeePref1") {
+        const valid = getPositionsForCommittee(value);
+        if (!valid.includes(prev.position1)) {
+          updated.position1 = "";
+        }
+      }
+      if (id === "committeePref2") {
+        const valid = getPositionsForCommittee(value);
+        if (!valid.includes(prev.position2)) {
+          updated.position2 = "";
+        }
+      }
+      return updated;
+    });
 
     if (errors[id]) {
       setErrors((prev) => {
@@ -261,15 +332,26 @@ export default function EBRegisterPage() {
     transition: { duration: 0.3, ease: "easeOut" as const },
   });
 
-  const positions = [
-    "Chairperson",
-    "Vice-Chairperson",
-    "Co-Chairperson",
-    "Director",
-    "Moderator",
-    "Editor-in-Chief",
-    "IP Editor",
-  ];
+  const getPositionsForCommittee = (committeeName: string) => {
+    if (!committeeName) return [];
+    if (committeeName === "UN Women" || committeeName === "UNW") {
+      return [
+        "Executive Director",
+        "Deputy Executive Director",
+        "Rapporteur",
+      ];
+    }
+    // Default/placeholder positions for others
+    return [
+      "Chairperson",
+      "Vice-Chairperson",
+      "Co-Chairperson",
+      "Director",
+      "Moderator",
+      "Editor-in-Chief",
+      "IP Editor",
+    ];
+  };
 
   return (
     <div className="flex flex-col w-full bg-paper">
@@ -559,6 +641,7 @@ export default function EBRegisterPage() {
                           )}
                         </AnimatePresence>
                       </motion.div>
+
                     </div>
                   </motion.div>
 
@@ -619,7 +702,7 @@ export default function EBRegisterPage() {
                             {...getMotionInputProps(!!errors.position1)}
                           >
                             <option value="">Select Position Choice 1</option>
-                            {positions.map((pos) => (
+                            {getPositionsForCommittee(formState.committeePref1).map((pos) => (
                               <option key={pos} value={pos}>
                                 {pos}
                               </option>
@@ -682,7 +765,7 @@ export default function EBRegisterPage() {
                             {...getMotionInputProps(!!errors.position2)}
                           >
                             <option value="">Select Position Choice 2</option>
-                            {positions.map((pos) => (
+                            {getPositionsForCommittee(formState.committeePref2).map((pos) => (
                               <option key={pos} value={pos}>
                                 {pos}
                               </option>
@@ -753,6 +836,27 @@ export default function EBRegisterPage() {
                       <AnimatePresence>
                         {errors.previousExperience && (
                           <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="text-[10px] text-red-400 mt-1 font-sans font-medium">{errors.previousExperience}</motion.p>
+                        )}
+                      </AnimatePresence>
+                    </motion.div>
+
+                    {/* Resume Upload */}
+                    <motion.div className="space-y-2" variants={fieldVariants}>
+                      <label htmlFor="resume" className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold">
+                        Upload Resume (PDF, DOC, DOCX - Max 2MB)
+                      </label>
+                      <motion.input
+                        type="file"
+                        id="resume"
+                        ref={fileInputRef}
+                        onChange={handleFileChange}
+                        accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                        className={getInputStyle("resume") + " file:mr-4 file:py-1 file:px-3 file:border-0 file:text-xs file:font-semibold file:bg-warm-tan/20 file:text-warm-tan hover:file:bg-warm-tan/30 file:cursor-pointer file:font-sans"}
+                        {...getMotionInputProps(!!errors.resume)}
+                      />
+                      <AnimatePresence>
+                        {errors.resume && (
+                          <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="text-[10px] text-red-400 mt-1 font-sans font-medium">{errors.resume}</motion.p>
                         )}
                       </AnimatePresence>
                     </motion.div>
