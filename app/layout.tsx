@@ -1,6 +1,7 @@
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
 import CustomCursor from "@/components/ui/CustomCursor";
+import ComingSoon from "@/components/sections/ComingSoon";
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
@@ -25,8 +26,8 @@ export const metadata: Metadata = {
       : "https://uemcon.org",
   ),
   title: {
-    template: "%s | UEMCON — Premium Model United Nations",
-    default: "UEMCON — Premium Model United Nations Experience",
+    template: "%s | UEMCON",
+    default: "UEMCON",
   },
   description:
     "Experience global governance history and modern diplomacy. Join the official MUN conference of the University of Engineering & Management.",
@@ -51,6 +52,8 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const isComingSoon = process.env.COMING_SOON === "true";
+
   return (
     <html
       lang="en"
@@ -63,19 +66,23 @@ export default function RootLayout({
         {/* Subtle global parchment paper texture overlay */}
         <div className="parchment-overlay" />
 
-        {/* Main Content Area */}
-        <div className="flex-grow flex flex-col min-h-screen w-full">
-          {/* Navigation header */}
-          <Header />
+        {isComingSoon ? (
+          <ComingSoon />
+        ) : (
+          /* Main Content Area */
+          <div className="flex-grow flex flex-col min-h-screen w-full">
+            {/* Navigation header */}
+            <Header />
 
-          {/* Main page content area */}
-          <main className="flex-grow flex flex-col pt-[71px] md:pt-[81px]">
-            {children}
-          </main>
+            {/* Main page content area */}
+            <main className="flex-grow flex flex-col pt-[71px] md:pt-[81px]">
+              {children}
+            </main>
 
-          {/* General footer */}
-          <Footer />
-        </div>
+            {/* General footer */}
+            <Footer />
+          </div>
+        )}
       </body>
     </html>
   );
