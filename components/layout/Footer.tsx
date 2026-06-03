@@ -1,10 +1,5 @@
 import {
-  Camera,
-  Globe,
-  Landmark,
   Mail,
-  MessageSquare,
-  ShieldAlert,
 } from "lucide-react";
 import Link from "next/link";
 import Container from "./Container";
@@ -13,117 +8,103 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-light-beige/25 border-t border-warm-tan/30 py-16 mt-auto relative z-10">
+    <footer className="bg-light-beige/25 border-t border-warm-tan/30 py-12 mt-auto relative z-10 text-ink">
       <Container>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 text-ink">
-          {/* Brand Panel */}
-          <div className="md:col-span-2 space-y-6">
-            <Link
-              href="/"
-              className="flex items-center gap-3 font-serif text-lg tracking-widest text-primary-blue uppercase font-medium"
-            >
-              <img src="/logo.svg" alt="UEMCON Logo" className="h-12 w-auto" />
-              <span>UEMCON</span>
+        <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-8 pb-8 border-b border-warm-tan/20">
+          {/* Left: Big UEMCON Logo */}
+          <div className="flex items-center gap-4">
+            <Link href="/" className="flex items-center gap-4 group">
+              <img src="/logo.svg" alt="UEMCON Logo" className="h-16 w-auto transition-transform duration-300 group-hover:scale-105" />
+              <div className="flex flex-col">
+                <span className="font-serif text-xl tracking-[0.2em] text-primary-blue uppercase font-bold">UEMCON</span>
+                <span className="font-sans text-[9px] tracking-[0.1em] text-ink/50 uppercase">Model United Nations</span>
+              </div>
             </Link>
-            <p className="font-sans text-xs text-ink/70 leading-relaxed max-w-sm">
-              The official Model United Nations conference of the University of
-              Engineering & Management. Blending modern diplomatic
-              problem-solving with timeless global governance storytelling.
-            </p>
-            <div className="flex items-center gap-4 text-ink/60">
-              <a
-                href="#"
-                className="hover:text-primary-blue transition-colors"
-                aria-label="Website"
-              >
-                <Globe className="h-4 w-4" />
-              </a>
-              <a
-                href="#"
-                className="hover:text-primary-blue transition-colors"
-                aria-label="Twitter"
-              >
-                <MessageSquare className="h-4 w-4" />
-              </a>
-              <a
-                href="#"
-                className="hover:text-primary-blue transition-colors"
-                aria-label="Instagram"
-              >
-                <Camera className="h-4 w-4" />
-              </a>
-              <a
-                href="#"
-                className="hover:text-primary-blue transition-colors"
-                aria-label="Email"
-              >
-                <Mail className="h-4 w-4" />
-              </a>
-            </div>
           </div>
 
-          {/* Quick Links */}
-          <div className="space-y-4">
-            <h4 className="font-serif text-xs tracking-wider uppercase text-primary-blue font-semibold">
-              Conference
-            </h4>
-            <ul className="space-y-2.5 text-xs text-ink/75">
-              <li>
-                <Link
-                  href="/about"
-                  className="hover:text-primary-blue transition-colors"
-                >
-                  Society & History
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/events"
-                  className="hover:text-primary-blue transition-colors"
-                >
-                  Committees & Agendas
-                </Link>
-              </li>
-              <li>
-                <Link
-                  href="/contact"
-                  className="hover:text-primary-blue transition-colors"
-                >
-                  Delegate Portal
-                </Link>
-              </li>
-            </ul>
+          {/* Middle: Social Media Links */}
+          <div className="flex items-center gap-6">
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 border border-warm-tan/20 rounded-full hover:border-primary-blue hover:text-primary-blue transition-all duration-300"
+              aria-label="Instagram"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-5 w-5"
+              >
+                <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+              </svg>
+            </a>
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2 border border-warm-tan/20 rounded-full hover:border-primary-blue hover:text-primary-blue transition-all duration-300"
+              aria-label="Facebook"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="h-5 w-5"
+              >
+                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
+              </svg>
+            </a>
+            <a
+              href="mailto:contact@uemcon.org"
+              className="p-2 border border-warm-tan/20 rounded-full hover:border-primary-blue hover:text-primary-blue transition-all duration-300"
+              aria-label="Email"
+            >
+              <Mail className="h-5 w-5" />
+            </a>
           </div>
 
-          {/* Diplomatic Statement */}
-          <div className="space-y-4">
-            <h4 className="font-serif text-xs tracking-wider uppercase text-primary-blue font-semibold">
-              Diplomacy
-            </h4>
-            <p className="font-sans text-[11px] leading-relaxed text-ink/60">
-              "To coordinate cooperation, debate with intelligence, and craft
-              treaties that stand the test of time."
-            </p>
-            <div className="flex items-center gap-1.5 text-[10px] text-warm-tan uppercase tracking-widest font-bold">
-              <ShieldAlert className="h-3.5 w-3.5" />
-              <span>Official MUN Society</span>
+          {/* Right: Embedded Google Map */}
+          <div className="w-full md:w-auto flex justify-center md:justify-end">
+            <div className="overflow-hidden border border-warm-tan/30 shadow-md group rounded-sm bg-paper/50 p-1">
+              <div className="overflow-hidden rounded-sm">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.5126958615797!2d88.48732647520922!3d22.559920179500793!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a020b267a3cdc13%3A0xb3b21d652126f40!2sUniversity%20of%20Engineering%20%26%20Management%2C%20Kolkata%20(UEM)!5e0!3m2!1sen!2sin!4v1780498847483!5m2!1sen!2sin"
+                  width="240"
+                  height="120"
+                  style={{ 
+                    border: 0, 
+                    filter: "grayscale(1) contrast(1.1) sepia(0.2) opacity(0.8)",
+                  }}
+                  allowFullScreen={true}
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="UEM Kolkata Map Location"
+                  className="transition-all duration-700 ease-in-out group-hover:filter-none group-hover:opacity-100"
+                ></iframe>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Bottom Banner */}
-        <div className="border-t border-warm-tan/20 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-[10px] text-ink/50 uppercase tracking-widest font-semibold">
-          <div>
-            © {currentYear} UEM Model United Nations. All rights reserved.
-          </div>
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-primary-blue transition-colors">
-              Code of Conduct
-            </a>
-            <a href="#" className="hover:text-primary-blue transition-colors">
-              Rules of Procedure
-            </a>
-          </div>
+        {/* Copyright Part */}
+        <div className="text-center text-[10px] text-ink/50 uppercase tracking-widest font-semibold">
+          © {currentYear} UEM Model United Nations. All rights reserved.
         </div>
       </Container>
     </footer>
