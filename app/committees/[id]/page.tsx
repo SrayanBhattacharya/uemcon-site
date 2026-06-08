@@ -76,12 +76,14 @@ export default async function CommitteePage(props: { params: Promise<{ id: strin
                   className="p-3 bg-[#022B4B]/80 backdrop-blur-sm border flex items-center justify-center w-24 h-24 sm:w-28 sm:h-28 overflow-hidden shrink-0 select-none relative group"
                   style={{ borderColor: committee.color + "30" }}
                 >
-                  <img
-                    src={committee.icon}
-                    alt={`${committee.name} Emblem`}
-                    className="object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-transform duration-700 ease-out group-hover:scale-110 relative z-10"
-                    style={{ height: "100%", width: "100%" }}
-                  />
+                  <div style={{ transform: committee.id === 'disec' ? 'scale(1.3)' : 'none', width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                    <img
+                      src={committee.icon}
+                      alt={`${committee.name} Emblem`}
+                      className="object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-transform duration-700 ease-out group-hover:scale-110 relative z-10"
+                      style={{ height: "100%", width: "100%" }}
+                    />
+                  </div>
                   {/* Subtle lighting response on hover */}
                   <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
                 </div>

@@ -154,15 +154,17 @@ export default function FeaturedCommittees() {
                           <div className="absolute inset-0 z-20 pointer-events-none -translate-x-[150%] skew-x-[-20deg] bg-gradient-to-r from-transparent via-white/10 to-transparent group-hover:animate-[glass-sweep_1.5s_ease-out]" />
 
                           {committee.icon ? (
-                            <img
-                              src={committee.icon}
-                              alt={`${committee.name} emblem`}
-                              className="object-contain transition-transform duration-700 ease-out group-hover:scale-105 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.1)] relative z-10"
-                              style={{
-                                height: `48px`,
-                                width: `48px`,
-                              }}
-                            />
+                            <div style={{ transform: committee.id === 'disec' ? 'scale(1.3)' : 'none' }} className="flex items-center justify-center relative z-10 w-full h-full">
+                              <img
+                                src={committee.icon}
+                                alt={`${committee.name} emblem`}
+                                className="object-contain transition-transform duration-700 ease-out group-hover:scale-105 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.1)]"
+                                style={{
+                                  height: `48px`,
+                                  width: `48px`,
+                                }}
+                              />
+                            </div>
                           ) : (
                             <svg
                               className="w-10 h-10 transition-transform duration-700 ease-out group-hover:scale-105 relative z-10"

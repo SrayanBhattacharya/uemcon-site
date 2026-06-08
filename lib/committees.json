@@ -53,20 +53,20 @@
     ]
   },
   {
-    "id": "uncnd",
-    "name": "CND",
-    "fullName": "United Nations Commission on Narcotic Drugs",
-    "agenda": "Evaluating cross-border synthetic drug cartels, regulating illicit supply chains, and constructing humanitarian rehabilitation policies.",
-    "focus": "Narcotic containment treaties, global policing coordination, and public health directives.",
-    "icon": "/icons/uncnd.webp",
+    "id": "disec",
+    "name": "DISEC",
+    "fullName": "Disarmament and International Security Committee",
+    "agenda": "Addressing global disarmament, non-proliferation of nuclear weapons, and maintaining international peace and security.",
+    "focus": "Nuclear disarmament, cyber warfare, and international security frameworks.",
+    "icon": "/icons/DISEC.png",
     "color": "#C87A53",
     "type": "offline",
-    "quote": "Drug abuse is a multi-faceted problem that requires a compassionate global response.",
-    "author": "Ban Ki-moon",
+    "quote": "The weapons of war must be abolished before they abolish us.",
+    "author": "John F. Kennedy",
     "content": [
-      "The Commission on Narcotic Drugs is a functional commission of the United Nations Economic and Social Council (ECOSOC), which was established in 1946 through ECOSOC Resolution 9(I). With 53 member states elected by ECOSOC, it serves as the central drug policy-making body within the United Nations system, with its mandate further expanded by the General Assembly in 1991, also functioning as the governing body of the United Nations Office on Drugs and Crime (UNODC).",
-      "The CND is assigned with reviewing and analyzing the entire global drug situation, encompassing both supply and demand reduction, and supervising the application of the three landmark international drug conventions of 1961, 1971, 1988. The Commission executes treaty based functions while simultaneously guiding UNODC’s operational work, adopting resolutions and decisions that shape coordinated international responses to the ever changing challenges of drug trafficking, substance abuse and illicit trade.",
-      "UEMCON'26 presents the CND committee to exhibit a testament to the power of multilateral cooperation and evidence-based policymaking in confronting one of the world's most persistent transnational threats."
+      "The Disarmament and International Security Committee (DISEC), the first committee of the United Nations General Assembly, strives to firmly assert the ethics of armament and stitch together the fabric of peace.",
+      "In an era where the shadow of destruction looms at large, UNGA DISEC becomes the sacred forge of restraint, connecting swords of aggression into instruments of harmony. It brings forward together nations to reduce arms, prevent warfare, and create a safer future for all.",
+      "UEM Conclave of Nations ’26 proudly brings DISEC to the table : to tackle real world disarmament challenges with eloquence, strategy, and propose a vision to change global security architecture."
     ]
   },
   {
