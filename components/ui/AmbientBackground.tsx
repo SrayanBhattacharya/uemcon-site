@@ -1,7 +1,7 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 interface AmbientBackgroundProps {
   color: string;
@@ -31,24 +31,29 @@ export default function AmbientBackground({ color }: AmbientBackgroundProps) {
   if (prefersReducedMotion) {
     return (
       <div className="fixed inset-0 z-0 pointer-events-none opacity-50">
-        <div 
+        <div
           className="absolute inset-0"
-          style={{ background: `radial-gradient(circle at 50% 50%, ${gradientColor2}, transparent 70%)` }}
+          style={{
+            background: `radial-gradient(circle at 50% 50%, ${gradientColor2}, transparent 70%)`,
+          }}
         />
       </div>
     );
   }
 
   return (
-    <div className="fixed inset-0 z-0 pointer-events-none overflow-hidden" style={{ willChange: "transform" }}>
+    <div
+      className="fixed inset-0 z-0 pointer-events-none overflow-hidden"
+      style={{ willChange: "transform" }}
+    >
       {/* Soft moving orb 1 */}
       <motion.div
         className="absolute w-[800px] h-[800px] rounded-full opacity-60"
         style={{
           background: `radial-gradient(circle, ${gradientColor1}, transparent 70%)`,
-          left: '10%',
-          top: '-10%',
-          willChange: 'transform',
+          left: "10%",
+          top: "-10%",
+          willChange: "transform",
         }}
         animate={{
           x: [0, 40, 0, -40, 0],
@@ -58,18 +63,18 @@ export default function AmbientBackground({ color }: AmbientBackgroundProps) {
         transition={{
           duration: 30,
           repeat: Infinity,
-          ease: "linear"
+          ease: "linear",
         }}
       />
-      
+
       {/* Soft moving orb 2 */}
       <motion.div
         className="absolute w-[600px] h-[600px] rounded-full opacity-70"
         style={{
           background: `radial-gradient(circle, ${gradientColor2}, transparent 70%)`,
-          right: '-5%',
-          bottom: '20%',
-          willChange: 'transform',
+          right: "-5%",
+          bottom: "20%",
+          willChange: "transform",
         }}
         animate={{
           x: [0, -40, -20, 30, 0],
@@ -79,7 +84,7 @@ export default function AmbientBackground({ color }: AmbientBackgroundProps) {
         transition={{
           duration: 35,
           repeat: Infinity,
-          ease: "linear"
+          ease: "linear",
         }}
       />
 
@@ -101,7 +106,7 @@ export default function AmbientBackground({ color }: AmbientBackgroundProps) {
               left: `${initialX}%`,
               top: `${initialY}%`,
               opacity: Math.random() * 0.1 + 0.05,
-              willChange: 'transform, opacity',
+              willChange: "transform, opacity",
             }}
             animate={{
               y: [0, -80, -160],

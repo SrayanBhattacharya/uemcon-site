@@ -21,7 +21,7 @@ export default function AnimatedText({
   delay = 0,
 }: AnimatedTextProps) {
   const ref = useRef<HTMLElement>(null);
-  const isInView = useInView(ref, { amount: 0.5, once });
+  const isInView = useInView(ref, { amount: "some", once });
   const prefersReducedMotion = useReducedMotion();
   const Wrapper = el as React.ElementType;
 

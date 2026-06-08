@@ -8,6 +8,7 @@
     "icon": "/icons/imo.webp",
     "color": "#4CA3A5",
     "type": "offline",
+    "backgroundImage": "/backgrounds/imo.webp",
     "quote": "Decarbonizing the maritime industry is a big challenge, but also an opportunity to align the international shipping sector with global commitments on climate change and sustainability.",
     "author": "Arsenio Dominguez",
     "content": [
@@ -25,6 +26,7 @@
     "icon": "/icons/unwomen.webp",
     "color": "#B37D7D",
     "type": "offline",
+    "backgroundImage": "/backgrounds/unwomen.webp",
     "quote": "How can we affect change in the world when only half of it is invited or feel welcome to participate in the conversation?",
     "author": "Emma Watson",
     "content": [
@@ -44,6 +46,7 @@
     "icon": "/icons/jpc.webp",
     "color": "#5F8575",
     "type": "offline",
+    "backgroundImage": "/backgrounds/jpc.webp",
     "quote": "A nation's strength ultimately consists in what it can do on its own and not in what it can borrow from others.",
     "author": "Indira Gandhi",
     "content": [
@@ -54,18 +57,19 @@
   },
   {
     "id": "disec",
-    "name": "DISEC",
+    "name": "UNGA-DISEC",
     "fullName": "Disarmament and International Security Committee",
     "agenda": "Addressing global disarmament, non-proliferation of nuclear weapons, and maintaining international peace and security.",
     "focus": "Nuclear disarmament, cyber warfare, and international security frameworks.",
-    "icon": "/icons/DISEC.png",
+    "icon": "/icons/disec.webp",
     "color": "#C87A53",
     "type": "offline",
+    "backgroundImage": "/backgrounds/disec.webp",
     "quote": "Men may no longer pretend that the quest for disarmament is a sign of weakness , for in a spiraling arms race, a nation's security may well be shrinking even as its arms increase.",
     "author": "John F. Kennedy",
     "content": [
       "DISEC or the Disarmament and International Security Committee, serves as the First Committee of the United Nations General Assembly. It was created so that all 193 member states could have a space to debate and figure out solutions to global threats to peace, arms control, and international security.",
-      "At a time when geopolitical tensions, regional conflicts, and evolving security threats continue to place the world on the precipice of uncertainty, the role of DISEC has become more significant than ever. Its efforts underscore the importance of multilateralism in a world where conflict in one region can have repercussions across continents.", 
+      "At a time when geopolitical tensions, regional conflicts, and evolving security threats continue to place the world on the precipice of uncertainty, the role of DISEC has become more significant than ever. Its efforts underscore the importance of multilateralism in a world where conflict in one region can have repercussions across continents.",
       "At UEM Conclave of Nations’26, DISEC will challenge delegates to navigate the complexities of international security while balancing national interests with global responsibility. Through rigorous debate and heated discussions the delegates will analyse for solutions to some of the world's most pressing challenges, embodying the very principles of diplomacy that remain essential in preserving international peace and stability."
     ]
   },
@@ -78,6 +82,7 @@
     "icon": "/icons/ip.webp",
     "color": "#8AA2B0",
     "type": "offline",
+    "backgroundImage": "/backgrounds/ip.webp",
     "quote": "Without a free press there can be no free society. That is axiomatic. However, freedom of the press is not an end in itself but a means to the end of a free society.",
     "author": "Felix Frankfurter",
     "content": [
@@ -95,6 +100,7 @@
     "icon": "/icons/unfccc.webp",
     "color": "#3D8B7A",
     "type": "offline",
+    "backgroundImage": "/backgrounds/unfccc.webp",
     "quote": "We have a single mission: to protect and hand on the planet to the next generation.",
     "author": "François Hollande",
     "content": [
@@ -112,6 +118,7 @@
     "icon": "/icons/uncsc.webp",
     "color": "#CBAD7F",
     "type": "online",
+    "backgroundImage": "/backgrounds/uncsc.webp",
     "quote": "Ask not what your country can do for you , ask what you can do for your country.",
     "author": "John F. Kennedy",
     "content": [
