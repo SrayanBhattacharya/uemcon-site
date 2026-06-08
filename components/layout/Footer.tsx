@@ -10,72 +10,41 @@ export default function Footer() {
   return (
     <footer className="bg-light-beige/25 border-t border-warm-tan/30 py-12 mt-auto relative z-10 text-ink">
       <Container>
-        <div className="flex flex-col md:flex-row justify-between items-center gap-8 mb-8 pb-8 border-b border-warm-tan/20">
-          {/* Left: Big UEMCON Logo */}
-          <div className="flex items-center gap-4">
+        <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-8 mb-8 pb-8 border-b border-warm-tan/20">
+          {/* Left: Big UEMCON Logo & Socials */}
+          <div className="flex flex-col items-center md:items-start gap-4">
             <Link href="/" className="flex items-center gap-4 group">
-              <img src="/logo.svg" alt="UEMCON Logo" className="h-16 w-auto transition-transform duration-300 group-hover:scale-105" />
+              <img src="/logo.svg" alt="UEMCON Logo" className="h-20 md:h-24 w-auto transition-transform duration-300 group-hover:scale-105" />
               <div className="flex flex-col">
-                <span className="font-serif text-xl tracking-[0.2em] text-primary-blue uppercase font-bold">UEMCON</span>
-                <span className="font-sans text-[9px] tracking-[0.1em] text-ink/50 uppercase">Model United Nations</span>
+                <span className="font-serif text-2xl md:text-3xl tracking-[0.2em] text-primary-blue uppercase font-bold">UEMCON</span>
+                <span className="font-sans text-[10px] md:text-xs tracking-[0.1em] text-ink/50 uppercase">Model United Nations</span>
               </div>
             </Link>
-          </div>
-
-          {/* Middle: Social Media Links */}
-          <div className="flex items-center gap-6">
+            
             <a
-              href="https://instagram.com"
+              href="https://www.instagram.com/uemcon?igsh=ZTZldzJpdno2Z2Uz"
               target="_blank"
               rel="noopener noreferrer"
-              className="p-2 border border-warm-tan/20 rounded-full hover:border-primary-blue hover:text-primary-blue transition-all duration-300"
+              className="flex items-center gap-2 text-xs uppercase tracking-wider text-ink/75 hover:text-primary-blue transition-colors duration-300 mt-2 px-3 py-1.5 border border-warm-tan/20 rounded-full hover:border-primary-blue"
               aria-label="Instagram"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
+                width="16"
+                height="16"
                 viewBox="0 0 24 24"
                 fill="none"
                 stroke="currentColor"
                 strokeWidth="2"
                 strokeLinecap="round"
                 strokeLinejoin="round"
-                className="h-5 w-5"
+                className="h-4 w-4"
               >
                 <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
                 <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
                 <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
               </svg>
-            </a>
-            <a
-              href="https://facebook.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="p-2 border border-warm-tan/20 rounded-full hover:border-primary-blue hover:text-primary-blue transition-all duration-300"
-              aria-label="Facebook"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="20"
-                height="20"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="h-5 w-5"
-              >
-                <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-              </svg>
-            </a>
-            <a
-              href="mailto:contact@uemcon.org"
-              className="p-2 border border-warm-tan/20 rounded-full hover:border-primary-blue hover:text-primary-blue transition-all duration-300"
-              aria-label="Email"
-            >
-              <Mail className="h-5 w-5" />
+              <span className="font-semibold text-[10px] tracking-wider">Follow @uemcon</span>
             </a>
           </div>
 

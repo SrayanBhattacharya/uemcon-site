@@ -8,8 +8,8 @@
     "icon": "/icons/imo.webp",
     "color": "#4CA3A5",
     "type": "offline",
-    "quote": "He who rules the sea rules the land.",
-    "author": "Themistocles",
+    "quote": "Decarbonizing the maritime industry is a big challenge, but also an opportunity to align the international shipping sector with global commitments on climate change and sustainability.",
+    "author": "Arsenio Dominguez",
     "content": [
       "The International Maritime Organization is a specialized agency of the United Nations responsible for regulating international shipping and ensuring the safety, security, and environmental sustainability of maritime activities worldwide. Established by a convention adopted at the UN Maritime Conference in 1948, came into force on March 17, 1958, the IMO has grown to encompass more than 170 member states and operates with a mandate deeply aligned with the UN Sustainable Development Goals.",
       "IMO’s primary role is to create a regulatory framework for the shipping industry that is fair, effective, universally adopted and implemented. IMO measures cover all frameworks such as : ship design, construction, equipment, manning, operation and disposal, all over ensuring this vital sector remains environmentally sound, technically safe and secure, and energy efficient. These frameworks are further reinforced through landmark conventions such as SOLAS, MARPOL, and STCW, which collectively shape how nations govern their fleets in the face of rising maritime threats, ecological crises, and rapid technological transformation at sea.",
@@ -25,8 +25,8 @@
     "icon": "/icons/unwomen.webp",
     "color": "#B37D7D",
     "type": "offline",
-    "quote": "There is no limit to what we, as women, can accomplish.",
-    "author": "Michelle Obama",
+    "quote": "How can we affect change in the world when only half of it is invited or feel welcome to participate in the conversation?",
+    "author": "Emma Watson",
     "content": [
       "The United Nations Entity for Gender Equality and the Empowerment of Women(UN Women) is the UN agency dedicated to advancing gender equality and the rights of women and girls globally. As the lead United Nations entity on gender equality and secretariat to the UN Commission on the Status of Women(UNCSW), they transforms laws, institutions, social norms, and services to close the gender gap and build an equal world for all women and girls.",
 
@@ -44,7 +44,7 @@
     "icon": "/icons/jpc.webp",
     "color": "#5F8575",
     "type": "offline",
-    "quote": "The power to question is the basis of all human progress.",
+    "quote": "A nation's strength ultimately consists in what it can do on its own and not in what it can borrow from others.",
     "author": "Indira Gandhi",
     "content": [
       "The Joint Parliamentary Committee is an ad-hoc legislative body of the Parliament of India. The JPC draws its members from both the Houses of Parliament. Traditionally, members of the JPC are nominated both by the Lok Sabha and the Rajya Sabha speakers, with the number of Lok Sabha speakers being greater than the number of Rajya Sabha speakers.",
@@ -61,12 +61,12 @@
     "icon": "/icons/DISEC.png",
     "color": "#C87A53",
     "type": "offline",
-    "quote": "The weapons of war must be abolished before they abolish us.",
+    "quote": "Men may no longer pretend that the quest for disarmament is a sign of weakness , for in a spiraling arms race, a nation's security may well be shrinking even as its arms increase.",
     "author": "John F. Kennedy",
     "content": [
-      "The Disarmament and International Security Committee (DISEC), the first committee of the United Nations General Assembly, strives to firmly assert the ethics of armament and stitch together the fabric of peace.",
-      "In an era where the shadow of destruction looms at large, UNGA DISEC becomes the sacred forge of restraint, connecting swords of aggression into instruments of harmony. It brings forward together nations to reduce arms, prevent warfare, and create a safer future for all.",
-      "UEM Conclave of Nations ’26 proudly brings DISEC to the table : to tackle real world disarmament challenges with eloquence, strategy, and propose a vision to change global security architecture."
+      "DISEC or the Disarmament and International Security Committee, serves as the First Committee of the United Nations General Assembly. It was created so that all 193 member states could have a space to debate and figure out solutions to global threats to peace, arms control, and international security.",
+      "At a time when geopolitical tensions, regional conflicts, and evolving security threats continue to place the world on the precipice of uncertainty, the role of DISEC has become more significant than ever. Its efforts underscore the importance of multilateralism in a world where conflict in one region can have repercussions across continents.", 
+      "At UEM Conclave of Nations’26, DISEC will challenge delegates to navigate the complexities of international security while balancing national interests with global responsibility. Through rigorous debate and heated discussions the delegates will analyse for solutions to some of the world's most pressing challenges, embodying the very principles of diplomacy that remain essential in preserving international peace and stability."
     ]
   },
   {
@@ -78,8 +78,8 @@
     "icon": "/icons/ip.webp",
     "color": "#8AA2B0",
     "type": "offline",
-    "quote": "Freedom of the press is not just important to democracy, it is democracy.",
-    "author": "Walter Cronkite",
+    "quote": "Without a free press there can be no free society. That is axiomatic. However, freedom of the press is not an end in itself but a means to the end of a free society.",
+    "author": "Felix Frankfurter",
     "content": [
       "The International Press (IP) is the powerhouse that observes every nuance of the United Nations. As an independent journalistic body, it documents discussions, analyses proceedings, and presents narratives that shape the conference.",
       "Through press conferences, interviews and live reportage, the IP questions, interprets and amplifies the essence of deliberation. By engaging with delegates and scrutinising positions of influence, it upholds the values of accountability, transparency, and responsible journalism within the simulated symposium.",
@@ -95,8 +95,8 @@
     "icon": "/icons/unfccc.webp",
     "color": "#3D8B7A",
     "type": "offline",
-    "quote": "We already have all the facts and solutions. All we have to do is to wake up and change.",
-    "author": "Greta Thunberg",
+    "quote": "We have a single mission: to protect and hand on the planet to the next generation.",
+    "author": "François Hollande",
     "content": [
       "The United Nations Framework Convention of Climate Change, one of the three landmark Rio Conventions adopted at the Earth Summit in 1992, entered into force on 21 March 1994. With 198 parties, comprising 197 states, and the European Union, it stands as one of the most widely ratified international environmental treaties in history, and serves as the principal global treaty for coordinating the world’s collective response to climate change.",
       "The founding objective of UNFCCC has been to stabilize atmospheric concentrations of greenhouse gases so as to prevent dangerous interference with the climate system. To advance this mandate, the Convention has laid the groundwork for successive binding instruments, such as the Kyoto Protocol of 1977, and the Paris Agreement of 2015. Through nationally determined contributions, transparent reporting frameworks, and the scientific guidance of IPCC, the UNFCCC continues to anchor global climate ambition and accountability.",
@@ -112,8 +112,8 @@
     "icon": "/icons/uncsc.webp",
     "color": "#CBAD7F",
     "type": "online",
-    "quote": "Civil society is the oxygen of democracy.",
-    "author": "Kofi Annan",
+    "quote": "Ask not what your country can do for you , ask what you can do for your country.",
+    "author": "John F. Kennedy",
     "content": [
       "The United Nations Civil Society Conference, formerly known as the UN DPI/NGO Conference, is the premier civil society event on the United Nations calendar. It is organized by the Department of Global Communications (DGC) in cooperation with the Global NGO Executive Committee (GNEC). Together, they bring together representatives from civil society organizations (CSOs) associated with DGC as well as those holding consultative status with ECOSOC. The Conference serves as a global forum where non-profit, voluntary citizens’ groups — active at local, national, and international levels can engage directly with the United Nations system.",
       "It gives civil society organizations a valuable platform to bring a global perspective to some of the most pressing issues of our time, from climate change and human rights to disarmament, global health, and sustainable development. Through plenary sessions, thematic roundtables, CSO-led partnership workshops, and youth-led initiatives, it provides a platform for policy dialogue that strengthens collaboration between local communities and global institutions. It also creates opportunities to share best practices, build strategic partnerships with Member States, and amplify the voice of civil society within the broader UN agenda.",
