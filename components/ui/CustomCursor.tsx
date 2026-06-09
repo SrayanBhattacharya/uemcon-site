@@ -40,7 +40,6 @@ export default function CustomCursor() {
   const [isMobile, setIsMobile] = useState(true);
   const [isHovering, setIsHovering] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
-  const [isTextSelection, setIsTextSelection] = useState(false);
   const [isHidden, setIsHidden] = useState(true);
   const [isLightSurface, setIsLightSurface] = useState(false);
 
@@ -81,18 +80,6 @@ export default function CustomCursor() {
 
       const target = e.target as HTMLElement;
       if (target) {
-        // Detect actual paragraph/readable text selection zones to restore native cursor elegantly (excluding hero decorative elements)
-        const isBodyText = target.closest("p, li, blockquote, textarea, input:not([type='button']):not([type='submit'])") && !target.closest(".hero-section");
-        
-        // Exclude buttons or links which may contain text elements inside
-        const isInsideInteractive = target.closest("a, button, [role='button'], input[type='button'], input[type='submit']");
-
-        if (isBodyText && !isInsideInteractive) {
-          setIsTextSelection(true);
-        } else {
-          setIsTextSelection(false);
-        }
-
         // Dynamically detect light surfaces (like buttons and light cards)
         const luminance = getElementLuminance(target);
         setIsLightSurface(luminance > 0.6); // 0.6 threshold separates light tan/white from deep navy
@@ -108,7 +95,8 @@ export default function CustomCursor() {
     const handleMouseOver = (e: MouseEvent) => {
       const target = e.target as HTMLElement;
       if (target) {
-        const isInteractive = target.closest("a, button, [role='button'], input[type='button'], input[type='submit'], [data-cursor='hover']");
+        // Expanded to include text, images, and cards per magnifying glass requirements, now including spans
+        const isInteractive = target.closest("a, button, [role='button'], input, select, textarea, [data-cursor='hover'], p, h1, h2, h3, h4, h5, h6, img, li, blockquote, figure, span, strong, em, b, i, label, div[data-cursor='hover']");
         setIsHovering(!!isInteractive);
 
         const luminance = getElementLuminance(target);
@@ -140,7 +128,7 @@ export default function CustomCursor() {
       return;
     }
 
-    if (isTextSelection || isHidden) {
+    if (isHidden) {
       document.documentElement.classList.remove("has-custom-cursor");
     } else {
       document.documentElement.classList.add("has-custom-cursor");
@@ -149,13 +137,13 @@ export default function CustomCursor() {
     return () => {
       document.documentElement.classList.remove("has-custom-cursor");
     };
-  }, [isMobile, isTextSelection, isHidden]);
+  }, [isMobile, isHidden]);
 
   if (isMobile) return null;
 
   // Cinematic state mappings for ring sizes
   const ringScale = isClicked ? 0.75 : isHovering ? 1.6 : 1;
-  const cursorOpacity = isHidden || isTextSelection ? 0 : 1;
+  const cursorOpacity = isHidden ? 0 : 1;
 
   // Cinematic state mappings for center dot size
   const dotScale = isClicked ? 0.7 : isHovering ? 0.75 : 1;
@@ -175,14 +163,28 @@ export default function CustomCursor() {
     ? (isHovering ? "rgba(1, 30, 51, 0.05)" : "rgba(0, 0, 0, 0)")
     : (isHovering ? "rgba(231, 223, 201, 0.05)" : "rgba(0, 0, 0, 0)");
 
+  // SVG Data URI for displacement map (flat 1.25x zoom)
+  const mapSvg = `<svg xmlns="http://www.w3.org/2000/svg" width="256" height="256"><defs><linearGradient id="r" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#f00"/><stop offset="100%" stop-color="#000"/></linearGradient><linearGradient id="g" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0f0"/><stop offset="100%" stop-color="#000"/></linearGradient></defs><rect width="100%" height="100%" fill="url(#r)"/><rect width="100%" height="100%" fill="url(#g)" style="mix-blend-mode:screen"/></svg>`;
+  const encodedMap = `data:image/svg+xml;charset=utf-8,${encodeURIComponent(mapSvg)}`;
+
   return (
     <>
+      {/* SVG Filter for Optical Zoom Magnification */}
+      <svg style={{ position: "absolute", width: 0, height: 0, pointerEvents: "none" }} aria-hidden="true">
+        <filter id="cursor-lens" x="0%" y="0%" width="100%" height="100%" primitiveUnits="objectBoundingBox">
+          <feImage href={encodedMap} result="map" preserveAspectRatio="none" x="0" y="0" width="1" height="1" />
+          <feDisplacementMap in="SourceGraphic" in2="map" scale="0.2" xChannelSelector="R" yChannelSelector="G" />
+        </filter>
+      </svg>
+
       {/* Outer Ring */}
       <motion.div
         style={{
           x: ringX,
           y: ringY,
-          mixBlendMode: blendMode as any,
+          mixBlendMode: (isHovering ? "normal" : blendMode) as any,
+          backdropFilter: isHovering ? "url(#cursor-lens)" : "none",
+          WebkitBackdropFilter: isHovering ? "url(#cursor-lens)" : "none",
         }}
         animate={{
           scale: ringScale,
@@ -196,7 +198,7 @@ export default function CustomCursor() {
           backgroundColor: { duration: 0.25 },
           opacity: { duration: 0.2 },
         }}
-        className="fixed left-0 top-0 w-8 h-8 rounded-full border pointer-events-none z-[99999] select-none -translate-x-1/2 -translate-y-1/2"
+        className="fixed left-0 top-0 w-8 h-8 rounded-full border pointer-events-none z-[99999] select-none -translate-x-1/2 -translate-y-1/2 overflow-hidden"
       />
 
       {/* Inner Center Dot */}
