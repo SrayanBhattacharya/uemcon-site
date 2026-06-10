@@ -166,6 +166,10 @@ export default function EBRegisterPage() {
     if (!formState.committeePref2) newErrors.committeePref2 = "Second preference committee is required";
     if (!formState.position2) newErrors.position2 = "Preferred position for committee 2 is required";
 
+    if (formState.committeePref1 && formState.committeePref2 && formState.committeePref1 === formState.committeePref2) {
+      newErrors.committeePref2 = "Second preference committee must be different from first preference";
+    }
+
     if (!resumeFile) {
       newErrors.resume = "Resume is required";
     } else if (resumeFile.size > 2 * 1024 * 1024) {
@@ -334,22 +338,64 @@ export default function EBRegisterPage() {
 
   const getPositionsForCommittee = (committeeName: string) => {
     if (!committeeName) return [];
-    if (committeeName === "UN Women" || committeeName === "UNW") {
-      return [
-        "Executive Director",
-        "Deputy Executive Director",
-        "Rapporteur",
-      ];
+    
+    const normalized = committeeName.trim().toUpperCase();
+
+    // 1. IP (International Press)
+    if (normalized === "IP" || normalized === "INTERNATIONAL PRESS") {
+      return ["Editor-in-Chief", "Photography Head"];
     }
-    // Default/placeholder positions for others
+
+    // 2. DISEC (Disarmament and International Security Committee)
+    if (
+      normalized === "UNGA-DISEC" ||
+      normalized === "DISEC" ||
+      normalized === "DISARMAMENT AND INTERNATIONAL SECURITY COMMITTEE"
+    ) {
+      return ["Chairperson", "Vice-Chairperson", "Rapporteur"];
+    }
+
+    // 3. JPC (Joint Parliamentary Committee)
+    if (normalized === "JPC" || normalized === "JOINT PARLIAMENTARY COMMITTEE") {
+      return ["Moderator", "Deputy Moderator", "Scribe"];
+    }
+
+    // 4. IMO (International Maritime Organization)
+    if (normalized === "IMO" || normalized === "INTERNATIONAL MARITIME ORGANIZATION") {
+      return ["Director", "Assistant Director", "Rapporteur"];
+    }
+
+    // 5. UNW (UN Women)
+    if (normalized === "UN WOMEN" || normalized === "UNW") {
+      return ["Executive Director", "Deputy Executive Director", "Rapporteur"];
+    }
+
+    // 6. UNFCCC (UN Framework Convention on Climate Change)
+    if (
+      normalized === "UNFCCC" ||
+      normalized === "UNITED NATIONS FRAMEWORK CONVENTION OF CLIMATE CHANGE" ||
+      normalized.includes("CLIMATE CHANGE")
+    ) {
+      return ["President", "Vice-President", "Rapporteur"];
+    }
+
+    // 7. Flagship: UN Civil Society Conference (UN CSC)
+    if (
+      normalized === "UN CSC" ||
+      normalized === "UN CIVIL SOCIETY CONFERENCE" ||
+      normalized === "UNCSC"
+    ) {
+      return ["Conference Co-Chair", "Civil Society Liaison", "Rapporteur"];
+    }
+
+    // Fallback/Default positions
     return [
       "Chairperson",
       "Vice-Chairperson",
-      "Co-Chairperson",
+      "Rapporteur",
       "Director",
       "Moderator",
       "Editor-in-Chief",
-      "IP Editor",
     ];
   };
 
@@ -678,7 +724,7 @@ export default function EBRegisterPage() {
                           >
                             <option value="">Select Committee Choice 1</option>
                             {committees.map((c) => (
-                              <option key={c.id} value={c.name}>
+                              <option key={c.id} value={c.name} disabled={c.name === formState.committeePref2}>
                                 {c.fullName} ({c.name})
                               </option>
                             ))}
@@ -741,7 +787,7 @@ export default function EBRegisterPage() {
                           >
                             <option value="">Select Committee Choice 2</option>
                             {committees.map((c) => (
-                              <option key={c.id} value={c.name}>
+                              <option key={c.id} value={c.name} disabled={c.name === formState.committeePref1}>
                                 {c.fullName} ({c.name})
                               </option>
                             ))}
