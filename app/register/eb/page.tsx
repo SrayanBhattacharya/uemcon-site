@@ -402,41 +402,39 @@ export default function EBRegisterPage() {
   return (
     <div className="flex flex-col w-full bg-paper">
       {/* Full-width warm-tan Header Banner */}
-      <Section className="py-0 relative" animate={false}>
-        <div className="w-full bg-[#CBAD7F] relative overflow-hidden flex items-center md:items-end px-6 md:px-12 lg:px-16 py-3 md:py-5 h-[90px] md:h-[155px] border-b border-warm-tan/30 select-none">
-          {/* Giant Background Text */}
-          <motion.div 
-            className="absolute inset-0 pointer-events-none"
-            initial={{ opacity: 0, y: -40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, ease: "easeOut" }}
-          >
-            <h2 className="font-sans font-black text-[#011E33]/12 text-[3.1rem] sm:text-[4.5rem] md:text-[5.5rem] lg:text-[7.5rem] xl:text-[9rem] 2xl:text-[10.5rem] uppercase tracking-tighter leading-none absolute top-1/2 -translate-y-1/2 md:top-auto md:translate-y-0 md:-bottom-3 left-6 md:left-12 lg:left-16 whitespace-nowrap">
-              APPLY
-            </h2>
-          </motion.div>
+      <div className="w-full bg-[#CBAD7F] relative overflow-hidden flex items-center md:items-end px-6 md:px-12 lg:px-16 py-3 md:py-5 h-[90px] md:h-[155px] border-b border-warm-tan/30 select-none">
+        {/* Giant Background Text */}
+        <motion.div 
+          className="absolute inset-0 pointer-events-none"
+          initial={{ opacity: 0, y: -40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, ease: "easeOut" }}
+        >
+          <h2 className="font-sans font-black text-[#011E33]/12 text-[3.1rem] sm:text-[4.5rem] md:text-[5.5rem] lg:text-[7.5rem] xl:text-[9rem] 2xl:text-[10.5rem] uppercase tracking-tighter leading-none absolute top-1/2 -translate-y-1/2 md:top-auto md:translate-y-0 md:-bottom-3 left-6 md:left-12 lg:left-16 whitespace-nowrap">
+            APPLY
+          </h2>
+        </motion.div>
 
-          {/* Banner Front Content */}
-          <div className="relative z-10 w-full flex justify-between items-center md:items-end text-[#011E33] mb-0 md:mb-1 overflow-hidden">
-            <motion.span 
-              className="font-sans font-bold text-[9px] sm:text-xs tracking-[0.25em] uppercase whitespace-nowrap"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            >
-              EXECUTIVE BOARD PORTFOLIO
-            </motion.span>
-            <motion.span 
-              className="font-serif italic text-xs md:text-sm font-semibold max-w-[280px] sm:max-w-md text-right leading-snug hidden md:block"
-              initial={{ opacity: 0, x: 40 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-            >
-              "Apply for the academic and moderating positions of UEMCON 2026"
-            </motion.span>
-          </div>
+        {/* Banner Front Content */}
+        <div className="relative z-10 w-full flex justify-between items-center md:items-end text-[#011E33] mb-0 md:mb-1 overflow-hidden">
+          <motion.span 
+            className="font-sans font-bold text-[9px] sm:text-xs tracking-[0.25em] uppercase whitespace-nowrap"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+          >
+            EXECUTIVE BOARD PORTFOLIO
+          </motion.span>
+          <motion.span 
+            className="font-serif italic text-xs md:text-sm font-semibold max-w-[280px] sm:max-w-md text-right leading-snug hidden md:block"
+            initial={{ opacity: 0, x: 40 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
+          >
+            "Apply for the academic and moderating positions of UEMCON 2026"
+          </motion.span>
         </div>
-      </Section>
+      </div>
 
       <Section className="py-12 md:py-20 overflow-hidden relative">
         {/* Ambient Diplomatic Details */}
@@ -561,7 +559,7 @@ export default function EBRegisterPage() {
                           value={formState.name}
                           onChange={handleInputChange}
                           className={getInputStyle("name")}
-                          placeholder="John Doe"
+                          placeholder="Arjun Banerjee"
                           {...getMotionInputProps(!!errors.name)}
                         />
                         <AnimatePresence>
@@ -601,7 +599,7 @@ export default function EBRegisterPage() {
                           value={formState.email}
                           onChange={handleInputChange}
                           className={getInputStyle("email")}
-                          placeholder="john.doe@email.com"
+                          placeholder="arjun.banerjee@email.com"
                           {...getMotionInputProps(!!errors.email)}
                         />
                         <AnimatePresence>
