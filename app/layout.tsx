@@ -57,10 +57,10 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cormorant.variable} ${jakarta.variable} h-full antialiasedScroll scroll-smooth`}
+      className={`${cormorant.variable} ${jakarta.variable} antialiasedScroll scroll-smooth`}
       data-scroll-behavior="smooth"
     >
-      <body className="min-h-full flex flex-col relative bg-paper text-ink selection:bg-warm-tan/30 selection:text-ink">
+      <body className="min-h-screen flex flex-col relative bg-paper text-ink selection:bg-warm-tan/30 selection:text-ink">
         {/* Custom Premium Eased Cursor */}
         <CustomCursor />
 
@@ -71,12 +71,12 @@ export default function RootLayout({
           <ComingSoon />
         ) : (
           /* Main Content Area */
-          <div className="flex-grow flex flex-col min-h-screen w-full overflow-x-hidden">
+          <div className="flex-grow flex flex-col min-h-screen w-full">
             {/* Navigation header */}
             <Header />
 
             {/* Main page content area */}
-            <main className="flex-grow flex flex-col pt-[71px] md:pt-[81px] overflow-x-hidden">
+            <main className="flex-grow flex flex-col pt-[71px] md:pt-[81px]">
               {children}
             </main>
 
