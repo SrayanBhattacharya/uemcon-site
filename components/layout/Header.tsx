@@ -3,6 +3,7 @@
 import { cn } from "@/lib/utils";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -72,9 +73,12 @@ export default function Header() {
               className="relative md:absolute md:top-1/2 md:-translate-y-1/2 md:left-1/2 md:-translate-x-1/2 md:-ml-4 flex items-center justify-center select-none group focus-visible:outline focus-visible:outline-warm-tan py-1"
               aria-label="UEMCON Home"
             >
-              <img
+              <Image
                 src="/logo.svg"
                 alt="UEMCON Logo"
+                width={150}
+                height={56}
+                priority
                 className="h-12 md:h-14 w-auto opacity-90 group-hover:opacity-100 transition-opacity duration-300"
               />
             </Link>

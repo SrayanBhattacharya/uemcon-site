@@ -2,7 +2,6 @@
 
 import {
   motion,
-  useMotionTemplate,
   useScroll,
   useTransform,
 } from "framer-motion";
@@ -28,12 +27,6 @@ function ScrollParagraph({
     [0, 0.2, 0.5, 0.8, 1],
     [0, 0.75, 1, 0.55, 0],
   );
-  const blurValue = useTransform(
-    scrollYProgress,
-    [0, 0.2, 0.5, 0.8, 1],
-    [4, 0, 0, 0, 4],
-  );
-  const filter = useMotionTemplate`blur(${blurValue}px)`;
   const scale = useTransform(
     scrollYProgress,
     [0, 0.2, 0.5, 0.8, 1],
@@ -48,7 +41,7 @@ function ScrollParagraph({
   return (
     <motion.p
       ref={ref}
-      style={{ opacity, filter, scale, y }}
+      style={{ opacity, scale, y }}
       className={className}
     >
       {children}

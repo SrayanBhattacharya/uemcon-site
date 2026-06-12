@@ -1,6 +1,7 @@
 import Button from "@/components/ui/Button";
 import committeesData from "@/lib/committees.json";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 
 import AmbientBackground from "@/components/ui/AmbientBackground";
 import AnimatedText from "@/components/ui/AnimatedText";
@@ -53,11 +54,12 @@ export default async function CommitteePage(props: {
       {/* Hero Banner Section */}
       <div className="relative w-full h-[280px] sm:h-[340px] md:h-[400px] overflow-hidden flex items-end border-b border-warm-tan/10">
         {/* Banner Image */}
-        <div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat transition-transform duration-1000 ease-out hover:scale-105 filter brightness-[0.7] contrast-[1.05] opacity-40"
-          style={{
-            backgroundImage: `url('${committee.backgroundImage || "/backgrounds/disec.webp"}')`,
-          }}
+        <Image
+          src={committee.backgroundImage || "/backgrounds/disec.webp"}
+          alt={`${committee.name} Background`}
+          fill
+          priority
+          className="object-cover transition-transform duration-1000 ease-out hover:scale-105 filter brightness-[0.7] contrast-[1.05] opacity-40"
         />
         {/* Color overlay matching committee colors */}
         <div
@@ -107,11 +109,12 @@ export default async function CommitteePage(props: {
                           justifyContent: "center",
                         }}
                       >
-                        <img
+                        <Image
                           src={committee.icon}
                           alt={`${committee.name} Emblem`}
-                          className="object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-transform duration-700 ease-out group-hover:scale-110 relative z-10"
-                          style={{ height: "100%", width: "100%" }}
+                          width={112}
+                          height={112}
+                          className="object-contain filter drop-shadow-[0_4px_12px_rgba(0,0,0,0.15)] transition-transform duration-700 ease-out group-hover:scale-110 relative z-10 h-full w-full"
                         />
                       </div>
                       {/* Subtle lighting response on hover */}

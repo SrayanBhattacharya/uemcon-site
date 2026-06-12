@@ -9,6 +9,7 @@ import Section from "../ui/Section";
 
 import committeesData from "@/lib/committees.json";
 import Link from "next/link";
+import Image from "next/image";
 
 interface Committee {
   id: string;
@@ -155,14 +156,12 @@ export default function FeaturedCommittees() {
 
                           {committee.icon ? (
                             <div style={{ transform: committee.id === 'disec' ? 'scale(1.3)' : 'none' }} className="flex items-center justify-center relative z-10 w-full h-full">
-                              <img
+                              <Image
                                 src={committee.icon}
                                 alt={`${committee.name} emblem`}
-                                className="object-contain transition-transform duration-700 ease-out group-hover:scale-105 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.1)]"
-                                style={{
-                                  height: `48px`,
-                                  width: `48px`,
-                                }}
+                                width={48}
+                                height={48}
+                                className="object-contain transition-transform duration-700 ease-out group-hover:scale-105 filter drop-shadow-[0_2px_4px_rgba(0,0,0,0.1)] h-12 w-12"
                               />
                             </div>
                           ) : (

@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform, useMotionTemplate } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import Section from "../ui/Section";
 import Container from "../layout/Container";
 import Heading from "../ui/Heading";
@@ -14,15 +14,13 @@ function ScrollParagraph({ children, className }: { children: React.ReactNode, c
   });
 
   const opacity = useTransform(scrollYProgress, [0, 0.2, 0.5, 0.8, 1], [0, 0.75, 1, 0.55, 0]);
-  const blurValue = useTransform(scrollYProgress, [0, 0.2, 0.5, 0.8, 1], [4, 0, 0, 0, 4]);
-  const filter = useMotionTemplate`blur(${blurValue}px)`;
   const scale = useTransform(scrollYProgress, [0, 0.2, 0.5, 0.8, 1], [1, 1, 1, 0.99, 0.95]);
   const y = useTransform(scrollYProgress, [0, 0.2, 0.5, 0.8, 1], [12, 0, 0, 0, -12]);
 
   return (
     <motion.p
       ref={ref}
-      style={{ opacity, filter, scale, y }}
+      style={{ opacity, scale, y }}
       className={className}
     >
       {children}

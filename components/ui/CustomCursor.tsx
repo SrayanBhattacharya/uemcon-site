@@ -3,8 +3,15 @@
 import React, { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
+// Cache for element luminance to prevent layout thrashing
+const luminanceCache = new WeakMap<HTMLElement, number>();
+
 // Helper function to dynamically climb the DOM tree, find solid backgrounds, and calculate relative luminance
 const getElementLuminance = (el: HTMLElement): number => {
+  if (luminanceCache.has(el)) {
+    return luminanceCache.get(el)!;
+  }
+
   let currentEl: HTMLElement | null = el;
   while (currentEl && currentEl !== document.documentElement) {
     const style = window.getComputedStyle(currentEl);
@@ -27,12 +34,15 @@ const getElementLuminance = (el: HTMLElement): number => {
         // Only use if the background is sufficiently opaque
         if (a > 0.1) {
           // Perceived brightness formula (Relative Luminance)
-          return (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+          const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+          luminanceCache.set(el, luminance);
+          return luminance;
         }
       }
     }
     currentEl = currentEl.parentElement;
   }
+  luminanceCache.set(el, 0);
   return 0; // Default to dark (the main page background is deep navy #011E33)
 };
 
@@ -47,14 +57,14 @@ export default function CustomCursor() {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
-  // Smooth springs for floaty, cinematic movement
+  // Smooth springs for floaty, cinematic movement (tuned for higher responsiveness/fluidity)
   // Outer ring: slower and floaty
-  const ringX = useSpring(mouseX, { stiffness: 120, damping: 22 });
-  const ringY = useSpring(mouseY, { stiffness: 120, damping: 22 });
+  const ringX = useSpring(mouseX, { stiffness: 180, damping: 25 });
+  const ringY = useSpring(mouseY, { stiffness: 180, damping: 25 });
 
   // Inner dot: very fast, highly responsive
-  const dotX = useSpring(mouseX, { stiffness: 800, damping: 50 });
-  const dotY = useSpring(mouseY, { stiffness: 800, damping: 50 });
+  const dotX = useSpring(mouseX, { stiffness: 1000, damping: 40 });
+  const dotY = useSpring(mouseY, { stiffness: 1000, damping: 40 });
 
   useEffect(() => {
     // Detect mobile / touch devices or screen size to disable custom cursor
@@ -77,13 +87,6 @@ export default function CustomCursor() {
       mouseY.set(e.clientY);
 
       if (isHidden) setIsHidden(false);
-
-      const target = e.target as HTMLElement;
-      if (target) {
-        // Dynamically detect light surfaces (like buttons and light cards)
-        const luminance = getElementLuminance(target);
-        setIsLightSurface(luminance > 0.6); // 0.6 threshold separates light tan/white from deep navy
-      }
     };
 
     const handleMouseLeave = () => setIsHidden(true);

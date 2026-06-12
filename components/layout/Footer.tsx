@@ -2,6 +2,7 @@ import {
   Mail,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import Container from "./Container";
 
 export default function Footer() {
@@ -14,7 +15,13 @@ export default function Footer() {
           {/* Left: Big UEMCON Logo & Socials */}
           <div className="flex flex-col items-center md:items-start gap-4">
             <Link href="/" className="flex items-center gap-4 group">
-              <img src="/logo.svg" alt="UEMCON Logo" className="h-20 md:h-24 w-auto transition-transform duration-300 group-hover:scale-105" />
+              <Image
+                src="/logo.svg"
+                alt="UEMCON Logo"
+                width={96}
+                height={96}
+                className="h-20 md:h-24 w-auto transition-transform duration-300 group-hover:scale-105"
+              />
               <div className="flex flex-col">
                 <span className="font-serif text-2xl md:text-3xl tracking-[0.2em] text-primary-blue uppercase font-bold">UEMCON</span>
                 <span className="font-sans text-[10px] md:text-xs tracking-[0.1em] text-ink/50 uppercase">Model United Nations</span>
