@@ -20,6 +20,7 @@ export default function Footer() {
                 alt="UEMCON Logo"
                 width={96}
                 height={96}
+                style={{ width: "auto" }}
                 className="h-20 md:h-24 w-auto transition-transform duration-300 group-hover:scale-105"
               />
               <div className="flex flex-col">

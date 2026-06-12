@@ -67,7 +67,7 @@ export default function MunnerPerks() {
   });
 
   return (
-    <Section className="bg-paper border-t border-warm-tan/20 py-20 relative">
+    <Section className="bg-paper border-t border-warm-tan/20 py-20 relative overflow-hidden">
       <Container className="max-w-5xl">
         <div ref={sectionRef} className="grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-16 items-start">
           

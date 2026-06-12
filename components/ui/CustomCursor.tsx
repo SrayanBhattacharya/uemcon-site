@@ -3,49 +3,6 @@
 import React, { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
-// Cache for element luminance to prevent layout thrashing
-const luminanceCache = new WeakMap<HTMLElement, number>();
-
-// Helper function to dynamically climb the DOM tree, find solid backgrounds, and calculate relative luminance
-const getElementLuminance = (el: HTMLElement): number => {
-  if (luminanceCache.has(el)) {
-    return luminanceCache.get(el)!;
-  }
-
-  let currentEl: HTMLElement | null = el;
-  while (currentEl && currentEl !== document.documentElement) {
-    const style = window.getComputedStyle(currentEl);
-    const bg = style.backgroundColor;
-
-    if (
-      bg &&
-      bg !== "transparent" &&
-      bg !== "rgba(0, 0, 0, 0)" &&
-      !bg.startsWith("initial") &&
-      !bg.startsWith("inherit")
-    ) {
-      const match = bg.match(/[\d.]+/g);
-      if (match && match.length >= 3) {
-        const r = parseFloat(match[0]);
-        const g = parseFloat(match[1]);
-        const b = parseFloat(match[2]);
-        const a = match[3] !== undefined ? parseFloat(match[3]) : 1.0;
-
-        // Only use if the background is sufficiently opaque
-        if (a > 0.1) {
-          // Perceived brightness formula (Relative Luminance)
-          const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-          luminanceCache.set(el, luminance);
-          return luminance;
-        }
-      }
-    }
-    currentEl = currentEl.parentElement;
-  }
-  luminanceCache.set(el, 0);
-  return 0; // Default to dark (the main page background is deep navy #011E33)
-};
-
 export default function CustomCursor() {
   const [isMobile, setIsMobile] = useState(true);
   const [isHovering, setIsHovering] = useState(false);
@@ -102,8 +59,10 @@ export default function CustomCursor() {
         const isInteractive = target.closest("a, button, [role='button'], input, select, textarea, [data-cursor='hover'], p, h1, h2, h3, h4, h5, h6, img, li, blockquote, figure, span, strong, em, b, i, label, div[data-cursor='hover']");
         setIsHovering(!!isInteractive);
 
-        const luminance = getElementLuminance(target);
-        setIsLightSurface(luminance > 0.6);
+        // Light surfaces are specifically the light tan buttons/banners, or elements explicitly marked.
+        // This avoids calling getComputedStyle entirely and prevents forced reflows!
+        const hasLightBg = target.closest(".bg-primary-blue, .bg-\\[\\#CBAD7F\\], .bg-\\[\\#F4ECD8\\], [data-cursor-light='true']");
+        setIsLightSurface(!!hasLightBg);
       }
     };
 

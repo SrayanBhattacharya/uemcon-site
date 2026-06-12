@@ -104,7 +104,7 @@ export default function WhatIsUemcon() {
   });
 
   return (
-    <Section className="bg-paper border-b border-warm-tan/20 py-20 relative">
+    <Section className="bg-paper border-b border-warm-tan/20 py-20 relative overflow-hidden">
       <Container className="max-w-5xl">
         <div
           ref={sectionRef}
