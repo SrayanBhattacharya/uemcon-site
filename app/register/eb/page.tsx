@@ -343,7 +343,7 @@ export default function EBRegisterPage() {
 
     // 1. IP (International Press)
     if (normalized === "IP" || normalized === "INTERNATIONAL PRESS") {
-      return ["Editor-in-Chief", "Photography Head"];
+      return ["Editor-in-Chief", "Head of Photography"];
     }
 
     // 2. DISEC (Disarmament and International Security Committee)
@@ -352,22 +352,22 @@ export default function EBRegisterPage() {
       normalized === "DISEC" ||
       normalized === "DISARMAMENT AND INTERNATIONAL SECURITY COMMITTEE"
     ) {
-      return ["Chairperson", "Vice-Chairperson", "Rapporteur"];
+      return ["Chairperson", "Vice Chairperson", "Rapporteur"];
     }
 
     // 3. JPC (Joint Parliamentary Committee)
     if (normalized === "JPC" || normalized === "JOINT PARLIAMENTARY COMMITTEE") {
-      return ["Moderator", "Deputy Moderator", "Scribe"];
+      return ["Chairperson", "Vice-Chairperson", "Scribe"];
     }
 
     // 4. IMO (International Maritime Organization)
     if (normalized === "IMO" || normalized === "INTERNATIONAL MARITIME ORGANIZATION") {
-      return ["Director", "Assistant Director", "Rapporteur"];
+      return ["Chairperson", "Vice-Chairperson", "Rapporteur"];
     }
 
     // 5. UNW (UN Women)
     if (normalized === "UN WOMEN" || normalized === "UNW") {
-      return ["Executive Director", "Deputy Executive Director", "Rapporteur"];
+      return ["President", "Vice President", "Rapporteur"];
     }
 
     // 6. UNFCCC (UN Framework Convention on Climate Change)
@@ -376,7 +376,7 @@ export default function EBRegisterPage() {
       normalized === "UNITED NATIONS FRAMEWORK CONVENTION OF CLIMATE CHANGE" ||
       normalized.includes("CLIMATE CHANGE")
     ) {
-      return ["President", "Vice-President", "Rapporteur"];
+      return ["President", "Vice President", "Rapporteur"];
     }
 
     // 7. Flagship: UN Civil Society Conference (UN CSC)
@@ -385,7 +385,7 @@ export default function EBRegisterPage() {
       normalized === "UN CIVIL SOCIETY CONFERENCE" ||
       normalized === "UNCSC"
     ) {
-      return ["Conference Co-Chair", "Civil Society Liaison", "Rapporteur"];
+      return ["Conference Chair", "Civil Society Liaison", "Rapporteur"];
     }
 
     // Fallback/Default positions

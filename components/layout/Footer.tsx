@@ -1,5 +1,5 @@
 import {
-  Mail,
+  Phone,
 } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
@@ -54,6 +54,27 @@ export default function Footer() {
               </svg>
               <span className="font-semibold text-[10px] tracking-wider">Follow @uemcon</span>
             </a>
+          </div>
+
+          {/* Middle: Contact Info */}
+          <div className="flex flex-col items-center md:items-start gap-4">
+            <h4 className="font-serif text-sm md:text-base tracking-[0.2em] text-primary-blue uppercase font-bold">
+              Contact Secretariat
+            </h4>
+            <div className="flex flex-col gap-3 text-sm tracking-wide text-ink/80">
+              <a href="tel:+916290492942" className="flex items-center gap-2.5 hover:text-primary-blue transition-colors duration-300 group">
+                <Phone className="h-4 w-4 text-primary-blue/80 group-hover:scale-110 transition-transform duration-300" />
+                <span>Sayan: <strong className="font-semibold text-ink">+91 62904 92942</strong></span>
+              </a>
+              <a href="tel:+918906075640" className="flex items-center gap-2.5 hover:text-primary-blue transition-colors duration-300 group">
+                <Phone className="h-4 w-4 text-primary-blue/80 group-hover:scale-110 transition-transform duration-300" />
+                <span>Poushali: <strong className="font-semibold text-ink">+91 89060 75640</strong></span>
+              </a>
+              <a href="tel:+919836825552" className="flex items-center gap-2.5 hover:text-primary-blue transition-colors duration-300 group">
+                <Phone className="h-4 w-4 text-primary-blue/80 group-hover:scale-110 transition-transform duration-300" />
+                <span>Ishika: <strong className="font-semibold text-ink">+91 98368 25552</strong></span>
+              </a>
+            </div>
           </div>
 
           {/* Right: Embedded Google Map */}
