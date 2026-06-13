@@ -13,7 +13,7 @@ import {
   useTransform,
   Variants,
 } from "framer-motion";
-import { AlertCircle, CheckCircle2, Info, Send } from "lucide-react";
+import { AlertCircle, CheckCircle2, Info, Send, Lock, Calendar, Clock } from "lucide-react";
 import React, { useRef, useState } from "react";
 
 interface Committee {
@@ -25,6 +25,7 @@ interface Committee {
 
 export default function EBRegisterPage() {
   const committees = committeesData as Committee[];
+  const isOpen = false; // Set to true when applications open tomorrow
 
   const [formState, setFormState] = useState({
     name: "",
@@ -706,7 +707,8 @@ export default function EBRegisterPage() {
                 variants={documentVariants}
                 style={{ transformOrigin: "top center" }}
               >
-                <form onSubmit={handleSubmit} noValidate className="space-y-8">
+                {isOpen ? (
+                  <form onSubmit={handleSubmit} noValidate className="space-y-8">
                   {/* Part 1: Personal Details */}
                   <motion.div className="space-y-6" variants={sectionVariants}>
                     <motion.h4
@@ -1293,7 +1295,53 @@ export default function EBRegisterPage() {
                       </motion.div>
                     </div>
                   </motion.div>
-                </form>
+                  </form>
+                ) : (
+                  <div className="flex flex-col items-center justify-center py-12 px-4 text-center">
+                    <motion.div
+                      initial={{ scale: 0.8, opacity: 0 }}
+                      animate={{ scale: 1, opacity: 1 }}
+                      transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
+                      className="w-16 h-16 rounded-full bg-warm-tan/10 flex items-center justify-center mb-6 border border-warm-tan/30 relative"
+                    >
+                      <motion.div
+                        className="absolute inset-0 rounded-full border border-warm-tan/40"
+                        animate={{ scale: [1, 1.3, 1], opacity: [0.8, 0, 0.8] }}
+                        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                      />
+                      <Lock className="h-6 w-6 text-warm-tan" />
+                    </motion.div>
+                    
+                    <h4 className="font-serif text-2xl md:text-3xl text-primary-blue uppercase tracking-wider mb-4">
+                      COMING SOON
+                    </h4>
+                    
+                    <p className="font-sans text-sm md:text-base text-ink/80 max-w-md mb-8 leading-relaxed">
+                      The Executive Board applications portal for UEMCON 2026 is currently locked. It will open tomorrow for all applicants.
+                    </p>
+
+                    <div className="flex flex-col sm:flex-row items-center gap-4 bg-[#022B4B]/30 border border-warm-tan/20 px-6 py-4 rounded-none max-w-md w-full justify-center">
+                      <div className="flex items-center gap-3 text-left">
+                        <Calendar className="h-5 w-5 text-warm-tan shrink-0" />
+                        <div>
+                          <p className="font-sans text-[10px] uppercase tracking-wider text-warm-tan/85 font-bold">Opening Date</p>
+                          <p className="font-serif text-sm text-ink font-semibold">Tomorrow, June 14, 2026</p>
+                        </div>
+                      </div>
+                      <div className="hidden sm:block w-[1px] h-8 bg-warm-tan/20" />
+                      <div className="flex items-center gap-3 text-left">
+                        <Clock className="h-5 w-5 text-warm-tan shrink-0" />
+                        <div>
+                          <p className="font-sans text-[10px] uppercase tracking-wider text-warm-tan/85 font-bold">Status</p>
+                          <p className="font-serif text-sm text-ink font-semibold flex items-center gap-1.5">
+                            <span className="h-2 w-2 rounded-full bg-amber-500 animate-pulse" />
+                            Standing By
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </motion.div>
             </div>
 
