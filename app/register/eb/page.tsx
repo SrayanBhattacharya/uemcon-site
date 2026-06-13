@@ -1,14 +1,20 @@
 "use client";
 
-import React, { useState, useRef } from "react";
-import { Send, Info, CheckCircle2, AlertCircle } from "lucide-react";
 import Container from "@/components/layout/Container";
-import Section from "@/components/ui/Section";
-import Heading from "@/components/ui/Heading";
-import Card from "@/components/ui/Card";
 import Button from "@/components/ui/Button";
+import Heading from "@/components/ui/Heading";
+import Section from "@/components/ui/Section";
 import committeesData from "@/lib/committees.json";
-import { motion, useScroll, useTransform, useSpring, AnimatePresence, Variants } from "framer-motion";
+import {
+  AnimatePresence,
+  motion,
+  useScroll,
+  useSpring,
+  useTransform,
+  Variants,
+} from "framer-motion";
+import { AlertCircle, CheckCircle2, Info, Send } from "lucide-react";
+import React, { useRef, useState } from "react";
 
 interface Committee {
   id: string;
@@ -89,7 +95,12 @@ export default function EBRegisterPage() {
       filter: "blur(0px)",
       transition: { duration: 0.4, ease: "easeOut" },
     },
-    exit: { opacity: 0, y: -10, filter: "blur(2px)", transition: { duration: 0.3 } },
+    exit: {
+      opacity: 0,
+      y: -10,
+      filter: "blur(2px)",
+      transition: { duration: 0.3 },
+    },
   };
 
   const documentVariants: Variants = {
@@ -135,7 +146,8 @@ export default function EBRegisterPage() {
   const validate = () => {
     const newErrors: Record<string, string> = {};
     if (!formState.name.trim()) newErrors.name = "Full name is required";
-    if (!formState.institute.trim()) newErrors.institute = "Institute is required";
+    if (!formState.institute.trim())
+      newErrors.institute = "Institute is required";
 
     if (!formState.email.trim()) {
       newErrors.email = "Email address is required";
@@ -157,17 +169,29 @@ export default function EBRegisterPage() {
       newErrors.whatsapp = "WhatsApp number must be at least 10 digits";
     }
 
-    if (!formState.totalExperience.trim()) newErrors.totalExperience = "Total experience is required";
-    if (!formState.previousExperience.trim()) newErrors.previousExperience = "Previous experience description is required";
+    if (!formState.totalExperience.trim())
+      newErrors.totalExperience = "Total experience is required";
+    if (!formState.previousExperience.trim())
+      newErrors.previousExperience =
+        "Previous experience description is required";
 
-    if (!formState.committeePref1) newErrors.committeePref1 = "First preference committee is required";
-    if (!formState.position1) newErrors.position1 = "Preferred position for committee 1 is required";
+    if (!formState.committeePref1)
+      newErrors.committeePref1 = "First preference committee is required";
+    if (!formState.position1)
+      newErrors.position1 = "Preferred position for committee 1 is required";
 
-    if (!formState.committeePref2) newErrors.committeePref2 = "Second preference committee is required";
-    if (!formState.position2) newErrors.position2 = "Preferred position for committee 2 is required";
+    if (!formState.committeePref2)
+      newErrors.committeePref2 = "Second preference committee is required";
+    if (!formState.position2)
+      newErrors.position2 = "Preferred position for committee 2 is required";
 
-    if (formState.committeePref1 && formState.committeePref2 && formState.committeePref1 === formState.committeePref2) {
-      newErrors.committeePref2 = "Second preference committee must be different from first preference";
+    if (
+      formState.committeePref1 &&
+      formState.committeePref2 &&
+      formState.committeePref1 === formState.committeePref2
+    ) {
+      newErrors.committeePref2 =
+        "Second preference committee must be different from first preference";
     }
 
     if (!resumeFile) {
@@ -231,7 +255,8 @@ export default function EBRegisterPage() {
       if (response.ok && data.success) {
         setStatus({
           type: "success",
-          message: "EB applications successfully submitted! The secretariat desk will evaluate your credentials.",
+          message:
+            "EB applications successfully submitted! The secretariat desk will evaluate your credentials.",
         });
         setErrors({});
         setFormState({
@@ -255,14 +280,16 @@ export default function EBRegisterPage() {
       } else {
         setStatus({
           type: "error",
-          message: data.error || "Failed to submit EB application. Please try again.",
+          message:
+            data.error || "Failed to submit EB application. Please try again.",
         });
       }
     } catch (err) {
       console.error(err);
       setStatus({
         type: "error",
-        message: "An unexpected registry error occurred. Please contact academic affairs.",
+        message:
+          "An unexpected registry error occurred. Please contact academic affairs.",
       });
     }
   };
@@ -271,7 +298,10 @@ export default function EBRegisterPage() {
     const file = e.target.files?.[0] || null;
     if (file) {
       if (file.size > 2 * 1024 * 1024) {
-        setErrors((prev) => ({ ...prev, resume: "Resume file size must be under 2MB" }));
+        setErrors((prev) => ({
+          ...prev,
+          resume: "Resume file size must be under 2MB",
+        }));
         setResumeFile(null);
       } else {
         setResumeFile(file);
@@ -287,7 +317,9 @@ export default function EBRegisterPage() {
   };
 
   const handleInputChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement
+    >,
   ) => {
     const { id, value } = e.target;
     setFormState((prev) => {
@@ -319,9 +351,7 @@ export default function EBRegisterPage() {
   const getInputStyle = (fieldId: string) => {
     const hasError = !!errors[fieldId];
     return `w-full bg-paper/50 border rounded-none px-4 py-2.5 font-sans text-xs text-ink focus:outline-none transition-colors duration-300 relative z-10 ${
-      hasError
-        ? "border-red-500/60"
-        : "border-warm-tan/30"
+      hasError ? "border-red-500/60" : "border-warm-tan/30"
     }`;
   };
 
@@ -338,7 +368,7 @@ export default function EBRegisterPage() {
 
   const getPositionsForCommittee = (committeeName: string) => {
     if (!committeeName) return [];
-    
+
     const normalized = committeeName.trim().toUpperCase();
 
     // 1. IP (International Press)
@@ -356,12 +386,18 @@ export default function EBRegisterPage() {
     }
 
     // 3. JPC (Joint Parliamentary Committee)
-    if (normalized === "JPC" || normalized === "JOINT PARLIAMENTARY COMMITTEE") {
+    if (
+      normalized === "JPC" ||
+      normalized === "JOINT PARLIAMENTARY COMMITTEE"
+    ) {
       return ["Chairperson", "Vice-Chairperson", "Scribe"];
     }
 
     // 4. IMO (International Maritime Organization)
-    if (normalized === "IMO" || normalized === "INTERNATIONAL MARITIME ORGANIZATION") {
+    if (
+      normalized === "IMO" ||
+      normalized === "INTERNATIONAL MARITIME ORGANIZATION"
+    ) {
       return ["Chairperson", "Vice-Chairperson", "Rapporteur"];
     }
 
@@ -404,7 +440,7 @@ export default function EBRegisterPage() {
       {/* Full-width warm-tan Header Banner */}
       <div className="w-full bg-[#CBAD7F] relative overflow-hidden flex items-center md:items-end px-6 md:px-12 lg:px-16 py-3 md:py-5 h-[90px] md:h-[155px] border-b border-warm-tan/30 select-none">
         {/* Giant Background Text */}
-        <motion.div 
+        <motion.div
           className="absolute inset-0 pointer-events-none"
           initial={{ opacity: 0, y: -40 }}
           animate={{ opacity: 1, y: 0 }}
@@ -417,7 +453,7 @@ export default function EBRegisterPage() {
 
         {/* Banner Front Content */}
         <div className="relative z-10 w-full flex justify-between items-center md:items-end text-[#011E33] mb-0 md:mb-1 overflow-hidden">
-          <motion.span 
+          <motion.span
             className="font-sans font-bold text-[9px] sm:text-xs tracking-[0.25em] uppercase whitespace-nowrap"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -425,7 +461,7 @@ export default function EBRegisterPage() {
           >
             EXECUTIVE BOARD PORTFOLIO
           </motion.span>
-          <motion.span 
+          <motion.span
             className="font-serif italic text-xs md:text-sm font-semibold max-w-[280px] sm:max-w-md text-right leading-snug hidden md:block"
             initial={{ opacity: 0, x: 40 }}
             animate={{ opacity: 1, x: 0 }}
@@ -442,14 +478,55 @@ export default function EBRegisterPage() {
           className="absolute inset-0 pointer-events-none z-0 flex justify-center items-center opacity-[0.025]"
           style={{ y: springYAmbient }}
         >
-          <svg width="800" height="800" viewBox="0 0 800 800" fill="none" xmlns="http://www.w3.org/2000/svg" className="max-w-full">
-            <circle cx="400" cy="400" r="380" stroke="#CBAD7F" strokeWidth="1" strokeDasharray="4 12" />
-            <circle cx="400" cy="400" r="360" stroke="#CBAD7F" strokeWidth="0.5" />
+          <svg
+            width="800"
+            height="800"
+            viewBox="0 0 800 800"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="max-w-full"
+          >
+            <circle
+              cx="400"
+              cy="400"
+              r="380"
+              stroke="#CBAD7F"
+              strokeWidth="1"
+              strokeDasharray="4 12"
+            />
+            <circle
+              cx="400"
+              cy="400"
+              r="360"
+              stroke="#CBAD7F"
+              strokeWidth="0.5"
+            />
             <path d="M400 0L400 800" stroke="#CBAD7F" strokeWidth="0.5" />
             <path d="M0 400L800 400" stroke="#CBAD7F" strokeWidth="0.5" />
-            <rect x="200" y="200" width="400" height="400" transform="rotate(45 400 400)" stroke="#CBAD7F" strokeWidth="0.5" />
-            <circle cx="400" cy="400" r="150" stroke="#CBAD7F" strokeWidth="1" />
-            <circle cx="400" cy="400" r="130" stroke="#CBAD7F" strokeWidth="0.5" strokeDasharray="2 6" />
+            <rect
+              x="200"
+              y="200"
+              width="400"
+              height="400"
+              transform="rotate(45 400 400)"
+              stroke="#CBAD7F"
+              strokeWidth="0.5"
+            />
+            <circle
+              cx="400"
+              cy="400"
+              r="150"
+              stroke="#CBAD7F"
+              strokeWidth="1"
+            />
+            <circle
+              cx="400"
+              cy="400"
+              r="130"
+              stroke="#CBAD7F"
+              strokeWidth="0.5"
+              strokeDasharray="2 6"
+            />
           </svg>
         </motion.div>
 
@@ -469,75 +546,166 @@ export default function EBRegisterPage() {
               <motion.div
                 className="absolute top-0 left-0 right-0 h-[1px] bg-warm-tan/30 origin-left"
                 initial={{ scaleX: 0 }}
-                variants={{ visible: { scaleX: 1, transition: { duration: 0.8, ease: "easeOut" } }, exit: { scaleX: 0, transition: { duration: 0.4 } } }}
+                variants={{
+                  visible: {
+                    scaleX: 1,
+                    transition: { duration: 0.8, ease: "easeOut" },
+                  },
+                  exit: { scaleX: 0, transition: { duration: 0.4 } },
+                }}
               />
               <motion.div
                 className="absolute bottom-0 left-0 right-0 h-[1px] bg-warm-tan/30 origin-right"
                 initial={{ scaleX: 0 }}
-                variants={{ visible: { scaleX: 1, transition: { duration: 0.8, ease: "easeOut" } }, exit: { scaleX: 0, transition: { duration: 0.4 } } }}
+                variants={{
+                  visible: {
+                    scaleX: 1,
+                    transition: { duration: 0.8, ease: "easeOut" },
+                  },
+                  exit: { scaleX: 0, transition: { duration: 0.4 } },
+                }}
               />
               <motion.div
                 className="absolute top-0 bottom-0 left-0 w-[1px] bg-warm-tan/30 origin-top"
                 initial={{ scaleY: 0 }}
-                variants={{ visible: { scaleY: 1, transition: { duration: 0.8, ease: "easeOut" } }, exit: { scaleY: 0, transition: { duration: 0.4 } } }}
+                variants={{
+                  visible: {
+                    scaleY: 1,
+                    transition: { duration: 0.8, ease: "easeOut" },
+                  },
+                  exit: { scaleY: 0, transition: { duration: 0.4 } },
+                }}
               />
               <motion.div
                 className="absolute top-0 bottom-0 right-0 w-[1px] bg-warm-tan/30 origin-bottom"
                 initial={{ scaleY: 0 }}
-                variants={{ visible: { scaleY: 1, transition: { duration: 0.8, ease: "easeOut" } }, exit: { scaleY: 0, transition: { duration: 0.4 } } }}
+                variants={{
+                  visible: {
+                    scaleY: 1,
+                    transition: { duration: 0.8, ease: "easeOut" },
+                  },
+                  exit: { scaleY: 0, transition: { duration: 0.4 } },
+                }}
               />
 
               {/* Corner brackets emerge */}
               <motion.div
                 className="absolute top-3 left-3 w-2.5 h-2.5 border-t border-l border-warm-tan/60"
                 initial={{ opacity: 0, x: -5, y: -5 }}
-                variants={{ visible: { opacity: 1, x: 0, y: 0, transition: { duration: 0.6, delay: 0.2 } }, exit: { opacity: 0 } }}
+                variants={{
+                  visible: {
+                    opacity: 1,
+                    x: 0,
+                    y: 0,
+                    transition: { duration: 0.6, delay: 0.2 },
+                  },
+                  exit: { opacity: 0 },
+                }}
               />
               <motion.div
                 className="absolute top-3 right-3 w-2.5 h-2.5 border-t border-r border-warm-tan/60"
                 initial={{ opacity: 0, x: 5, y: -5 }}
-                variants={{ visible: { opacity: 1, x: 0, y: 0, transition: { duration: 0.6, delay: 0.2 } }, exit: { opacity: 0 } }}
+                variants={{
+                  visible: {
+                    opacity: 1,
+                    x: 0,
+                    y: 0,
+                    transition: { duration: 0.6, delay: 0.2 },
+                  },
+                  exit: { opacity: 0 },
+                }}
               />
               <motion.div
                 className="absolute bottom-3 left-3 w-2.5 h-2.5 border-b border-l border-warm-tan/60"
                 initial={{ opacity: 0, x: -5, y: 5 }}
-                variants={{ visible: { opacity: 1, x: 0, y: 0, transition: { duration: 0.6, delay: 0.2 } }, exit: { opacity: 0 } }}
+                variants={{
+                  visible: {
+                    opacity: 1,
+                    x: 0,
+                    y: 0,
+                    transition: { duration: 0.6, delay: 0.2 },
+                  },
+                  exit: { opacity: 0 },
+                }}
               />
               <motion.div
                 className="absolute bottom-3 right-3 w-2.5 h-2.5 border-b border-r border-warm-tan/60"
                 initial={{ opacity: 0, x: 5, y: 5 }}
-                variants={{ visible: { opacity: 1, x: 0, y: 0, transition: { duration: 0.6, delay: 0.2 } }, exit: { opacity: 0 } }}
+                variants={{
+                  visible: {
+                    opacity: 1,
+                    x: 0,
+                    y: 0,
+                    transition: { duration: 0.6, delay: 0.2 },
+                  },
+                  exit: { opacity: 0 },
+                }}
               />
-              
+
               {/* Gold tracing effect accent */}
               <motion.div
                 className="absolute top-0 left-0 h-[1px] bg-warm-tan/80"
                 initial={{ width: "0%", opacity: 0 }}
-                variants={{ visible: { width: "15%", opacity: [0, 1, 0], transition: { duration: 1.5, delay: 0.4, ease: "easeInOut", times: [0, 0.5, 1] } }, exit: { opacity: 0 } }}
+                variants={{
+                  visible: {
+                    width: "15%",
+                    opacity: [0, 1, 0],
+                    transition: {
+                      duration: 1.5,
+                      delay: 0.4,
+                      ease: "easeInOut",
+                      times: [0, 0.5, 1],
+                    },
+                  },
+                  exit: { opacity: 0 },
+                }}
               />
             </motion.div>
 
             <div className="relative p-6 sm:p-10 bg-transparent">
               {/* Stage 2: Title becomes visible */}
-              <motion.div className="mb-10 text-center md:text-left" variants={titleVariants} style={{ y: springYHeader }}>
-                <Heading level={3} className="text-xl md:text-2xl text-primary-blue font-serif uppercase tracking-wider mb-2">
-                  <motion.span style={{ textShadow: "0px 1px 1px rgba(255,255,255,0.05)" }}>
+              <motion.div
+                className="mb-10 text-center md:text-left"
+                variants={titleVariants}
+                style={{ y: springYHeader }}
+              >
+                <Heading
+                  level={3}
+                  className="text-xl md:text-2xl text-primary-blue font-serif uppercase tracking-wider mb-2"
+                >
+                  <motion.span
+                    style={{ textShadow: "0px 1px 1px rgba(255,255,255,0.05)" }}
+                  >
                     EXECUTIVE BOARD PORTAL
                   </motion.span>
                 </Heading>
                 <p className="font-sans text-xs text-ink/60">
-                  Submit credentials and session preferences for academic board evaluation.
+                  Submit credentials and session preferences for academic board
+                  evaluation.
                 </p>
                 <motion.div
                   className="h-[1px] bg-warm-tan/20 w-full mt-4 origin-left"
                   initial={{ scaleX: 0 }}
-                  variants={{ visible: { scaleX: 1, transition: { duration: 0.8, delay: 0.4, ease: "easeOut" } }, exit: { scaleX: 0 } }}
+                  variants={{
+                    visible: {
+                      scaleX: 1,
+                      transition: {
+                        duration: 0.8,
+                        delay: 0.4,
+                        ease: "easeOut",
+                      },
+                    },
+                    exit: { scaleX: 0 },
+                  }}
                   style={{ y: springYLine }}
                 />
               </motion.div>
 
               {/* Stage 3: Document unfolds */}
-              <motion.div variants={documentVariants} style={{ transformOrigin: "top center" }}>
+              <motion.div
+                variants={documentVariants}
+                style={{ transformOrigin: "top center" }}
+              >
                 <form onSubmit={handleSubmit} noValidate className="space-y-8">
                   {/* Part 1: Personal Details */}
                   <motion.div className="space-y-6" variants={sectionVariants}>
@@ -549,8 +717,14 @@ export default function EBRegisterPage() {
                     </motion.h4>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <motion.div className="space-y-2" variants={fieldVariants}>
-                        <label htmlFor="name" className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold">
+                      <motion.div
+                        className="space-y-2"
+                        variants={fieldVariants}
+                      >
+                        <label
+                          htmlFor="name"
+                          className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold"
+                        >
                           Full Name
                         </label>
                         <motion.input
@@ -564,13 +738,26 @@ export default function EBRegisterPage() {
                         />
                         <AnimatePresence>
                           {errors.name && (
-                            <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="text-[10px] text-red-400 mt-1 font-sans font-medium">{errors.name}</motion.p>
+                            <motion.p
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              className="text-[10px] text-red-400 mt-1 font-sans font-medium"
+                            >
+                              {errors.name}
+                            </motion.p>
                           )}
                         </AnimatePresence>
                       </motion.div>
 
-                      <motion.div className="space-y-2" variants={fieldVariants}>
-                        <label htmlFor="institute" className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold">
+                      <motion.div
+                        className="space-y-2"
+                        variants={fieldVariants}
+                      >
+                        <label
+                          htmlFor="institute"
+                          className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold"
+                        >
                           Institute Name
                         </label>
                         <motion.input
@@ -584,13 +771,26 @@ export default function EBRegisterPage() {
                         />
                         <AnimatePresence>
                           {errors.institute && (
-                            <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="text-[10px] text-red-400 mt-1 font-sans font-medium">{errors.institute}</motion.p>
+                            <motion.p
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              className="text-[10px] text-red-400 mt-1 font-sans font-medium"
+                            >
+                              {errors.institute}
+                            </motion.p>
                           )}
                         </AnimatePresence>
                       </motion.div>
 
-                      <motion.div className="space-y-2" variants={fieldVariants}>
-                        <label htmlFor="email" className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold">
+                      <motion.div
+                        className="space-y-2"
+                        variants={fieldVariants}
+                      >
+                        <label
+                          htmlFor="email"
+                          className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold"
+                        >
                           Email Address
                         </label>
                         <motion.input
@@ -604,13 +804,26 @@ export default function EBRegisterPage() {
                         />
                         <AnimatePresence>
                           {errors.email && (
-                            <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="text-[10px] text-red-400 mt-1 font-sans font-medium">{errors.email}</motion.p>
+                            <motion.p
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              className="text-[10px] text-red-400 mt-1 font-sans font-medium"
+                            >
+                              {errors.email}
+                            </motion.p>
                           )}
                         </AnimatePresence>
                       </motion.div>
 
-                      <motion.div className="space-y-2" variants={fieldVariants}>
-                        <label htmlFor="gender" className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold">
+                      <motion.div
+                        className="space-y-2"
+                        variants={fieldVariants}
+                      >
+                        <label
+                          htmlFor="gender"
+                          className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold"
+                        >
                           Gender
                         </label>
                         <motion.select
@@ -627,13 +840,26 @@ export default function EBRegisterPage() {
                         </motion.select>
                         <AnimatePresence>
                           {errors.gender && (
-                            <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="text-[10px] text-red-400 mt-1 font-sans font-medium">{errors.gender}</motion.p>
+                            <motion.p
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              className="text-[10px] text-red-400 mt-1 font-sans font-medium"
+                            >
+                              {errors.gender}
+                            </motion.p>
                           )}
                         </AnimatePresence>
                       </motion.div>
 
-                      <motion.div className="space-y-2" variants={fieldVariants}>
-                        <label htmlFor="phone" className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold">
+                      <motion.div
+                        className="space-y-2"
+                        variants={fieldVariants}
+                      >
+                        <label
+                          htmlFor="phone"
+                          className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold"
+                        >
                           Contact Phone Number
                         </label>
                         <motion.input
@@ -654,13 +880,26 @@ export default function EBRegisterPage() {
                         />
                         <AnimatePresence>
                           {errors.phone && (
-                            <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="text-[10px] text-red-400 mt-1 font-sans font-medium">{errors.phone}</motion.p>
+                            <motion.p
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              className="text-[10px] text-red-400 mt-1 font-sans font-medium"
+                            >
+                              {errors.phone}
+                            </motion.p>
                           )}
                         </AnimatePresence>
                       </motion.div>
 
-                      <motion.div className="space-y-2" variants={fieldVariants}>
-                        <label htmlFor="whatsapp" className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold">
+                      <motion.div
+                        className="space-y-2"
+                        variants={fieldVariants}
+                      >
+                        <label
+                          htmlFor="whatsapp"
+                          className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold"
+                        >
                           WhatsApp Number
                         </label>
                         <motion.input
@@ -681,11 +920,17 @@ export default function EBRegisterPage() {
                         />
                         <AnimatePresence>
                           {errors.whatsapp && (
-                            <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="text-[10px] text-red-400 mt-1 font-sans font-medium">{errors.whatsapp}</motion.p>
+                            <motion.p
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              className="text-[10px] text-red-400 mt-1 font-sans font-medium"
+                            >
+                              {errors.whatsapp}
+                            </motion.p>
                           )}
                         </AnimatePresence>
                       </motion.div>
-
                     </div>
                   </motion.div>
 
@@ -701,7 +946,11 @@ export default function EBRegisterPage() {
                     {/* Preference 1 */}
                     <motion.div
                       className="p-4 bg-[#022B4B]/30 border border-warm-tan/10 space-y-4 relative"
-                      whileHover={{ y: -2, borderColor: "rgba(203, 173, 127, 0.4)", boxShadow: "0 6px 20px rgba(0,0,0,0.15)" }}
+                      whileHover={{
+                        y: -2,
+                        borderColor: "rgba(203, 173, 127, 0.4)",
+                        boxShadow: "0 6px 20px rgba(0,0,0,0.15)",
+                      }}
                       transition={{ duration: 0.3 }}
                       variants={fieldVariants}
                     >
@@ -710,7 +959,10 @@ export default function EBRegisterPage() {
                       </h5>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-2 relative z-10">
-                          <label htmlFor="committeePref1" className="block font-sans text-[10px] tracking-wider uppercase text-ink/75 font-bold">
+                          <label
+                            htmlFor="committeePref1"
+                            className="block font-sans text-[10px] tracking-wider uppercase text-ink/75 font-bold"
+                          >
                             Committee Preference 1
                           </label>
                           <motion.select
@@ -722,20 +974,34 @@ export default function EBRegisterPage() {
                           >
                             <option value="">Select Committee Choice 1</option>
                             {committees.map((c) => (
-                              <option key={c.id} value={c.name} disabled={c.name === formState.committeePref2}>
+                              <option
+                                key={c.id}
+                                value={c.name}
+                                disabled={c.name === formState.committeePref2}
+                              >
                                 {c.fullName} ({c.name})
                               </option>
                             ))}
                           </motion.select>
                           <AnimatePresence>
                             {errors.committeePref1 && (
-                              <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="text-[10px] text-red-400 mt-1 font-sans font-medium">{errors.committeePref1}</motion.p>
+                              <motion.p
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                className="text-[10px] text-red-400 mt-1 font-sans font-medium"
+                              >
+                                {errors.committeePref1}
+                              </motion.p>
                             )}
                           </AnimatePresence>
                         </div>
 
                         <div className="space-y-2 relative z-10">
-                          <label htmlFor="position1" className="block font-sans text-[10px] tracking-wider uppercase text-ink/75 font-bold">
+                          <label
+                            htmlFor="position1"
+                            className="block font-sans text-[10px] tracking-wider uppercase text-ink/75 font-bold"
+                          >
                             Preferred Position 1
                           </label>
                           <motion.select
@@ -746,7 +1012,9 @@ export default function EBRegisterPage() {
                             {...getMotionInputProps(!!errors.position1)}
                           >
                             <option value="">Select Position Choice 1</option>
-                            {getPositionsForCommittee(formState.committeePref1).map((pos) => (
+                            {getPositionsForCommittee(
+                              formState.committeePref1,
+                            ).map((pos) => (
                               <option key={pos} value={pos}>
                                 {pos}
                               </option>
@@ -754,7 +1022,14 @@ export default function EBRegisterPage() {
                           </motion.select>
                           <AnimatePresence>
                             {errors.position1 && (
-                              <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="text-[10px] text-red-400 mt-1 font-sans font-medium">{errors.position1}</motion.p>
+                              <motion.p
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                className="text-[10px] text-red-400 mt-1 font-sans font-medium"
+                              >
+                                {errors.position1}
+                              </motion.p>
                             )}
                           </AnimatePresence>
                         </div>
@@ -764,7 +1039,11 @@ export default function EBRegisterPage() {
                     {/* Preference 2 */}
                     <motion.div
                       className="p-4 bg-[#022B4B]/30 border border-warm-tan/10 space-y-4 relative"
-                      whileHover={{ y: -2, borderColor: "rgba(203, 173, 127, 0.4)", boxShadow: "0 6px 20px rgba(0,0,0,0.15)" }}
+                      whileHover={{
+                        y: -2,
+                        borderColor: "rgba(203, 173, 127, 0.4)",
+                        boxShadow: "0 6px 20px rgba(0,0,0,0.15)",
+                      }}
                       transition={{ duration: 0.3 }}
                       variants={fieldVariants}
                     >
@@ -773,7 +1052,10 @@ export default function EBRegisterPage() {
                       </h5>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                         <div className="space-y-2 relative z-10">
-                          <label htmlFor="committeePref2" className="block font-sans text-[10px] tracking-wider uppercase text-ink/75 font-bold">
+                          <label
+                            htmlFor="committeePref2"
+                            className="block font-sans text-[10px] tracking-wider uppercase text-ink/75 font-bold"
+                          >
                             Committee Preference 2
                           </label>
                           <motion.select
@@ -785,20 +1067,34 @@ export default function EBRegisterPage() {
                           >
                             <option value="">Select Committee Choice 2</option>
                             {committees.map((c) => (
-                              <option key={c.id} value={c.name} disabled={c.name === formState.committeePref1}>
+                              <option
+                                key={c.id}
+                                value={c.name}
+                                disabled={c.name === formState.committeePref1}
+                              >
                                 {c.fullName} ({c.name})
                               </option>
                             ))}
                           </motion.select>
                           <AnimatePresence>
                             {errors.committeePref2 && (
-                              <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="text-[10px] text-red-400 mt-1 font-sans font-medium">{errors.committeePref2}</motion.p>
+                              <motion.p
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                className="text-[10px] text-red-400 mt-1 font-sans font-medium"
+                              >
+                                {errors.committeePref2}
+                              </motion.p>
                             )}
                           </AnimatePresence>
                         </div>
 
                         <div className="space-y-2 relative z-10">
-                          <label htmlFor="position2" className="block font-sans text-[10px] tracking-wider uppercase text-ink/75 font-bold">
+                          <label
+                            htmlFor="position2"
+                            className="block font-sans text-[10px] tracking-wider uppercase text-ink/75 font-bold"
+                          >
                             Preferred Position 2
                           </label>
                           <motion.select
@@ -809,7 +1105,9 @@ export default function EBRegisterPage() {
                             {...getMotionInputProps(!!errors.position2)}
                           >
                             <option value="">Select Position Choice 2</option>
-                            {getPositionsForCommittee(formState.committeePref2).map((pos) => (
+                            {getPositionsForCommittee(
+                              formState.committeePref2,
+                            ).map((pos) => (
                               <option key={pos} value={pos}>
                                 {pos}
                               </option>
@@ -817,7 +1115,14 @@ export default function EBRegisterPage() {
                           </motion.select>
                           <AnimatePresence>
                             {errors.position2 && (
-                              <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="text-[10px] text-red-400 mt-1 font-sans font-medium">{errors.position2}</motion.p>
+                              <motion.p
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                className="text-[10px] text-red-400 mt-1 font-sans font-medium"
+                              >
+                                {errors.position2}
+                              </motion.p>
                             )}
                           </AnimatePresence>
                         </div>
@@ -836,8 +1141,14 @@ export default function EBRegisterPage() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                       {/* Total Experience */}
-                      <motion.div className="space-y-2 col-span-2" variants={fieldVariants}>
-                        <label htmlFor="totalExperience" className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold">
+                      <motion.div
+                        className="space-y-2 col-span-2"
+                        variants={fieldVariants}
+                      >
+                        <label
+                          htmlFor="totalExperience"
+                          className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold"
+                        >
                           Total Number of MUN / EB Sessions
                         </label>
                         <motion.input
@@ -857,7 +1168,14 @@ export default function EBRegisterPage() {
                         />
                         <AnimatePresence>
                           {errors.totalExperience && (
-                            <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="text-[10px] text-red-400 mt-1 font-sans font-medium">{errors.totalExperience}</motion.p>
+                            <motion.p
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              className="text-[10px] text-red-400 mt-1 font-sans font-medium"
+                            >
+                              {errors.totalExperience}
+                            </motion.p>
                           )}
                         </AnimatePresence>
                       </motion.div>
@@ -865,8 +1183,13 @@ export default function EBRegisterPage() {
 
                     {/* Previous Experience */}
                     <motion.div className="space-y-2" variants={fieldVariants}>
-                      <label htmlFor="previousExperience" className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold">
-                        Summary of Previous Executive Board / Delegate Experience (List specific MUNs, committees chaired, or awards)
+                      <label
+                        htmlFor="previousExperience"
+                        className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold"
+                      >
+                        Summary of Previous Executive Board / Delegate
+                        Experience (List specific MUNs, committees chaired, or
+                        awards)
                       </label>
                       <motion.textarea
                         id="previousExperience"
@@ -879,14 +1202,24 @@ export default function EBRegisterPage() {
                       />
                       <AnimatePresence>
                         {errors.previousExperience && (
-                          <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="text-[10px] text-red-400 mt-1 font-sans font-medium">{errors.previousExperience}</motion.p>
+                          <motion.p
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="text-[10px] text-red-400 mt-1 font-sans font-medium"
+                          >
+                            {errors.previousExperience}
+                          </motion.p>
                         )}
                       </AnimatePresence>
                     </motion.div>
 
                     {/* Resume Upload */}
                     <motion.div className="space-y-2" variants={fieldVariants}>
-                      <label htmlFor="resume" className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold">
+                      <label
+                        htmlFor="resume"
+                        className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold"
+                      >
                         Upload Resume (PDF, DOC, DOCX - Max 2MB)
                       </label>
                       <motion.input
@@ -895,19 +1228,32 @@ export default function EBRegisterPage() {
                         ref={fileInputRef}
                         onChange={handleFileChange}
                         accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                        className={getInputStyle("resume") + " file:mr-4 file:py-1 file:px-3 file:border-0 file:text-xs file:font-semibold file:bg-warm-tan/20 file:text-warm-tan hover:file:bg-warm-tan/30 file:cursor-pointer file:font-sans"}
+                        className={
+                          getInputStyle("resume") +
+                          " file:mr-4 file:py-1 file:px-3 file:border-0 file:text-xs file:font-semibold file:bg-warm-tan/20 file:text-warm-tan hover:file:bg-warm-tan/30 file:cursor-pointer file:font-sans"
+                        }
                         {...getMotionInputProps(!!errors.resume)}
                       />
                       <AnimatePresence>
                         {errors.resume && (
-                          <motion.p initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: "auto" }} exit={{ opacity: 0, height: 0 }} className="text-[10px] text-red-400 mt-1 font-sans font-medium">{errors.resume}</motion.p>
+                          <motion.p
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: "auto" }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="text-[10px] text-red-400 mt-1 font-sans font-medium"
+                          >
+                            {errors.resume}
+                          </motion.p>
                         )}
                       </AnimatePresence>
                     </motion.div>
                   </motion.div>
 
                   {/* Submissions */}
-                  <motion.div className="space-y-4 pt-4 border-t border-warm-tan/10 relative" variants={sectionVariants}>
+                  <motion.div
+                    className="space-y-4 pt-4 border-t border-warm-tan/10 relative"
+                    variants={sectionVariants}
+                  >
                     <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
                       <div className="flex items-center gap-1.5 text-[10px] text-ink/50 uppercase tracking-widest font-semibold">
                         <Info className="h-3.5 w-3.5 text-warm-tan/60" />
@@ -915,8 +1261,14 @@ export default function EBRegisterPage() {
                       </div>
 
                       <motion.div
-                        whileHover={{ y: -1, boxShadow: "0 0 15px rgba(203, 173, 127, 0.2)" }}
-                        whileTap={{ scale: 0.98, boxShadow: "0 0 0px rgba(203, 173, 127, 0)" }}
+                        whileHover={{
+                          y: -1,
+                          boxShadow: "0 0 15px rgba(203, 173, 127, 0.2)",
+                        }}
+                        whileTap={{
+                          scale: 0.98,
+                          boxShadow: "0 0 0px rgba(203, 173, 127, 0)",
+                        }}
                         className="relative group rounded-none"
                       >
                         {/* Light sweep effect container */}
@@ -933,7 +1285,9 @@ export default function EBRegisterPage() {
                           disabled={status.type === "submitting"}
                           className="flex items-center gap-2 px-8 w-full sm:w-auto relative z-10"
                         >
-                          {status.type === "submitting" ? "Transmitting..." : "Submit Portfolio"}
+                          {status.type === "submitting"
+                            ? "Transmitting..."
+                            : "Submit Portfolio"}
                           <Send className="h-3 w-3" />
                         </Button>
                       </motion.div>

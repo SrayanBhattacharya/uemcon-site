@@ -187,15 +187,13 @@ export default function Hero() {
                   </div>
 
                   {/* EB Option */}
-                  <div className="space-y-1.5">
-                    <motion.a
-                      href="/register/eb"
-                      whileHover={{ x: 4 }}
-                      className="w-full bg-[#022B4B] text-[#F4ECD8] border border-warm-tan/30 px-5 py-3.5 font-sans font-bold text-[10px] sm:text-xs uppercase tracking-widest flex flex-wrap items-center justify-between gap-x-2 gap-y-1 cursor-pointer shadow-md"
-                    >
+                  <div className="space-y-1.5 opacity-50 cursor-not-allowed">
+                    <div className="w-full bg-[#022B4B] text-[#F4ECD8] border border-warm-tan/30 px-5 py-3.5 font-sans font-bold text-[10px] sm:text-xs uppercase tracking-widest flex flex-wrap items-center justify-between gap-x-2 gap-y-1 shadow-md">
                       <span>Executive Board Applications</span>
-                      <span>➤</span>
-                    </motion.a>
+                      <span className="text-[9px] font-sans tracking-normal opacity-80">
+                        (Coming Soon)
+                      </span>
+                    </div>
                   </div>
                 </div>
               </motion.div>
