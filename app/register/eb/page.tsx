@@ -13,7 +13,15 @@ import {
   useTransform,
   Variants,
 } from "framer-motion";
-import { AlertCircle, CheckCircle2, Info, Send, Lock, Calendar, Clock } from "lucide-react";
+import {
+  AlertCircle,
+  Calendar,
+  CheckCircle2,
+  Clock,
+  Info,
+  Lock,
+  Send,
+} from "lucide-react";
 import React, { useRef, useState } from "react";
 
 interface Committee {
@@ -708,631 +716,670 @@ export default function EBRegisterPage() {
                 style={{ transformOrigin: "top center" }}
               >
                 {isOpen ? (
-                  <form onSubmit={handleSubmit} noValidate className="space-y-8">
-                  {/* Part 1: Personal Details */}
-                  <motion.div className="space-y-6" variants={sectionVariants}>
-                    <motion.h4
-                      className="font-serif text-sm tracking-widest uppercase text-warm-tan font-bold pb-2 border-b border-warm-tan/10"
-                      style={{ y: springYSection }}
-                    >
-                      I. Personal & Academic Credentials
-                    </motion.h4>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <motion.div
-                        className="space-y-2"
-                        variants={fieldVariants}
-                      >
-                        <label
-                          htmlFor="name"
-                          className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold"
-                        >
-                          Full Name
-                        </label>
-                        <motion.input
-                          type="text"
-                          id="name"
-                          value={formState.name}
-                          onChange={handleInputChange}
-                          className={getInputStyle("name")}
-                          placeholder="Arjun Banerjee"
-                          {...getMotionInputProps(!!errors.name)}
-                        />
-                        <AnimatePresence>
-                          {errors.name && (
-                            <motion.p
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: "auto" }}
-                              exit={{ opacity: 0, height: 0 }}
-                              className="text-[10px] text-red-400 mt-1 font-sans font-medium"
-                            >
-                              {errors.name}
-                            </motion.p>
-                          )}
-                        </AnimatePresence>
-                      </motion.div>
-
-                      <motion.div
-                        className="space-y-2"
-                        variants={fieldVariants}
-                      >
-                        <label
-                          htmlFor="institute"
-                          className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold"
-                        >
-                          Institute Name
-                        </label>
-                        <motion.input
-                          type="text"
-                          id="institute"
-                          value={formState.institute}
-                          onChange={handleInputChange}
-                          className={getInputStyle("institute")}
-                          placeholder="e.g. Institute of Engineering and Management"
-                          {...getMotionInputProps(!!errors.institute)}
-                        />
-                        <AnimatePresence>
-                          {errors.institute && (
-                            <motion.p
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: "auto" }}
-                              exit={{ opacity: 0, height: 0 }}
-                              className="text-[10px] text-red-400 mt-1 font-sans font-medium"
-                            >
-                              {errors.institute}
-                            </motion.p>
-                          )}
-                        </AnimatePresence>
-                      </motion.div>
-
-                      <motion.div
-                        className="space-y-2"
-                        variants={fieldVariants}
-                      >
-                        <label
-                          htmlFor="email"
-                          className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold"
-                        >
-                          Email Address
-                        </label>
-                        <motion.input
-                          type="email"
-                          id="email"
-                          value={formState.email}
-                          onChange={handleInputChange}
-                          className={getInputStyle("email")}
-                          placeholder="arjun.banerjee@email.com"
-                          {...getMotionInputProps(!!errors.email)}
-                        />
-                        <AnimatePresence>
-                          {errors.email && (
-                            <motion.p
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: "auto" }}
-                              exit={{ opacity: 0, height: 0 }}
-                              className="text-[10px] text-red-400 mt-1 font-sans font-medium"
-                            >
-                              {errors.email}
-                            </motion.p>
-                          )}
-                        </AnimatePresence>
-                      </motion.div>
-
-                      <motion.div
-                        className="space-y-2"
-                        variants={fieldVariants}
-                      >
-                        <label
-                          htmlFor="gender"
-                          className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold"
-                        >
-                          Gender
-                        </label>
-                        <motion.select
-                          id="gender"
-                          value={formState.gender}
-                          onChange={handleInputChange}
-                          className={getInputStyle("gender")}
-                          {...getMotionInputProps(!!errors.gender)}
-                        >
-                          <option value="">Select Gender</option>
-                          <option value="Male">Male</option>
-                          <option value="Female">Female</option>
-                          <option value="Other">Other</option>
-                        </motion.select>
-                        <AnimatePresence>
-                          {errors.gender && (
-                            <motion.p
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: "auto" }}
-                              exit={{ opacity: 0, height: 0 }}
-                              className="text-[10px] text-red-400 mt-1 font-sans font-medium"
-                            >
-                              {errors.gender}
-                            </motion.p>
-                          )}
-                        </AnimatePresence>
-                      </motion.div>
-
-                      <motion.div
-                        className="space-y-2"
-                        variants={fieldVariants}
-                      >
-                        <label
-                          htmlFor="phone"
-                          className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold"
-                        >
-                          Contact Phone Number
-                        </label>
-                        <motion.input
-                          type="tel"
-                          pattern="[0-9]*"
-                          inputMode="numeric"
-                          id="phone"
-                          value={formState.phone}
-                          onChange={(e) => {
-                            const val = e.target.value;
-                            if (val === "" || /^[0-9]+$/.test(val)) {
-                              handleInputChange(e);
-                            }
-                          }}
-                          className={getInputStyle("phone")}
-                          placeholder="e.g. 9876543210"
-                          {...getMotionInputProps(!!errors.phone)}
-                        />
-                        <AnimatePresence>
-                          {errors.phone && (
-                            <motion.p
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: "auto" }}
-                              exit={{ opacity: 0, height: 0 }}
-                              className="text-[10px] text-red-400 mt-1 font-sans font-medium"
-                            >
-                              {errors.phone}
-                            </motion.p>
-                          )}
-                        </AnimatePresence>
-                      </motion.div>
-
-                      <motion.div
-                        className="space-y-2"
-                        variants={fieldVariants}
-                      >
-                        <label
-                          htmlFor="whatsapp"
-                          className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold"
-                        >
-                          WhatsApp Number
-                        </label>
-                        <motion.input
-                          type="tel"
-                          pattern="[0-9]*"
-                          inputMode="numeric"
-                          id="whatsapp"
-                          value={formState.whatsapp}
-                          onChange={(e) => {
-                            const val = e.target.value;
-                            if (val === "" || /^[0-9]+$/.test(val)) {
-                              handleInputChange(e);
-                            }
-                          }}
-                          className={getInputStyle("whatsapp")}
-                          placeholder="e.g. 9876543210"
-                          {...getMotionInputProps(!!errors.whatsapp)}
-                        />
-                        <AnimatePresence>
-                          {errors.whatsapp && (
-                            <motion.p
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: "auto" }}
-                              exit={{ opacity: 0, height: 0 }}
-                              className="text-[10px] text-red-400 mt-1 font-sans font-medium"
-                            >
-                              {errors.whatsapp}
-                            </motion.p>
-                          )}
-                        </AnimatePresence>
-                      </motion.div>
-                    </div>
-                  </motion.div>
-
-                  {/* Part 2: EB Preferences */}
-                  <motion.div className="space-y-6" variants={sectionVariants}>
-                    <motion.h4
-                      className="font-serif text-sm tracking-widest uppercase text-warm-tan font-bold pb-2 border-b border-warm-tan/10"
-                      style={{ y: springYSection }}
-                    >
-                      II. Board Preferences
-                    </motion.h4>
-
-                    {/* Preference 1 */}
-                    <motion.div
-                      className="p-4 bg-[#022B4B]/30 border border-warm-tan/10 space-y-4 relative"
-                      whileHover={{
-                        y: -2,
-                        borderColor: "rgba(203, 173, 127, 0.4)",
-                        boxShadow: "0 6px 20px rgba(0,0,0,0.15)",
-                      }}
-                      transition={{ duration: 0.3 }}
-                      variants={fieldVariants}
-                    >
-                      <h5 className="font-sans font-bold text-[10px] uppercase text-primary-blue tracking-widest">
-                        First preference
-                      </h5>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="space-y-2 relative z-10">
-                          <label
-                            htmlFor="committeePref1"
-                            className="block font-sans text-[10px] tracking-wider uppercase text-ink/75 font-bold"
-                          >
-                            Committee Preference 1
-                          </label>
-                          <motion.select
-                            id="committeePref1"
-                            value={formState.committeePref1}
-                            onChange={handleInputChange}
-                            className={getInputStyle("committeePref1")}
-                            {...getMotionInputProps(!!errors.committeePref1)}
-                          >
-                            <option value="">Select Committee Choice 1</option>
-                            {committees.map((c) => (
-                              <option
-                                key={c.id}
-                                value={c.name}
-                                disabled={c.name === formState.committeePref2}
-                              >
-                                {c.fullName} ({c.name})
-                              </option>
-                            ))}
-                          </motion.select>
-                          <AnimatePresence>
-                            {errors.committeePref1 && (
-                              <motion.p
-                                initial={{ opacity: 0, height: 0 }}
-                                animate={{ opacity: 1, height: "auto" }}
-                                exit={{ opacity: 0, height: 0 }}
-                                className="text-[10px] text-red-400 mt-1 font-sans font-medium"
-                              >
-                                {errors.committeePref1}
-                              </motion.p>
-                            )}
-                          </AnimatePresence>
-                        </div>
-
-                        <div className="space-y-2 relative z-10">
-                          <label
-                            htmlFor="position1"
-                            className="block font-sans text-[10px] tracking-wider uppercase text-ink/75 font-bold"
-                          >
-                            Preferred Position 1
-                          </label>
-                          <motion.select
-                            id="position1"
-                            value={formState.position1}
-                            onChange={handleInputChange}
-                            className={getInputStyle("position1")}
-                            {...getMotionInputProps(!!errors.position1)}
-                          >
-                            <option value="">Select Position Choice 1</option>
-                            {getPositionsForCommittee(
-                              formState.committeePref1,
-                            ).map((pos) => (
-                              <option key={pos} value={pos}>
-                                {pos}
-                              </option>
-                            ))}
-                          </motion.select>
-                          <AnimatePresence>
-                            {errors.position1 && (
-                              <motion.p
-                                initial={{ opacity: 0, height: 0 }}
-                                animate={{ opacity: 1, height: "auto" }}
-                                exit={{ opacity: 0, height: 0 }}
-                                className="text-[10px] text-red-400 mt-1 font-sans font-medium"
-                              >
-                                {errors.position1}
-                              </motion.p>
-                            )}
-                          </AnimatePresence>
-                        </div>
-                      </div>
-                    </motion.div>
-
-                    {/* Preference 2 */}
-                    <motion.div
-                      className="p-4 bg-[#022B4B]/30 border border-warm-tan/10 space-y-4 relative"
-                      whileHover={{
-                        y: -2,
-                        borderColor: "rgba(203, 173, 127, 0.4)",
-                        boxShadow: "0 6px 20px rgba(0,0,0,0.15)",
-                      }}
-                      transition={{ duration: 0.3 }}
-                      variants={fieldVariants}
-                    >
-                      <h5 className="font-sans font-bold text-[10px] uppercase text-primary-blue tracking-widest">
-                        Second preference
-                      </h5>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <div className="space-y-2 relative z-10">
-                          <label
-                            htmlFor="committeePref2"
-                            className="block font-sans text-[10px] tracking-wider uppercase text-ink/75 font-bold"
-                          >
-                            Committee Preference 2
-                          </label>
-                          <motion.select
-                            id="committeePref2"
-                            value={formState.committeePref2}
-                            onChange={handleInputChange}
-                            className={getInputStyle("committeePref2")}
-                            {...getMotionInputProps(!!errors.committeePref2)}
-                          >
-                            <option value="">Select Committee Choice 2</option>
-                            {committees.map((c) => (
-                              <option
-                                key={c.id}
-                                value={c.name}
-                                disabled={c.name === formState.committeePref1}
-                              >
-                                {c.fullName} ({c.name})
-                              </option>
-                            ))}
-                          </motion.select>
-                          <AnimatePresence>
-                            {errors.committeePref2 && (
-                              <motion.p
-                                initial={{ opacity: 0, height: 0 }}
-                                animate={{ opacity: 1, height: "auto" }}
-                                exit={{ opacity: 0, height: 0 }}
-                                className="text-[10px] text-red-400 mt-1 font-sans font-medium"
-                              >
-                                {errors.committeePref2}
-                              </motion.p>
-                            )}
-                          </AnimatePresence>
-                        </div>
-
-                        <div className="space-y-2 relative z-10">
-                          <label
-                            htmlFor="position2"
-                            className="block font-sans text-[10px] tracking-wider uppercase text-ink/75 font-bold"
-                          >
-                            Preferred Position 2
-                          </label>
-                          <motion.select
-                            id="position2"
-                            value={formState.position2}
-                            onChange={handleInputChange}
-                            className={getInputStyle("position2")}
-                            {...getMotionInputProps(!!errors.position2)}
-                          >
-                            <option value="">Select Position Choice 2</option>
-                            {getPositionsForCommittee(
-                              formState.committeePref2,
-                            ).map((pos) => (
-                              <option key={pos} value={pos}>
-                                {pos}
-                              </option>
-                            ))}
-                          </motion.select>
-                          <AnimatePresence>
-                            {errors.position2 && (
-                              <motion.p
-                                initial={{ opacity: 0, height: 0 }}
-                                animate={{ opacity: 1, height: "auto" }}
-                                exit={{ opacity: 0, height: 0 }}
-                                className="text-[10px] text-red-400 mt-1 font-sans font-medium"
-                              >
-                                {errors.position2}
-                              </motion.p>
-                            )}
-                          </AnimatePresence>
-                        </div>
-                      </div>
-                    </motion.div>
-                  </motion.div>
-
-                  {/* Part 3: Experience details */}
-                  <motion.div className="space-y-6" variants={sectionVariants}>
-                    <motion.h4
-                      className="font-serif text-sm tracking-widest uppercase text-warm-tan font-bold pb-2 border-b border-warm-tan/10"
-                      style={{ y: springYSection }}
-                    >
-                      III. Board Mandates & Experience
-                    </motion.h4>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {/* Total Experience */}
-                      <motion.div
-                        className="space-y-2 col-span-2"
-                        variants={fieldVariants}
-                      >
-                        <label
-                          htmlFor="totalExperience"
-                          className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold"
-                        >
-                          Total Number of MUN / EB Sessions
-                        </label>
-                        <motion.input
-                          type="number"
-                          min="0"
-                          id="totalExperience"
-                          value={formState.totalExperience}
-                          onChange={(e) => {
-                            const val = e.target.value;
-                            if (val === "" || /^[0-9]+$/.test(val)) {
-                              handleInputChange(e);
-                            }
-                          }}
-                          className={getInputStyle("totalExperience")}
-                          placeholder="e.g. 15"
-                          {...getMotionInputProps(!!errors.totalExperience)}
-                        />
-                        <AnimatePresence>
-                          {errors.totalExperience && (
-                            <motion.p
-                              initial={{ opacity: 0, height: 0 }}
-                              animate={{ opacity: 1, height: "auto" }}
-                              exit={{ opacity: 0, height: 0 }}
-                              className="text-[10px] text-red-400 mt-1 font-sans font-medium"
-                            >
-                              {errors.totalExperience}
-                            </motion.p>
-                          )}
-                        </AnimatePresence>
-                      </motion.div>
-                    </div>
-
-                    {/* Previous Experience */}
-                    <motion.div className="space-y-2" variants={fieldVariants}>
-                      <label
-                        htmlFor="previousExperience"
-                        className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold"
-                      >
-                        Summary of Previous Executive Board / Delegate
-                        Experience (List specific MUNs, committees chaired, or
-                        awards)
-                      </label>
-                      <motion.textarea
-                        id="previousExperience"
-                        rows={6}
-                        value={formState.previousExperience}
-                        onChange={handleInputChange}
-                        className={getInputStyle("previousExperience")}
-                        placeholder="List details of committees you have previously chaired or delegate credentials..."
-                        {...getMotionInputProps(!!errors.previousExperience)}
-                      />
-                      <AnimatePresence>
-                        {errors.previousExperience && (
-                          <motion.p
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            exit={{ opacity: 0, height: 0 }}
-                            className="text-[10px] text-red-400 mt-1 font-sans font-medium"
-                          >
-                            {errors.previousExperience}
-                          </motion.p>
-                        )}
-                      </AnimatePresence>
-                    </motion.div>
-
-                    {/* Resume Upload */}
-                    <motion.div className="space-y-2" variants={fieldVariants}>
-                      <label
-                        htmlFor="resume"
-                        className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold"
-                      >
-                        Upload Resume (PDF, DOC, DOCX - Max 2MB)
-                      </label>
-                      <motion.input
-                        type="file"
-                        id="resume"
-                        ref={fileInputRef}
-                        onChange={handleFileChange}
-                        accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
-                        className={
-                          getInputStyle("resume") +
-                          " file:mr-4 file:py-1 file:px-3 file:border-0 file:text-xs file:font-semibold file:bg-warm-tan/20 file:text-warm-tan hover:file:bg-warm-tan/30 file:cursor-pointer file:font-sans"
-                        }
-                        {...getMotionInputProps(!!errors.resume)}
-                      />
-                      <AnimatePresence>
-                        {errors.resume && (
-                          <motion.p
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            exit={{ opacity: 0, height: 0 }}
-                            className="text-[10px] text-red-400 mt-1 font-sans font-medium"
-                          >
-                            {errors.resume}
-                          </motion.p>
-                        )}
-                      </AnimatePresence>
-                    </motion.div>
-                  </motion.div>
-
-                  {/* Submissions */}
-                  <motion.div
-                    className="space-y-4 pt-4 border-t border-warm-tan/10 relative"
-                    variants={sectionVariants}
+                  <form
+                    onSubmit={handleSubmit}
+                    noValidate
+                    className="space-y-8"
                   >
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-                      <div className="flex items-center gap-1.5 text-[10px] text-ink/50 uppercase tracking-widest font-semibold">
-                        <Info className="h-3.5 w-3.5 text-warm-tan/60" />
-                        <span>Transmitted securely to the UEMCON board</span>
+                    {/* Part 1: Personal Details */}
+                    <motion.div
+                      className="space-y-6"
+                      variants={sectionVariants}
+                    >
+                      <motion.h4
+                        className="font-serif text-sm tracking-widest uppercase text-warm-tan font-bold pb-2 border-b border-warm-tan/10"
+                        style={{ y: springYSection }}
+                      >
+                        I. Personal & Academic Credentials
+                      </motion.h4>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <motion.div
+                          className="space-y-2"
+                          variants={fieldVariants}
+                        >
+                          <label
+                            htmlFor="name"
+                            className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold"
+                          >
+                            Full Name
+                          </label>
+                          <motion.input
+                            type="text"
+                            id="name"
+                            value={formState.name}
+                            onChange={handleInputChange}
+                            className={getInputStyle("name")}
+                            placeholder="Jane Doe"
+                            {...getMotionInputProps(!!errors.name)}
+                          />
+                          <AnimatePresence>
+                            {errors.name && (
+                              <motion.p
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                className="text-[10px] text-red-400 mt-1 font-sans font-medium"
+                              >
+                                {errors.name}
+                              </motion.p>
+                            )}
+                          </AnimatePresence>
+                        </motion.div>
+
+                        <motion.div
+                          className="space-y-2"
+                          variants={fieldVariants}
+                        >
+                          <label
+                            htmlFor="institute"
+                            className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold"
+                          >
+                            Institute Name
+                          </label>
+                          <motion.input
+                            type="text"
+                            id="institute"
+                            value={formState.institute}
+                            onChange={handleInputChange}
+                            className={getInputStyle("institute")}
+                            placeholder="e.g. Institute of Engineering and Management"
+                            {...getMotionInputProps(!!errors.institute)}
+                          />
+                          <AnimatePresence>
+                            {errors.institute && (
+                              <motion.p
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                className="text-[10px] text-red-400 mt-1 font-sans font-medium"
+                              >
+                                {errors.institute}
+                              </motion.p>
+                            )}
+                          </AnimatePresence>
+                        </motion.div>
+
+                        <motion.div
+                          className="space-y-2"
+                          variants={fieldVariants}
+                        >
+                          <label
+                            htmlFor="email"
+                            className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold"
+                          >
+                            Email Address
+                          </label>
+                          <motion.input
+                            type="email"
+                            id="email"
+                            value={formState.email}
+                            onChange={handleInputChange}
+                            className={getInputStyle("email")}
+                            placeholder="jane.doe@gmail.com"
+                            {...getMotionInputProps(!!errors.email)}
+                          />
+                          <AnimatePresence>
+                            {errors.email && (
+                              <motion.p
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                className="text-[10px] text-red-400 mt-1 font-sans font-medium"
+                              >
+                                {errors.email}
+                              </motion.p>
+                            )}
+                          </AnimatePresence>
+                        </motion.div>
+
+                        <motion.div
+                          className="space-y-2"
+                          variants={fieldVariants}
+                        >
+                          <label
+                            htmlFor="gender"
+                            className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold"
+                          >
+                            Gender
+                          </label>
+                          <motion.select
+                            id="gender"
+                            value={formState.gender}
+                            onChange={handleInputChange}
+                            className={getInputStyle("gender")}
+                            {...getMotionInputProps(!!errors.gender)}
+                          >
+                            <option value="">Select Gender</option>
+                            <option value="Male">Male</option>
+                            <option value="Female">Female</option>
+                            <option value="Other">Other</option>
+                          </motion.select>
+                          <AnimatePresence>
+                            {errors.gender && (
+                              <motion.p
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                className="text-[10px] text-red-400 mt-1 font-sans font-medium"
+                              >
+                                {errors.gender}
+                              </motion.p>
+                            )}
+                          </AnimatePresence>
+                        </motion.div>
+
+                        <motion.div
+                          className="space-y-2"
+                          variants={fieldVariants}
+                        >
+                          <label
+                            htmlFor="phone"
+                            className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold"
+                          >
+                            Contact Phone Number
+                          </label>
+                          <motion.input
+                            type="tel"
+                            pattern="[0-9]*"
+                            inputMode="numeric"
+                            id="phone"
+                            value={formState.phone}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              if (val === "" || /^[0-9]+$/.test(val)) {
+                                handleInputChange(e);
+                              }
+                            }}
+                            className={getInputStyle("phone")}
+                            placeholder="e.g. 9876543210"
+                            {...getMotionInputProps(!!errors.phone)}
+                          />
+                          <AnimatePresence>
+                            {errors.phone && (
+                              <motion.p
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                className="text-[10px] text-red-400 mt-1 font-sans font-medium"
+                              >
+                                {errors.phone}
+                              </motion.p>
+                            )}
+                          </AnimatePresence>
+                        </motion.div>
+
+                        <motion.div
+                          className="space-y-2"
+                          variants={fieldVariants}
+                        >
+                          <label
+                            htmlFor="whatsapp"
+                            className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold"
+                          >
+                            WhatsApp Number
+                          </label>
+                          <motion.input
+                            type="tel"
+                            pattern="[0-9]*"
+                            inputMode="numeric"
+                            id="whatsapp"
+                            value={formState.whatsapp}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              if (val === "" || /^[0-9]+$/.test(val)) {
+                                handleInputChange(e);
+                              }
+                            }}
+                            className={getInputStyle("whatsapp")}
+                            placeholder="e.g. 9876543210"
+                            {...getMotionInputProps(!!errors.whatsapp)}
+                          />
+                          <AnimatePresence>
+                            {errors.whatsapp && (
+                              <motion.p
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                className="text-[10px] text-red-400 mt-1 font-sans font-medium"
+                              >
+                                {errors.whatsapp}
+                              </motion.p>
+                            )}
+                          </AnimatePresence>
+                        </motion.div>
+                      </div>
+                    </motion.div>
+
+                    {/* Part 2: EB Preferences */}
+                    <motion.div
+                      className="space-y-6"
+                      variants={sectionVariants}
+                    >
+                      <motion.h4
+                        className="font-serif text-sm tracking-widest uppercase text-warm-tan font-bold pb-2 border-b border-warm-tan/10"
+                        style={{ y: springYSection }}
+                      >
+                        II. Board Preferences
+                      </motion.h4>
+
+                      {/* Preference 1 */}
+                      <motion.div
+                        className="p-4 bg-[#022B4B]/30 border border-warm-tan/10 space-y-4 relative"
+                        whileHover={{
+                          y: -2,
+                          borderColor: "rgba(203, 173, 127, 0.4)",
+                          boxShadow: "0 6px 20px rgba(0,0,0,0.15)",
+                        }}
+                        transition={{ duration: 0.3 }}
+                        variants={fieldVariants}
+                      >
+                        <h5 className="font-sans font-bold text-[10px] uppercase text-primary-blue tracking-widest">
+                          First preference
+                        </h5>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="space-y-2 relative z-10">
+                            <label
+                              htmlFor="committeePref1"
+                              className="block font-sans text-[10px] tracking-wider uppercase text-ink/75 font-bold"
+                            >
+                              Committee Preference 1
+                            </label>
+                            <motion.select
+                              id="committeePref1"
+                              value={formState.committeePref1}
+                              onChange={handleInputChange}
+                              className={getInputStyle("committeePref1")}
+                              {...getMotionInputProps(!!errors.committeePref1)}
+                            >
+                              <option value="">
+                                Select Committee Choice 1
+                              </option>
+                              {committees.map((c) => (
+                                <option
+                                  key={c.id}
+                                  value={c.name}
+                                  disabled={c.name === formState.committeePref2}
+                                >
+                                  {c.fullName} ({c.name})
+                                </option>
+                              ))}
+                            </motion.select>
+                            <AnimatePresence>
+                              {errors.committeePref1 && (
+                                <motion.p
+                                  initial={{ opacity: 0, height: 0 }}
+                                  animate={{ opacity: 1, height: "auto" }}
+                                  exit={{ opacity: 0, height: 0 }}
+                                  className="text-[10px] text-red-400 mt-1 font-sans font-medium"
+                                >
+                                  {errors.committeePref1}
+                                </motion.p>
+                              )}
+                            </AnimatePresence>
+                          </div>
+
+                          <div className="space-y-2 relative z-10">
+                            <label
+                              htmlFor="position1"
+                              className="block font-sans text-[10px] tracking-wider uppercase text-ink/75 font-bold"
+                            >
+                              Preferred Position 1
+                            </label>
+                            <motion.select
+                              id="position1"
+                              value={formState.position1}
+                              onChange={handleInputChange}
+                              className={getInputStyle("position1")}
+                              {...getMotionInputProps(!!errors.position1)}
+                            >
+                              <option value="">Select Position Choice 1</option>
+                              {getPositionsForCommittee(
+                                formState.committeePref1,
+                              ).map((pos) => (
+                                <option key={pos} value={pos}>
+                                  {pos}
+                                </option>
+                              ))}
+                            </motion.select>
+                            <AnimatePresence>
+                              {errors.position1 && (
+                                <motion.p
+                                  initial={{ opacity: 0, height: 0 }}
+                                  animate={{ opacity: 1, height: "auto" }}
+                                  exit={{ opacity: 0, height: 0 }}
+                                  className="text-[10px] text-red-400 mt-1 font-sans font-medium"
+                                >
+                                  {errors.position1}
+                                </motion.p>
+                              )}
+                            </AnimatePresence>
+                          </div>
+                        </div>
+                      </motion.div>
+
+                      {/* Preference 2 */}
+                      <motion.div
+                        className="p-4 bg-[#022B4B]/30 border border-warm-tan/10 space-y-4 relative"
+                        whileHover={{
+                          y: -2,
+                          borderColor: "rgba(203, 173, 127, 0.4)",
+                          boxShadow: "0 6px 20px rgba(0,0,0,0.15)",
+                        }}
+                        transition={{ duration: 0.3 }}
+                        variants={fieldVariants}
+                      >
+                        <h5 className="font-sans font-bold text-[10px] uppercase text-primary-blue tracking-widest">
+                          Second preference
+                        </h5>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          <div className="space-y-2 relative z-10">
+                            <label
+                              htmlFor="committeePref2"
+                              className="block font-sans text-[10px] tracking-wider uppercase text-ink/75 font-bold"
+                            >
+                              Committee Preference 2
+                            </label>
+                            <motion.select
+                              id="committeePref2"
+                              value={formState.committeePref2}
+                              onChange={handleInputChange}
+                              className={getInputStyle("committeePref2")}
+                              {...getMotionInputProps(!!errors.committeePref2)}
+                            >
+                              <option value="">
+                                Select Committee Choice 2
+                              </option>
+                              {committees.map((c) => (
+                                <option
+                                  key={c.id}
+                                  value={c.name}
+                                  disabled={c.name === formState.committeePref1}
+                                >
+                                  {c.fullName} ({c.name})
+                                </option>
+                              ))}
+                            </motion.select>
+                            <AnimatePresence>
+                              {errors.committeePref2 && (
+                                <motion.p
+                                  initial={{ opacity: 0, height: 0 }}
+                                  animate={{ opacity: 1, height: "auto" }}
+                                  exit={{ opacity: 0, height: 0 }}
+                                  className="text-[10px] text-red-400 mt-1 font-sans font-medium"
+                                >
+                                  {errors.committeePref2}
+                                </motion.p>
+                              )}
+                            </AnimatePresence>
+                          </div>
+
+                          <div className="space-y-2 relative z-10">
+                            <label
+                              htmlFor="position2"
+                              className="block font-sans text-[10px] tracking-wider uppercase text-ink/75 font-bold"
+                            >
+                              Preferred Position 2
+                            </label>
+                            <motion.select
+                              id="position2"
+                              value={formState.position2}
+                              onChange={handleInputChange}
+                              className={getInputStyle("position2")}
+                              {...getMotionInputProps(!!errors.position2)}
+                            >
+                              <option value="">Select Position Choice 2</option>
+                              {getPositionsForCommittee(
+                                formState.committeePref2,
+                              ).map((pos) => (
+                                <option key={pos} value={pos}>
+                                  {pos}
+                                </option>
+                              ))}
+                            </motion.select>
+                            <AnimatePresence>
+                              {errors.position2 && (
+                                <motion.p
+                                  initial={{ opacity: 0, height: 0 }}
+                                  animate={{ opacity: 1, height: "auto" }}
+                                  exit={{ opacity: 0, height: 0 }}
+                                  className="text-[10px] text-red-400 mt-1 font-sans font-medium"
+                                >
+                                  {errors.position2}
+                                </motion.p>
+                              )}
+                            </AnimatePresence>
+                          </div>
+                        </div>
+                      </motion.div>
+                    </motion.div>
+
+                    {/* Part 3: Experience details */}
+                    <motion.div
+                      className="space-y-6"
+                      variants={sectionVariants}
+                    >
+                      <motion.h4
+                        className="font-serif text-sm tracking-widest uppercase text-warm-tan font-bold pb-2 border-b border-warm-tan/10"
+                        style={{ y: springYSection }}
+                      >
+                        III. Board Mandates & Experience
+                      </motion.h4>
+
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {/* Total Experience */}
+                        <motion.div
+                          className="space-y-2 col-span-2"
+                          variants={fieldVariants}
+                        >
+                          <label
+                            htmlFor="totalExperience"
+                            className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold"
+                          >
+                            Total Number of MUN / EB Sessions
+                          </label>
+                          <motion.input
+                            type="number"
+                            min="0"
+                            id="totalExperience"
+                            value={formState.totalExperience}
+                            onChange={(e) => {
+                              const val = e.target.value;
+                              if (val === "" || /^[0-9]+$/.test(val)) {
+                                handleInputChange(e);
+                              }
+                            }}
+                            className={getInputStyle("totalExperience")}
+                            placeholder="e.g. 15"
+                            {...getMotionInputProps(!!errors.totalExperience)}
+                          />
+                          <AnimatePresence>
+                            {errors.totalExperience && (
+                              <motion.p
+                                initial={{ opacity: 0, height: 0 }}
+                                animate={{ opacity: 1, height: "auto" }}
+                                exit={{ opacity: 0, height: 0 }}
+                                className="text-[10px] text-red-400 mt-1 font-sans font-medium"
+                              >
+                                {errors.totalExperience}
+                              </motion.p>
+                            )}
+                          </AnimatePresence>
+                        </motion.div>
                       </div>
 
+                      {/* Previous Experience */}
                       <motion.div
-                        whileHover={{
-                          y: -1,
-                          boxShadow: "0 0 15px rgba(203, 173, 127, 0.2)",
-                        }}
-                        whileTap={{
-                          scale: 0.98,
-                          boxShadow: "0 0 0px rgba(203, 173, 127, 0)",
-                        }}
-                        className="relative group rounded-none"
+                        className="space-y-2"
+                        variants={fieldVariants}
                       >
-                        {/* Light sweep effect container */}
-                        <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-none">
-                          <motion.div
-                            className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[sweep_1.5s_ease-in-out_infinite]"
-                            style={{ skewX: "-20deg" }}
-                          />
+                        <label
+                          htmlFor="previousExperience"
+                          className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold"
+                        >
+                          Summary of Previous Executive Board / Delegate
+                          Experience (List specific MUNs, committees chaired, or
+                          awards)
+                        </label>
+                        <motion.textarea
+                          id="previousExperience"
+                          rows={6}
+                          value={formState.previousExperience}
+                          onChange={handleInputChange}
+                          className={getInputStyle("previousExperience")}
+                          placeholder="List details of committees you have previously chaired or delegate credentials..."
+                          {...getMotionInputProps(!!errors.previousExperience)}
+                        />
+                        <AnimatePresence>
+                          {errors.previousExperience && (
+                            <motion.p
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              className="text-[10px] text-red-400 mt-1 font-sans font-medium"
+                            >
+                              {errors.previousExperience}
+                            </motion.p>
+                          )}
+                        </AnimatePresence>
+                      </motion.div>
+
+                      {/* Resume Upload */}
+                      <motion.div
+                        className="space-y-2"
+                        variants={fieldVariants}
+                      >
+                        <label
+                          htmlFor="resume"
+                          className="block font-sans text-[10px] tracking-wider uppercase text-warm-tan/80 font-bold"
+                        >
+                          Upload Resume (PDF, DOC, DOCX - Max 2MB)
+                        </label>
+                        <motion.input
+                          type="file"
+                          id="resume"
+                          ref={fileInputRef}
+                          onChange={handleFileChange}
+                          accept=".pdf,.doc,.docx,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+                          className={
+                            getInputStyle("resume") +
+                            " file:mr-4 file:py-1 file:px-3 file:border-0 file:text-xs file:font-semibold file:bg-warm-tan/20 file:text-warm-tan hover:file:bg-warm-tan/30 file:cursor-pointer file:font-sans"
+                          }
+                          {...getMotionInputProps(!!errors.resume)}
+                        />
+                        <AnimatePresence>
+                          {errors.resume && (
+                            <motion.p
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              exit={{ opacity: 0, height: 0 }}
+                              className="text-[10px] text-red-400 mt-1 font-sans font-medium"
+                            >
+                              {errors.resume}
+                            </motion.p>
+                          )}
+                        </AnimatePresence>
+                      </motion.div>
+                    </motion.div>
+
+                    {/* Submissions */}
+                    <motion.div
+                      className="space-y-4 pt-4 border-t border-warm-tan/10 relative"
+                      variants={sectionVariants}
+                    >
+                      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div className="flex items-center gap-1.5 text-[10px] text-ink/50 uppercase tracking-widest font-semibold">
+                          <Info className="h-3.5 w-3.5 text-warm-tan/60" />
+                          <span>Transmitted securely to the UEMCON board</span>
                         </div>
 
-                        <Button
-                          variant="primary"
-                          type="submit"
-                          disabled={status.type === "submitting"}
-                          className="flex items-center gap-2 px-8 w-full sm:w-auto relative z-10"
+                        <motion.div
+                          whileHover={{
+                            y: -1,
+                            boxShadow: "0 0 15px rgba(203, 173, 127, 0.2)",
+                          }}
+                          whileTap={{
+                            scale: 0.98,
+                            boxShadow: "0 0 0px rgba(203, 173, 127, 0)",
+                          }}
+                          className="relative group rounded-none"
                         >
-                          {status.type === "submitting"
-                            ? "Transmitting..."
-                            : "Submit Portfolio"}
-                          <Send className="h-3 w-3" />
-                        </Button>
-                      </motion.div>
-                    </div>
-                  </motion.div>
+                          {/* Light sweep effect container */}
+                          <div className="absolute inset-0 overflow-hidden pointer-events-none rounded-none">
+                            <motion.div
+                              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:animate-[sweep_1.5s_ease-in-out_infinite]"
+                              style={{ skewX: "-20deg" }}
+                            />
+                          </div>
+
+                          <Button
+                            variant="primary"
+                            type="submit"
+                            disabled={status.type === "submitting"}
+                            className="flex items-center gap-2 px-8 w-full sm:w-auto relative z-10"
+                          >
+                            {status.type === "submitting"
+                              ? "Transmitting..."
+                              : "Submit Portfolio"}
+                            <Send className="h-3 w-3" />
+                          </Button>
+                        </motion.div>
+                      </div>
+                    </motion.div>
                   </form>
                 ) : (
                   <div className="flex flex-col items-center justify-center py-12 px-4 text-center">
                     <motion.div
                       initial={{ scale: 0.8, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
-                      transition={{ delay: 0.3, type: "spring", stiffness: 100 }}
+                      transition={{
+                        delay: 0.3,
+                        type: "spring",
+                        stiffness: 100,
+                      }}
                       className="w-16 h-16 rounded-full bg-warm-tan/10 flex items-center justify-center mb-6 border border-warm-tan/30 relative"
                     >
                       <motion.div
                         className="absolute inset-0 rounded-full border border-warm-tan/40"
                         animate={{ scale: [1, 1.3, 1], opacity: [0.8, 0, 0.8] }}
-                        transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
+                        transition={{
+                          repeat: Infinity,
+                          duration: 2,
+                          ease: "easeInOut",
+                        }}
                       />
                       <Lock className="h-6 w-6 text-warm-tan" />
                     </motion.div>
-                    
+
                     <h4 className="font-serif text-2xl md:text-3xl text-primary-blue uppercase tracking-wider mb-4">
                       COMING SOON
                     </h4>
-                    
+
                     <p className="font-sans text-sm md:text-base text-ink/80 max-w-md mb-8 leading-relaxed">
-                      The Executive Board applications portal for UEMCON 2026 is currently locked. It will open tomorrow for all applicants.
+                      The Executive Board applications portal for UEMCON 2026 is
+                      currently locked. It will open tomorrow for all
+                      applicants.
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center gap-4 bg-[#022B4B]/30 border border-warm-tan/20 px-6 py-4 rounded-none max-w-md w-full justify-center">
                       <div className="flex items-center gap-3 text-left">
                         <Calendar className="h-5 w-5 text-warm-tan shrink-0" />
                         <div>
-                          <p className="font-sans text-[10px] uppercase tracking-wider text-warm-tan/85 font-bold">Opening Date</p>
-                          <p className="font-serif text-sm text-ink font-semibold">Tomorrow, June 14, 2026</p>
+                          <p className="font-sans text-[10px] uppercase tracking-wider text-warm-tan/85 font-bold">
+                            Opening Date
+                          </p>
+                          <p className="font-serif text-sm text-ink font-semibold">
+                            Tomorrow, June 14, 2026
+                          </p>
                         </div>
                       </div>
                       <div className="hidden sm:block w-[1px] h-8 bg-warm-tan/20" />
                       <div className="flex items-center gap-3 text-left">
                         <Clock className="h-5 w-5 text-warm-tan shrink-0" />
                         <div>
-                          <p className="font-sans text-[10px] uppercase tracking-wider text-warm-tan/85 font-bold">Status</p>
+                          <p className="font-sans text-[10px] uppercase tracking-wider text-warm-tan/85 font-bold">
+                            Status
+                          </p>
                           <p className="font-serif text-sm text-ink font-semibold flex items-center gap-1.5">
                             <span className="h-2 w-2 rounded-full bg-amber-500 animate-pulse" />
                             Standing By
