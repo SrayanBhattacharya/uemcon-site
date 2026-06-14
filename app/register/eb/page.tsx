@@ -25,7 +25,7 @@ interface Committee {
 
 export default function EBRegisterPage() {
   const committees = committeesData as Committee[];
-  const isOpen = false; // Set to true when applications open tomorrow
+  const isOpen = true; // Set to true when applications open tomorrow
 
   const [formState, setFormState] = useState({
     name: "",
