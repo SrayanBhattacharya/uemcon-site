@@ -545,7 +545,7 @@ export default function EBRegisterPage() {
             ref={formRef}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: false, amount: 0.1, margin: "-10% 0px -10% 0px" }}
+            viewport={{ once: true, amount: 0.1, margin: "-10% 0px -10% 0px" }}
             exit="exit"
             variants={containerVariants}
           >
