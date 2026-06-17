@@ -202,8 +202,8 @@ export default function EBRegisterPage() {
       formState.position2 &&
       formState.position1 === formState.position2
     ) {
-      newErrors.position2 =
-        "Second preference position must be different from first preference if the same committee is selected";
+      newErrors.committeePref2 =
+        "Second preference committee must be different from first preference";
     }
 
     if (!resumeFile) {
@@ -341,10 +341,21 @@ export default function EBRegisterPage() {
         if (!valid.includes(prev.position1)) {
           updated.position1 = "";
         }
+        if (value === updated.committeePref2 && updated.position1 === updated.position2) {
+          updated.position2 = "";
+        }
       }
       if (id === "committeePref2") {
         const valid = getPositionsForCommittee(value);
         if (!valid.includes(prev.position2)) {
+          updated.position2 = "";
+        }
+        if (updated.committeePref1 === value && updated.position1 === updated.position2) {
+          updated.position2 = "";
+        }
+      }
+      if (id === "position1") {
+        if (updated.committeePref1 === updated.committeePref2 && value === updated.position2) {
           updated.position2 = "";
         }
       }
@@ -1137,11 +1148,7 @@ export default function EBRegisterPage() {
                               {getPositionsForCommittee(
                                 formState.committeePref2,
                               ).map((pos) => (
-                                <option 
-                                  key={pos} 
-                                  value={pos}
-                                  disabled={formState.committeePref1 === formState.committeePref2 && pos === formState.position1}
-                                >
+                                <option key={pos} value={pos}>
                                   {pos}
                                 </option>
                               ))}
