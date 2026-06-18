@@ -197,10 +197,13 @@ export default function EBRegisterPage() {
     if (
       formState.committeePref1 &&
       formState.committeePref2 &&
-      formState.committeePref1 === formState.committeePref2
+      formState.committeePref1 === formState.committeePref2 &&
+      formState.position1 &&
+      formState.position2 &&
+      formState.position1 === formState.position2
     ) {
-      newErrors.committeePref2 =
-        "Second preference committee must be different from first preference";
+      newErrors.position2 =
+        "Second preference position must be different from first preference if the same committee is selected";
     }
 
     if (!resumeFile) {
@@ -999,7 +1002,6 @@ export default function EBRegisterPage() {
                                 <option
                                   key={c.id}
                                   value={c.name}
-                                  disabled={c.name === formState.committeePref2}
                                 >
                                   {c.fullName} ({c.name})
                                 </option>
@@ -1037,7 +1039,11 @@ export default function EBRegisterPage() {
                               {getPositionsForCommittee(
                                 formState.committeePref1,
                               ).map((pos) => (
-                                <option key={pos} value={pos}>
+                                <option 
+                                  key={pos} 
+                                  value={pos}
+                                  disabled={formState.committeePref1 === formState.committeePref2 && pos === formState.position2}
+                                >
                                   {pos}
                                 </option>
                               ))}
@@ -1094,7 +1100,6 @@ export default function EBRegisterPage() {
                                 <option
                                   key={c.id}
                                   value={c.name}
-                                  disabled={c.name === formState.committeePref1}
                                 >
                                   {c.fullName} ({c.name})
                                 </option>
@@ -1132,7 +1137,11 @@ export default function EBRegisterPage() {
                               {getPositionsForCommittee(
                                 formState.committeePref2,
                               ).map((pos) => (
-                                <option key={pos} value={pos}>
+                                <option 
+                                  key={pos} 
+                                  value={pos}
+                                  disabled={formState.committeePref1 === formState.committeePref2 && pos === formState.position1}
+                                >
                                   {pos}
                                 </option>
                               ))}
