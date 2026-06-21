@@ -33,7 +33,7 @@ interface Committee {
 
 export default function EBRegisterPage() {
   const committees = committeesData as Committee[];
-  const isOpen = true; // Set to true when applications open tomorrow
+  const isOpen = false; // Set to true when applications open tomorrow
 
   const [formState, setFormState] = useState({
     name: "",
@@ -1368,28 +1368,15 @@ export default function EBRegisterPage() {
                     </motion.div>
 
                     <h4 className="font-serif text-2xl md:text-3xl text-primary-blue uppercase tracking-wider mb-4">
-                      COMING SOON
+                      APPLICATIONS CLOSED
                     </h4>
 
                     <p className="font-sans text-sm md:text-base text-ink/80 max-w-md mb-8 leading-relaxed">
                       The Executive Board applications portal for UEMCON 2026 is
-                      currently locked. It will open tomorrow for all
-                      applicants.
+                      now closed. Thank you to everyone who submitted their credentials.
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center gap-4 bg-[#022B4B]/30 border border-warm-tan/20 px-6 py-4 rounded-none max-w-md w-full justify-center">
-                      <div className="flex items-center gap-3 text-left">
-                        <Calendar className="h-5 w-5 text-warm-tan shrink-0" />
-                        <div>
-                          <p className="font-sans text-[10px] uppercase tracking-wider text-warm-tan/85 font-bold">
-                            Opening Date
-                          </p>
-                          <p className="font-serif text-sm text-ink font-semibold">
-                            Tomorrow, June 14, 2026
-                          </p>
-                        </div>
-                      </div>
-                      <div className="hidden sm:block w-[1px] h-8 bg-warm-tan/20" />
                       <div className="flex items-center gap-3 text-left">
                         <Clock className="h-5 w-5 text-warm-tan shrink-0" />
                         <div>
@@ -1397,8 +1384,8 @@ export default function EBRegisterPage() {
                             Status
                           </p>
                           <p className="font-serif text-sm text-ink font-semibold flex items-center gap-1.5">
-                            <span className="h-2 w-2 rounded-full bg-amber-500 animate-pulse" />
-                            Standing By
+                            <span className="h-2 w-2 rounded-full bg-red-500 animate-pulse" />
+                            Closed
                           </p>
                         </div>
                       </div>

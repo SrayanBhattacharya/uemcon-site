@@ -22,7 +22,7 @@ export async function POST(req: Request) {
       spreadsheetId: process.env.GOOGLE_SHEET_ID,
 
       // YOUR SHEET TAB NAME
-      range: "'Delegate_Registrations'!A:T",
+      range: "'Delegate_Registrations'!A:AF",
 
       valueInputOption: "USER_ENTERED",
 
@@ -30,12 +30,19 @@ export async function POST(req: Request) {
         values: [
           [
             new Date().toISOString(),
+            body.delegationType || "Single",
             body.name,
-            body.institution,
+            body.institution || "",
             body.email,
             body.gender,
             body.phone,
             body.whatsapp,
+            body.name2 || "",
+            body.institution2 || "",
+            body.email2 || "",
+            body.gender2 || "",
+            body.phone2 || "",
+            body.whatsapp2 || "",
             body.previousMUNs,
             body.experience,
             body.committee1,
@@ -46,7 +53,12 @@ export async function POST(req: Request) {
             body.committee2Portfolio1,
             body.committee2Portfolio2,
             body.committee2Portfolio3,
-            body.foodPreference,
+            body.committee3 || "",
+            body.committee3Portfolio1 || "",
+            body.committee3Portfolio2 || "",
+            body.committee3Portfolio3 || "",
+            body.foodPreference1 || "Veg",
+            body.foodPreference2 || "",
             body.accommodation,
             body.queries,
           ],
