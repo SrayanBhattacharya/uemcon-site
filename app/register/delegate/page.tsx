@@ -26,7 +26,7 @@ interface Committee {
 
 export default function DelegateRegisterPage() {
   const committees = committeesData as Committee[];
-  const isOpen = false; // Set to true when registrations open tomorrow
+  const isOpen = true; // Set to true when registrations open tomorrow
 
   const registrationCommittees = committees.flatMap((c) => {
     if (c.name === "IP") {
@@ -791,10 +791,21 @@ export default function DelegateRegisterPage() {
 
                   {/* Part 2: Preferences */}
                   <div className="space-y-6">
-                    <h4 className="font-serif text-sm tracking-widest uppercase text-warm-tan font-bold pb-2 border-b border-warm-tan/10">
-                      {formState.delegationType === "Double" ? "III" : "II"}.
-                      Committee & Portfolio Preferences
-                    </h4>
+                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-warm-tan/10">
+                      <h4 className="font-serif text-sm tracking-widest uppercase text-warm-tan font-bold">
+                        {formState.delegationType === "Double" ? "III" : "II"}.
+                        Committee & Portfolio Preferences
+                      </h4>
+                      <a
+                        href="https://docs.google.com/spreadsheets/d/1Imrl30wNpPA_jqjcShpnrbfZDusGY3_9x2aRBkGCQfc/edit?gid=0#gid=0"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-sans text-[11px] uppercase tracking-wider text-[#CBAD7F] hover:text-[#ebdaba] font-bold flex items-center gap-1.5 transition-colors duration-200"
+                      >
+                        <Info className="h-3.5 w-3.5 text-[#CBAD7F]" />
+                        <span>View Portfolio Matrix</span>
+                      </a>
+                    </div>
 
                     {/* Preference 1 */}
                     <div className="p-4 bg-[#022B4B]/30 border border-warm-tan/10 space-y-4">

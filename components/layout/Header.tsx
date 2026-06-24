@@ -243,14 +243,18 @@ export default function Header() {
                 {/* Portals */}
                 <div className="space-y-4">
                   {/* Delegate Option */}
-                  <div className="space-y-1.5 opacity-50 cursor-not-allowed">
-                    <div className="w-full bg-[#F4ECD8] text-[#011E33] px-5 py-3.5 font-sans font-bold text-[10px] sm:text-xs uppercase tracking-widest flex flex-wrap items-center justify-between gap-x-2 gap-y-1 shadow-md">
+                  <Link
+                    href="/register/delegate"
+                    onClick={() => setIsModalOpen(false)}
+                    className="block space-y-1.5 focus-visible:outline focus-visible:outline-warm-tan"
+                  >
+                    <div className="w-full bg-[#F4ECD8] hover:bg-[#ebdaba] transition-colors duration-200 text-[#011E33] px-5 py-3.5 font-sans font-bold text-[10px] sm:text-xs uppercase tracking-widest flex flex-wrap items-center justify-between gap-x-2 gap-y-1 shadow-md">
                       <span>Delegate Registration</span>
                       <span className="text-[9px] font-sans tracking-normal opacity-80">
-                        (Coming Soon)
+                        (Apply Now)
                       </span>
                     </div>
-                  </div>
+                  </Link>
 
                   <div className="space-y-1.5 opacity-50 cursor-not-allowed">
                     <div className="w-full bg-[#022B4B] text-[#F4ECD8] border border-warm-tan/30 px-5 py-3.5 font-sans font-bold text-[10px] sm:text-xs uppercase tracking-widest flex flex-wrap items-center justify-between gap-x-2 gap-y-1 shadow-md">
