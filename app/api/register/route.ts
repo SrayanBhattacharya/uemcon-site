@@ -18,6 +18,8 @@ export async function POST(req: Request) {
       auth,
     });
 
+    const isSingle = (body.delegationType || "Single") === "Single";
+
     await sheets.spreadsheets.values.append({
       spreadsheetId: process.env.GOOGLE_SHEET_ID,
 
@@ -37,12 +39,12 @@ export async function POST(req: Request) {
             body.gender,
             body.phone,
             body.whatsapp,
-            body.name2 || "",
-            body.institution2 || "",
-            body.email2 || "",
-            body.gender2 || "",
-            body.phone2 || "",
-            body.whatsapp2 || "",
+            isSingle ? "" : (body.name2 || ""),
+            isSingle ? "" : (body.institution2 || ""),
+            isSingle ? "" : (body.email2 || ""),
+            isSingle ? "" : (body.gender2 || ""),
+            isSingle ? "" : (body.phone2 || ""),
+            isSingle ? "" : (body.whatsapp2 || ""),
             body.previousMUNs,
             body.experience,
             body.committee1,
@@ -58,7 +60,7 @@ export async function POST(req: Request) {
             body.committee3Portfolio2 || "",
             body.committee3Portfolio3 || "",
             body.foodPreference1 || "Veg",
-            body.foodPreference2 || "",
+            isSingle ? "" : (body.foodPreference2 || ""),
             body.accommodation,
             body.queries,
           ],
