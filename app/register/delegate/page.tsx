@@ -294,7 +294,24 @@ export default function DelegateRegisterPage() {
     >,
   ) => {
     const { id, value } = e.target;
-    setFormState((prev) => ({ ...prev, [id]: value }));
+    
+    setFormState((prev) => {
+      const updated = { ...prev, [id]: value };
+      if (id === "committee1" && value === "IP Photography") {
+        updated.committee1Portfolio1 = "NA";
+        updated.committee1Portfolio2 = "NA";
+        updated.committee1Portfolio3 = "NA";
+      } else if (id === "committee2" && value === "IP Photography") {
+        updated.committee2Portfolio1 = "NA";
+        updated.committee2Portfolio2 = "NA";
+        updated.committee2Portfolio3 = "NA";
+      } else if (id === "committee3" && value === "IP Photography") {
+        updated.committee3Portfolio1 = "NA";
+        updated.committee3Portfolio2 = "NA";
+        updated.committee3Portfolio3 = "NA";
+      }
+      return updated;
+    });
 
     // Clear field error on change
     if (errors[id]) {
@@ -308,7 +325,7 @@ export default function DelegateRegisterPage() {
 
   const getInputStyle = (fieldId: string) => {
     const hasError = !!errors[fieldId];
-    return `w-full bg-paper border rounded-none px-4 py-2.5 font-sans text-xs text-ink focus:outline-none focus:ring-1 ${
+    return `w-full bg-paper border rounded-none px-4 py-2.5 font-sans text-xs text-ink focus:outline-none focus:ring-1 disabled:opacity-50 disabled:cursor-not-allowed ${
       hasError
         ? "border-red-500 focus:border-red-500 focus:ring-red-500/20"
         : "border-warm-tan/35 focus:border-primary-blue focus:ring-primary-blue/30"
@@ -854,6 +871,7 @@ export default function DelegateRegisterPage() {
                             id="committee1Portfolio1"
                             value={formState.committee1Portfolio1}
                             onChange={handleInputChange}
+                            disabled={formState.committee1 === "IP Photography"}
                             className={getInputStyle("committee1Portfolio1")}
                             placeholder="e.g. USA"
                           />
@@ -876,6 +894,7 @@ export default function DelegateRegisterPage() {
                             id="committee1Portfolio2"
                             value={formState.committee1Portfolio2}
                             onChange={handleInputChange}
+                            disabled={formState.committee1 === "IP Photography"}
                             className={getInputStyle("committee1Portfolio2")}
                             placeholder="e.g. UK"
                           />
@@ -898,6 +917,7 @@ export default function DelegateRegisterPage() {
                             id="committee1Portfolio3"
                             value={formState.committee1Portfolio3}
                             onChange={handleInputChange}
+                            disabled={formState.committee1 === "IP Photography"}
                             className={getInputStyle("committee1Portfolio3")}
                             placeholder="e.g. France"
                           />
@@ -957,6 +977,7 @@ export default function DelegateRegisterPage() {
                             id="committee2Portfolio1"
                             value={formState.committee2Portfolio1}
                             onChange={handleInputChange}
+                            disabled={formState.committee2 === "IP Photography"}
                             className={getInputStyle("committee2Portfolio1")}
                             placeholder="e.g. Russia"
                           />
@@ -979,6 +1000,7 @@ export default function DelegateRegisterPage() {
                             id="committee2Portfolio2"
                             value={formState.committee2Portfolio2}
                             onChange={handleInputChange}
+                            disabled={formState.committee2 === "IP Photography"}
                             className={getInputStyle("committee2Portfolio2")}
                             placeholder="e.g. China"
                           />
@@ -1001,6 +1023,7 @@ export default function DelegateRegisterPage() {
                             id="committee2Portfolio3"
                             value={formState.committee2Portfolio3}
                             onChange={handleInputChange}
+                            disabled={formState.committee2 === "IP Photography"}
                             className={getInputStyle("committee2Portfolio3")}
                             placeholder="e.g. India"
                           />
@@ -1060,6 +1083,7 @@ export default function DelegateRegisterPage() {
                             id="committee3Portfolio1"
                             value={formState.committee3Portfolio1}
                             onChange={handleInputChange}
+                            disabled={formState.committee3 === "IP Photography"}
                             className={getInputStyle("committee3Portfolio1")}
                             placeholder="e.g. Germany"
                           />
@@ -1082,6 +1106,7 @@ export default function DelegateRegisterPage() {
                             id="committee3Portfolio2"
                             value={formState.committee3Portfolio2}
                             onChange={handleInputChange}
+                            disabled={formState.committee3 === "IP Photography"}
                             className={getInputStyle("committee3Portfolio2")}
                             placeholder="e.g. Japan"
                           />
@@ -1104,6 +1129,7 @@ export default function DelegateRegisterPage() {
                             id="committee3Portfolio3"
                             value={formState.committee3Portfolio3}
                             onChange={handleInputChange}
+                            disabled={formState.committee3 === "IP Photography"}
                             className={getInputStyle("committee3Portfolio3")}
                             placeholder="e.g. Brazil"
                           />
