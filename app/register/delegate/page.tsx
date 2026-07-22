@@ -5,6 +5,7 @@ import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import Heading from "@/components/ui/Heading";
 import Section from "@/components/ui/Section";
+import Sponsors from "@/components/sections/Sponsors";
 import committeesData from "@/lib/committees.json";
 import { motion } from "framer-motion";
 import {
@@ -352,7 +353,7 @@ export default function DelegateRegisterPage() {
         </div>
       </div>
 
-      <Section className="bg-paper py-12 md:py-20">
+      <Section className="bg-paper pt-12 pb-6 md:pt-20 md:pb-10">
         <Container>
           <div className="max-w-4xl mx-auto">
             <Card
@@ -1411,6 +1412,7 @@ export default function DelegateRegisterPage() {
           </div>
         </Container>
       </Section>
+      <Sponsors />
     </div>
   );
 }

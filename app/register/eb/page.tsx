@@ -4,6 +4,7 @@ import Container from "@/components/layout/Container";
 import Button from "@/components/ui/Button";
 import Heading from "@/components/ui/Heading";
 import Section from "@/components/ui/Section";
+import Sponsors from "@/components/sections/Sponsors";
 import committeesData from "@/lib/committees.json";
 import {
   AnimatePresence,
@@ -495,7 +496,7 @@ export default function EBRegisterPage() {
         </div>
       </div>
 
-      <Section className="py-12 md:py-20 overflow-hidden relative">
+      <Section className="pt-12 pb-6 md:pt-20 md:pb-10 overflow-hidden relative">
         {/* Ambient Diplomatic Details */}
         <motion.div
           className="absolute inset-0 pointer-events-none z-0 flex justify-center items-center opacity-[0.025]"
@@ -1424,6 +1425,7 @@ export default function EBRegisterPage() {
           </motion.div>
         </Container>
       </Section>
+      <Sponsors />
       <style jsx global>{`
         @keyframes sweep {
           0% {

@@ -176,7 +176,7 @@ export default async function CommitteePage(props: {
         <ClientScrollReveal delay={0.15} direction="up">
           <div className="flex flex-wrap gap-4">
             <Button
-              disabled
+              href="/register/delegate"
               variant="outline"
               className="px-8 transition-all duration-300 border hover:shadow-md"
               style={{
@@ -184,7 +184,7 @@ export default async function CommitteePage(props: {
                 color: committee.color,
               }}
             >
-              Registrations Opening Soon
+              Register Now
             </Button>
             <Button
               disabled
