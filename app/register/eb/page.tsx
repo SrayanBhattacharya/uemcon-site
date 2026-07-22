@@ -495,8 +495,8 @@ export default function EBRegisterPage() {
           </motion.span>
         </div>
       </div>
-
-      <Section className="pt-12 pb-6 md:pt-20 md:pb-10 overflow-hidden relative">
+      <Sponsors />
+      <Section className="pt-4 pb-6 md:pt-6 md:pb-10 overflow-hidden relative">
         {/* Ambient Diplomatic Details */}
         <motion.div
           className="absolute inset-0 pointer-events-none z-0 flex justify-center items-center opacity-[0.025]"
@@ -1425,7 +1425,6 @@ export default function EBRegisterPage() {
           </motion.div>
         </Container>
       </Section>
-      <Sponsors />
       <style jsx global>{`
         @keyframes sweep {
           0% {

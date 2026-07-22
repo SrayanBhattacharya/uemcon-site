@@ -14,13 +14,13 @@ export default function Sponsors() {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-40px" }}
       transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-      className="bg-paper border-t border-warm-tan/10 pt-4 pb-10 relative overflow-hidden"
+      className="bg-paper border-t border-warm-tan/10 pt-4 pb-2 relative overflow-hidden"
     >
       {/* Background Subtle Elements */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] rounded-full bg-primary-blue/5 blur-[120px] pointer-events-none -z-10" />
       
       <Container className="max-w-4xl">
-        <div className="text-center mb-8">
+        <div className="text-center mb-5">
           <motion.span
             className="font-sans font-bold text-[10px] sm:text-xs tracking-[0.25em] text-[#CBAD7F] uppercase block mb-2"
             initial={{ opacity: 0, y: 10 }}

@@ -352,8 +352,8 @@ export default function DelegateRegisterPage() {
           </span>
         </div>
       </div>
-
-      <Section className="bg-paper pt-12 pb-6 md:pt-20 md:pb-10">
+      <Sponsors />
+      <Section className="bg-paper pt-4 pb-6 md:pt-6 md:pb-10">
         <Container>
           <div className="max-w-4xl mx-auto">
             <Card
@@ -1412,7 +1412,6 @@ export default function DelegateRegisterPage() {
           </div>
         </Container>
       </Section>
-      <Sponsors />
     </div>
   );
 }
