@@ -809,19 +809,33 @@ export default function DelegateRegisterPage() {
 
                   {/* Part 2: Preferences */}
                   <div className="space-y-6">
-                    <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 pb-2 border-b border-warm-tan/10">
+                    <div className="pb-2 border-b border-warm-tan/10">
                       <h4 className="font-serif text-sm tracking-widest uppercase text-warm-tan font-bold">
                         {formState.delegationType === "Double" ? "III" : "II"}.
                         Committee & Portfolio Preferences
                       </h4>
+                    </div>
+
+                    {/* Premium Portfolio Matrix Callout Banner */}
+                    <div className="p-5 bg-[#022B4B]/20 border border-warm-tan/20 flex flex-col md:flex-row md:items-center justify-between gap-4 transition-all hover:border-warm-tan/30">
+                      <div className="flex items-start gap-3">
+                        <Info className="h-5 w-5 text-warm-tan shrink-0 mt-0.5" />
+                        <div className="space-y-1">
+                          <p className="font-serif text-xs font-bold tracking-wider text-warm-tan uppercase">
+                            Verify Available Portfolios
+                          </p>
+                          <p className="font-sans text-[11px] text-ink/75 leading-relaxed max-w-xl">
+                            Please check the official Portfolio Matrix first to view vacant committees, delegations, and journalist/photographer roles before setting your preferences.
+                          </p>
+                        </div>
+                      </div>
                       <a
                         href="https://docs.google.com/spreadsheets/d/1Imrl30wNpPA_jqjcShpnrbfZDusGY3_9x2aRBkGCQfc/edit?gid=0#gid=0"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-sans text-[11px] uppercase tracking-wider text-[#CBAD7F] hover:text-[#ebdaba] font-bold flex items-center gap-1.5 transition-colors duration-200"
+                        className="w-full md:w-auto text-center bg-[#CBAD7F] text-[#011E33] hover:bg-[#ebdaba] hover:scale-[1.02] active:scale-[0.98] transition-all duration-350 font-sans font-bold text-[10px] uppercase tracking-[0.15em] px-6 py-3 whitespace-nowrap shadow-md hover:shadow-lg"
                       >
-                        <Info className="h-3.5 w-3.5 text-[#CBAD7F]" />
-                        <span>View Portfolio Matrix</span>
+                        Open Portfolio Matrix
                       </a>
                     </div>
 
