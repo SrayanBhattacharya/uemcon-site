@@ -197,7 +197,7 @@ export default function DelegateRegisterPage() {
     if (formState.delegationType === "Double" && !formState.foodPreference2)
       newErrors.foodPreference2 = "Member 2 food preference is required";
     if (!formState.accommodation.trim())
-      newErrors.accommodation = "Accommodation requirement is required (enter 'No' if not required)";
+      newErrors.accommodation = "Accommodation selection is required";
     if (!formState.experience.trim())
       newErrors.experience = "Brief experience summary is required";
     if (!formState.queries.trim())
@@ -1276,14 +1276,17 @@ export default function DelegateRegisterPage() {
                         >
                           Accommodation Required
                         </label>
-                        <input
-                          type="text"
+                        <select
                           id="accommodation"
                           value={formState.accommodation}
                           onChange={handleInputChange}
                           className={getInputStyle("accommodation")}
-                          placeholder="e.g. Yes, required for 2 delegates / No"
-                        />
+                        >
+                          <option value="">Select Accommodation Option</option>
+                          <option value="1 delegate">Required (1 Delegate)</option>
+                          <option value="2 delegate">Required (2 Delegates)</option>
+                          <option value="No">Not Required</option>
+                        </select>
                         {errors.accommodation && (
                           <p className="text-[10px] text-red-400 mt-1 font-sans font-medium">
                             {errors.accommodation}
