@@ -235,7 +235,7 @@ export default function DelegateRegisterPage() {
         setStatus({
           type: "success",
           message:
-            "Registration dispatch successfully logged. The delegate relations desk will review your credentials shortly.",
+            "Registration details successfully received! The delegate relations desk will review your credentials shortly. Please note that a provisional allotment email containing your payment link and step-by-step payment instructions will be sent to your registered email address later.",
         });
         setErrors({});
         // Reset form
