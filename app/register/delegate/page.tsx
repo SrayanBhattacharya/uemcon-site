@@ -27,7 +27,7 @@ interface Committee {
 
 export default function DelegateRegisterPage() {
   const committees = committeesData as Committee[];
-  const isOpen = true; // Set to true when registrations open tomorrow
+  const isOpen = false; // Set to true when registrations open tomorrow
 
   const registrationCommittees = committees.flatMap((c) => {
     if (c.name === "IP") {
