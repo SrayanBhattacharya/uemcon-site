@@ -380,25 +380,25 @@ export default function DelegateRegisterPage() {
 
                 {/* Delegation Fees Banner */}
                 <div className="mt-6 p-5 bg-[#022B4B]/20 border border-warm-tan/20 text-left">
-                  <h4 className="font-serif text-xs tracking-wider uppercase text-warm-tan font-bold mb-3 flex items-center gap-2">
+                  <h4 className="font-sans text-xs tracking-wider uppercase text-warm-tan font-bold mb-3 flex items-center gap-2">
                     <Info className="h-4 w-4 text-warm-tan" />
-                    Delegation Fees (Early Bird)
+                    Delegation Fees (Round 1)
                   </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
                     <div className="p-3 bg-[#011E33]/30 border border-warm-tan/10 text-center">
                       <p className="font-sans text-[10px] uppercase tracking-wider text-ink/65">
-                        Single Delegation
+                        Single Delegation (Round 1)
                       </p>
                       <p className="font-sans text-lg font-bold text-primary-blue mt-1">
-                        ₹849/-
+                        ₹949/-
                       </p>
                     </div>
                     <div className="p-3 bg-[#011E33]/30 border border-warm-tan/10 text-center">
                       <p className="font-sans text-[10px] uppercase tracking-wider text-ink/65">
-                        Double Delegation
+                        Double Delegation (Round 1)
                       </p>
                       <p className="font-sans text-lg font-bold text-primary-blue mt-1">
-                        ₹1669/-
+                        ₹1869/-
                       </p>
                     </div>
                     <div className="p-3 bg-[#011E33]/30 border border-warm-tan/10 text-center">
@@ -406,7 +406,7 @@ export default function DelegateRegisterPage() {
                         IP (International Press)
                       </p>
                       <p className="font-sans text-lg font-bold text-primary-blue mt-1">
-                        ₹799/-
+                        ₹899/-
                       </p>
                     </div>
                   </div>

@@ -24,7 +24,7 @@ export async function POST(req: Request) {
       spreadsheetId: process.env.GOOGLE_SHEET_ID,
 
       // YOUR SHEET TAB NAME
-      range: "'Delegate_Registrations'!A:AF",
+      range: "'Delegate_Registrations_V2'!A:AF",
 
       valueInputOption: "USER_ENTERED",
 
