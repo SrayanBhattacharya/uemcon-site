@@ -16,7 +16,7 @@ import {
   Lock,
   Send,
 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 interface Committee {
   id: string;
@@ -27,7 +27,20 @@ interface Committee {
 
 export default function DelegateRegisterPage() {
   const committees = committeesData as Committee[];
-  const isOpen = false; // Set to true when registrations open tomorrow
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    // Tomorrow, July 31, 2026 at 11:00 am local time (IST, +05:30)
+    const targetTime = new Date("2026-07-31T11:00:00+05:30").getTime();
+    
+    const checkTime = () => {
+      setIsOpen(Date.now() >= targetTime);
+    };
+
+    checkTime();
+    const interval = setInterval(checkTime, 1000);
+    return () => clearInterval(interval);
+  }, []);
 
   const registrationCommittees = committees.flatMap((c) => {
     if (c.name === "IP") {
