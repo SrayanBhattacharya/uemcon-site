@@ -1,11 +1,11 @@
 "use client";
 
 import Container from "@/components/layout/Container";
+import Sponsors from "@/components/sections/Sponsors";
 import Button from "@/components/ui/Button";
 import Card from "@/components/ui/Card";
 import Heading from "@/components/ui/Heading";
 import Section from "@/components/ui/Section";
-import Sponsors from "@/components/sections/Sponsors";
 import committeesData from "@/lib/committees.json";
 import { motion } from "framer-motion";
 import {
@@ -16,7 +16,7 @@ import {
   Lock,
   Send,
 } from "lucide-react";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 interface Committee {
   id: string;
@@ -32,7 +32,7 @@ export default function DelegateRegisterPage() {
   useEffect(() => {
     // Tomorrow, July 31, 2026 at 11:00 am local time (IST, +05:30)
     const targetTime = new Date("2026-07-31T11:00:00+05:30").getTime();
-    
+
     const checkTime = () => {
       setIsOpen(Date.now() >= targetTime);
     };
@@ -308,7 +308,7 @@ export default function DelegateRegisterPage() {
     >,
   ) => {
     const { id, value } = e.target;
-    
+
     setFormState((prev) => {
       const updated = { ...prev, [id]: value };
       if (id === "committee1" && value === "IP Photography") {
@@ -838,7 +838,10 @@ export default function DelegateRegisterPage() {
                             Verify Available Portfolios
                           </p>
                           <p className="font-sans text-[11px] text-ink/75 leading-relaxed max-w-xl">
-                            Please check the official Portfolio Matrix first to view vacant committees, delegations, and journalist/photographer roles before setting your preferences.
+                            Please check the official Portfolio Matrix first to
+                            view vacant committees, delegations, and
+                            journalist/photographer roles before setting your
+                            preferences.
                           </p>
                         </div>
                       </div>
@@ -1296,8 +1299,12 @@ export default function DelegateRegisterPage() {
                           className={getInputStyle("accommodation")}
                         >
                           <option value="">Select Accommodation Option</option>
-                          <option value="1 delegate">Required (1 Delegate)</option>
-                          <option value="2 delegate">Required (2 Delegates)</option>
+                          <option value="1 delegate">
+                            Required (1 Delegate)
+                          </option>
+                          <option value="2 delegate">
+                            Required (2 Delegates)
+                          </option>
                           <option value="No">Not Required</option>
                         </select>
                         {errors.accommodation && (

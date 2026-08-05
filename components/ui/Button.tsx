@@ -8,6 +8,8 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: "primary" | "secondary" | "outline";
   children: React.ReactNode;
   href?: string;
+  target?: string;
+  rel?: string;
 }
 
 export default function Button({
@@ -42,7 +44,7 @@ export default function Button({
 
   if (href) {
     return (
-      <Component href={href} {...motionProps}>
+      <Component href={href} {...motionProps} {...(props as any)}>
         {children}
       </Component>
     );

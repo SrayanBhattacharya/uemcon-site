@@ -20,6 +20,7 @@ interface Committee {
   quote?: string;
   author?: string;
   backgroundImage?: string;
+  studyGuide?: string;
   content: string[];
 }
 
@@ -186,17 +187,33 @@ export default async function CommitteePage(props: {
             >
               Register Now
             </Button>
-            <Button
-              disabled
-              variant="outline"
-              className="px-8 transition-all duration-300 border hover:shadow-md"
-              style={{
-                borderColor: committee.color + "30",
-                color: committee.color,
-              }}
-            >
-              Study Guide Coming Soon
-            </Button>
+            {committee.studyGuide ? (
+              <Button
+                href={committee.studyGuide}
+                target="_blank"
+                rel="noopener noreferrer"
+                variant="outline"
+                className="px-8 transition-all duration-300 border hover:shadow-md"
+                style={{
+                  borderColor: committee.color + "30",
+                  color: committee.color,
+                }}
+              >
+                Study Guide
+              </Button>
+            ) : (
+              <Button
+                disabled
+                variant="outline"
+                className="px-8 transition-all duration-300 border hover:shadow-md"
+                style={{
+                  borderColor: committee.color + "30",
+                  color: committee.color,
+                }}
+              >
+                Study Guide Coming Soon
+              </Button>
+            )}
           </div>
         </ClientScrollReveal>
 
