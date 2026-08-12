@@ -131,7 +131,7 @@ export default function FeaturedCommittees() {
                   >
                     <div className="space-y-6">
                       {/* Header: Name and Emblem */}
-                      <div className="flex justify-between items-start">
+                      <div className="flex justify-between items-start min-h-[115px] lg:min-h-[140px] xl:min-h-[120px]">
                         <div>
                           <span
                             className="font-sans text-3xl font-black transition-all duration-300 opacity-30 group-hover:opacity-85"
