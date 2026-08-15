@@ -423,7 +423,7 @@ export default function DelegateRegisterPage() {
                       </p>
                       <div className="flex items-center justify-center gap-2">
                         <span className="line-through text-ink/40 text-sm">₹1869</span>
-                        <span className="text-primary-blue text-xl font-black">₹1600/-</span>
+                        <span className="text-primary-blue text-xl font-black">₹1599/-</span>
                       </div>
                       <div className="mt-1">
                         <span className="inline-block text-[8px] bg-primary-blue/10 text-[#BDEBFF] px-1.5 py-0.5 font-bold tracking-wider uppercase border border-primary-blue/20 rounded-sm">
@@ -437,7 +437,7 @@ export default function DelegateRegisterPage() {
                       </p>
                       <div className="flex items-center justify-center gap-2">
                         <span className="line-through text-ink/40 text-sm">₹899</span>
-                        <span className="text-primary-blue text-xl font-black">₹750/-</span>
+                        <span className="text-primary-blue text-xl font-black">₹749/-</span>
                       </div>
                       <div className="mt-1">
                         <span className="inline-block text-[8px] bg-primary-blue/10 text-[#BDEBFF] px-1.5 py-0.5 font-bold tracking-wider uppercase border border-primary-blue/20 rounded-sm">
