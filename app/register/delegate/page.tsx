@@ -392,58 +392,35 @@ export default function DelegateRegisterPage() {
                 </p>
 
                 {/* Delegation Fees Banner */}
-                <div className="mt-6 p-5 bg-[#022B4B]/20 border border-warm-tan/20 text-left relative overflow-hidden">
-                  {/* Independence Day Banner Header */}
-                  <div className="absolute top-0 right-0 bg-warm-tan text-[#011E33] text-[9px] font-black px-2.5 py-1 uppercase tracking-widest shadow-md rounded-bl select-none">
-                    Independence Day Offer
-                  </div>
-
+                <div className="mt-6 p-5 bg-[#022B4B]/20 border border-warm-tan/20 text-left">
                   <h4 className="font-sans text-xs tracking-wider uppercase text-warm-tan font-bold mb-3 flex items-center gap-2">
                     <Info className="h-4 w-4 text-warm-tan" />
-                    Delegation Fees (Independence Day Special)
+                    Delegation Fees (Round 1)
                   </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-4">
-                    <div className="p-3 bg-[#011E33]/30 border border-warm-tan/10 text-center flex flex-col justify-between min-h-[90px]">
-                      <p className="font-sans text-[10px] uppercase tracking-wider text-ink/65 mb-1">
-                        Single Delegation
+                    <div className="p-3 bg-[#011E33]/30 border border-warm-tan/10 text-center">
+                      <p className="font-sans text-[10px] uppercase tracking-wider text-ink/65">
+                        Single Delegation (Round 1)
                       </p>
-                      <div className="flex items-center justify-center gap-2">
-                        <span className="line-through text-ink/40 text-sm">₹949</span>
-                        <span className="text-primary-blue text-xl font-black">₹799/-</span>
-                      </div>
-                      <div className="mt-1">
-                        <span className="inline-block text-[8px] bg-primary-blue/10 text-[#BDEBFF] px-1.5 py-0.5 font-bold tracking-wider uppercase border border-primary-blue/20 rounded-sm">
-                          Save 15%
-                        </span>
-                      </div>
-                    </div>
-                    <div className="p-3 bg-[#011E33]/30 border border-warm-tan/10 text-center flex flex-col justify-between min-h-[90px]">
-                      <p className="font-sans text-[10px] uppercase tracking-wider text-ink/65 mb-1">
-                        Double Delegation
+                      <p className="font-sans text-lg font-bold text-primary-blue mt-1">
+                        ₹949/-
                       </p>
-                      <div className="flex items-center justify-center gap-2">
-                        <span className="line-through text-ink/40 text-sm">₹1869</span>
-                        <span className="text-primary-blue text-xl font-black">₹1599/-</span>
-                      </div>
-                      <div className="mt-1">
-                        <span className="inline-block text-[8px] bg-primary-blue/10 text-[#BDEBFF] px-1.5 py-0.5 font-bold tracking-wider uppercase border border-primary-blue/20 rounded-sm">
-                          Save 14%
-                        </span>
-                      </div>
                     </div>
-                    <div className="p-3 bg-[#011E33]/30 border border-warm-tan/10 text-center flex flex-col justify-between min-h-[90px]">
-                      <p className="font-sans text-[10px] uppercase tracking-wider text-ink/65 mb-1">
+                    <div className="p-3 bg-[#011E33]/30 border border-warm-tan/10 text-center">
+                      <p className="font-sans text-[10px] uppercase tracking-wider text-ink/65">
+                        Double Delegation (Round 1)
+                      </p>
+                      <p className="font-sans text-lg font-bold text-primary-blue mt-1">
+                        ₹1869/-
+                      </p>
+                    </div>
+                    <div className="p-3 bg-[#011E33]/30 border border-warm-tan/10 text-center">
+                      <p className="font-sans text-[10px] uppercase tracking-wider text-ink/65">
                         IP (International Press)
                       </p>
-                      <div className="flex items-center justify-center gap-2">
-                        <span className="line-through text-ink/40 text-sm">₹899</span>
-                        <span className="text-primary-blue text-xl font-black">₹749/-</span>
-                      </div>
-                      <div className="mt-1">
-                        <span className="inline-block text-[8px] bg-primary-blue/10 text-[#BDEBFF] px-1.5 py-0.5 font-bold tracking-wider uppercase border border-primary-blue/20 rounded-sm">
-                          Save 16%
-                        </span>
-                      </div>
+                      <p className="font-sans text-lg font-bold text-primary-blue mt-1">
+                        ₹899/-
+                      </p>
                     </div>
                   </div>
                   <div className="pt-3 border-t border-warm-tan/10 text-[11px] font-sans text-ink/75 italic leading-relaxed space-y-1">
