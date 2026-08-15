@@ -1,7 +1,7 @@
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
-import CustomCursor from "@/components/ui/CustomCursor";
 import ComingSoon from "@/components/sections/ComingSoon";
+import CustomCursor from "@/components/ui/CustomCursor";
 import type { Metadata } from "next";
 import { Cormorant_Garamond, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
